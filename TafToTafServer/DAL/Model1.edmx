@@ -1,0 +1,617 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Calander">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="KinderGardenId" Type="int" />
+          <Property Name="ProfessionalId" Type="int" />
+          <Property Name="KindId" Type="int" />
+        </EntityType>
+        <EntityType Name="Child">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tz" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BornDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ChildKinderGarden">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChildID" Type="int" />
+          <Property Name="KindrGardenID" Type="int" />
+          <Property Name="BeginYear" Type="datetime" />
+          <Property Name="EndYear" Type="datetime" />
+          <Property Name="EntitlementID" Type="int" />
+        </EntityType>
+        <EntityType Name="Entitlement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProfessionId" Type="int" />
+          <Property Name="NumHour" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Kind">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="KinderGarden">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="KindUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.MSreplication_options' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Professionals">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProfessionKind" Type="int" />
+          <Property Name="NumHourWork" Type="int" />
+          <Property Name="NumDaysWork" Type="int" />
+          <Property Name="Sunday" Type="bit" />
+          <Property Name="Monday" Type="bit" />
+          <Property Name="Thuesday" Type="bit" />
+          <Property Name="Wednesday" Type="bit" />
+          <Property Name="Tursday" Type="bit" />
+        </EntityType>
+        <EntityType Name="ProfessionKind">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_fallback_db' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_fallback_dev' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_fallback_usg' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_monitor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="KindUser" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <Association Name="FK_Calander_Kind">
+          <End Role="Kind" Type="Self.Kind" Multiplicity="1" />
+          <End Role="Calander" Type="Self.Calander" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Kind">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calander">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildKinderGarden_Child">
+          <End Role="Child" Type="Self.Child" Multiplicity="0..1" />
+          <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Child">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChildKinderGarden">
+              <PropertyRef Name="ChildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildKinderGarden_Entitlement">
+          <End Role="Entitlement" Type="Self.Entitlement" Multiplicity="0..1" />
+          <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entitlement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChildKinderGarden">
+              <PropertyRef Name="EntitlementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildKinderGarden_KinderGarden">
+          <End Role="KinderGarden" Type="Self.KinderGarden" Multiplicity="0..1" />
+          <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KinderGarden">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChildKinderGarden">
+              <PropertyRef Name="KindrGardenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entitlement_Profession">
+          <End Role="ProfessionKind" Type="Self.ProfessionKind" Multiplicity="0..1" />
+          <End Role="Entitlement" Type="Self.Entitlement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfessionKind">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entitlement">
+              <PropertyRef Name="ProfessionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Professionals_ProfessionKind">
+          <End Role="ProfessionKind" Type="Self.ProfessionKind" Multiplicity="0..1" />
+          <End Role="Professionals" Type="Self.Professionals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfessionKind">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Professionals">
+              <PropertyRef Name="ProfessionKind" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User">
+          <End Role="KindUser" Type="Self.KindUser" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="KindUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="masterModelStoreContainer">
+          <EntitySet Name="Calander" EntityType="Self.Calander" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Child" EntityType="Self.Child" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChildKinderGarden" EntityType="Self.ChildKinderGarden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entitlement" EntityType="Self.Entitlement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kind" EntityType="Self.Kind" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KinderGarden" EntityType="Self.KinderGarden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KindUser" EntityType="Self.KindUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Professionals" EntityType="Self.Professionals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfessionKind" EntityType="Self.ProfessionKind" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Calander_Kind" Association="Self.FK_Calander_Kind">
+            <End Role="Kind" EntitySet="Kind" />
+            <End Role="Calander" EntitySet="Calander" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildKinderGarden_Child" Association="Self.FK_ChildKinderGarden_Child">
+            <End Role="Child" EntitySet="Child" />
+            <End Role="ChildKinderGarden" EntitySet="ChildKinderGarden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildKinderGarden_Entitlement" Association="Self.FK_ChildKinderGarden_Entitlement">
+            <End Role="Entitlement" EntitySet="Entitlement" />
+            <End Role="ChildKinderGarden" EntitySet="ChildKinderGarden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildKinderGarden_KinderGarden" Association="Self.FK_ChildKinderGarden_KinderGarden">
+            <End Role="KinderGarden" EntitySet="KinderGarden" />
+            <End Role="ChildKinderGarden" EntitySet="ChildKinderGarden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entitlement_Profession" Association="Self.FK_Entitlement_Profession">
+            <End Role="ProfessionKind" EntitySet="ProfessionKind" />
+            <End Role="Entitlement" EntitySet="Entitlement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Professionals_ProfessionKind" Association="Self.FK_Professionals_ProfessionKind">
+            <End Role="ProfessionKind" EntitySet="ProfessionKind" />
+            <End Role="Professionals" EntitySet="Professionals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
+            <End Role="KindUser" EntitySet="KindUser" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Calander">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="KinderGardenId" Type="Int32" />
+          <Property Name="ProfessionalId" Type="Int32" />
+          <Property Name="KindId" Type="Int32" />
+          <NavigationProperty Name="Kind" Relationship="Self.FK_Calander_Kind" FromRole="Calander" ToRole="Kind" />
+        </EntityType>
+        <EntityType Name="Child">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tz" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BornDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ChildKinderGardens" Relationship="Self.FK_ChildKinderGarden_Child" FromRole="Child" ToRole="ChildKinderGarden" />
+        </EntityType>
+        <EntityType Name="ChildKinderGarden">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChildID" Type="Int32" />
+          <Property Name="KindrGardenID" Type="Int32" />
+          <Property Name="BeginYear" Type="DateTime" Precision="3" />
+          <Property Name="EndYear" Type="DateTime" Precision="3" />
+          <Property Name="EntitlementID" Type="Int32" />
+          <NavigationProperty Name="Child" Relationship="Self.FK_ChildKinderGarden_Child" FromRole="ChildKinderGarden" ToRole="Child" />
+          <NavigationProperty Name="Entitlement" Relationship="Self.FK_ChildKinderGarden_Entitlement" FromRole="ChildKinderGarden" ToRole="Entitlement" />
+          <NavigationProperty Name="KinderGarden" Relationship="Self.FK_ChildKinderGarden_KinderGarden" FromRole="ChildKinderGarden" ToRole="KinderGarden" />
+        </EntityType>
+        <EntityType Name="Entitlement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfessionId" Type="Int32" />
+          <Property Name="NumHour" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="ChildKinderGardens" Relationship="Self.FK_ChildKinderGarden_Entitlement" FromRole="Entitlement" ToRole="ChildKinderGarden" />
+          <NavigationProperty Name="ProfessionKind" Relationship="Self.FK_Entitlement_Profession" FromRole="Entitlement" ToRole="ProfessionKind" />
+        </EntityType>
+        <EntityType Name="Kind">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Calander" Relationship="Self.FK_Calander_Kind" FromRole="Kind" ToRole="Calander" />
+        </EntityType>
+        <EntityType Name="KinderGarden">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ChildKinderGardens" Relationship="Self.FK_ChildKinderGarden_KinderGarden" FromRole="KinderGarden" ToRole="ChildKinderGarden" />
+        </EntityType>
+        <EntityType Name="KindUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_User" FromRole="KindUser" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Professional">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProfessionKind" Type="Int32" />
+          <Property Name="NumHourWork" Type="Int32" />
+          <Property Name="NumDaysWork" Type="Int32" />
+          <Property Name="Sunday" Type="Boolean" />
+          <Property Name="Monday" Type="Boolean" />
+          <Property Name="Thuesday" Type="Boolean" />
+          <Property Name="Wednesday" Type="Boolean" />
+          <Property Name="Tursday" Type="Boolean" />
+          <NavigationProperty Name="ProfessionKind1" Relationship="Self.FK_Professionals_ProfessionKind" FromRole="Professionals" ToRole="ProfessionKind" />
+        </EntityType>
+        <EntityType Name="ProfessionKind">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Entitlements" Relationship="Self.FK_Entitlement_Profession" FromRole="ProfessionKind" ToRole="Entitlement" />
+          <NavigationProperty Name="Professionals" Relationship="Self.FK_Professionals_ProfessionKind" FromRole="ProfessionKind" ToRole="Professionals" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KindUser" Type="Int32" />
+          <NavigationProperty Name="KindUser1" Relationship="Self.FK_User_User" FromRole="User" ToRole="KindUser" />
+        </EntityType>
+        <Association Name="FK_Calander_Kind">
+          <End Role="Kind" Type="Self.Kind" Multiplicity="1" />
+          <End Role="Calander" Type="Self.Calander" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Kind">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calander">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildKinderGarden_Child">
+          <End Role="Child" Type="Self.Child" Multiplicity="0..1" />
+          <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Child">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChildKinderGarden">
+              <PropertyRef Name="ChildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildKinderGarden_Entitlement">
+          <End Role="Entitlement" Type="Self.Entitlement" Multiplicity="0..1" />
+          <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entitlement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChildKinderGarden">
+              <PropertyRef Name="EntitlementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildKinderGarden_KinderGarden">
+          <End Role="KinderGarden" Type="Self.KinderGarden" Multiplicity="0..1" />
+          <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KinderGarden">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChildKinderGarden">
+              <PropertyRef Name="KindrGardenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entitlement_Profession">
+          <End Role="ProfessionKind" Type="Self.ProfessionKind" Multiplicity="0..1" />
+          <End Role="Entitlement" Type="Self.Entitlement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfessionKind">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entitlement">
+              <PropertyRef Name="ProfessionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User">
+          <End Role="KindUser" Type="Self.KindUser" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="KindUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Professionals_ProfessionKind">
+          <End Role="ProfessionKind" Type="Self.ProfessionKind" Multiplicity="0..1" />
+          <End Role="Professionals" Type="Self.Professional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfessionKind">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Professionals">
+              <PropertyRef Name="ProfessionKind" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Calanders" EntityType="Self.Calander" />
+          <EntitySet Name="Children" EntityType="Self.Child" />
+          <EntitySet Name="ChildKinderGardens" EntityType="Self.ChildKinderGarden" />
+          <EntitySet Name="Entitlements" EntityType="Self.Entitlement" />
+          <EntitySet Name="Kinds" EntityType="Self.Kind" />
+          <EntitySet Name="KinderGardens" EntityType="Self.KinderGarden" />
+          <EntitySet Name="KindUsers" EntityType="Self.KindUser" />
+          <EntitySet Name="Professionals" EntityType="Self.Professional" />
+          <EntitySet Name="ProfessionKinds" EntityType="Self.ProfessionKind" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Calander_Kind" Association="Self.FK_Calander_Kind">
+            <End Role="Kind" EntitySet="Kinds" />
+            <End Role="Calander" EntitySet="Calanders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildKinderGarden_Child" Association="Self.FK_ChildKinderGarden_Child">
+            <End Role="Child" EntitySet="Children" />
+            <End Role="ChildKinderGarden" EntitySet="ChildKinderGardens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildKinderGarden_Entitlement" Association="Self.FK_ChildKinderGarden_Entitlement">
+            <End Role="Entitlement" EntitySet="Entitlements" />
+            <End Role="ChildKinderGarden" EntitySet="ChildKinderGardens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildKinderGarden_KinderGarden" Association="Self.FK_ChildKinderGarden_KinderGarden">
+            <End Role="KinderGarden" EntitySet="KinderGardens" />
+            <End Role="ChildKinderGarden" EntitySet="ChildKinderGardens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entitlement_Profession" Association="Self.FK_Entitlement_Profession">
+            <End Role="ProfessionKind" EntitySet="ProfessionKinds" />
+            <End Role="Entitlement" EntitySet="Entitlements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
+            <End Role="KindUser" EntitySet="KindUsers" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Professionals_ProfessionKind" Association="Self.FK_Professionals_ProfessionKind">
+            <End Role="ProfessionKind" EntitySet="ProfessionKinds" />
+            <End Role="Professionals" EntitySet="Professionals" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+          <EntitySetMapping Name="Calanders">
+            <EntityTypeMapping TypeName="masterModel.Calander">
+              <MappingFragment StoreEntitySet="Calander">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="KinderGardenId" ColumnName="KinderGardenId" />
+                <ScalarProperty Name="ProfessionalId" ColumnName="ProfessionalId" />
+                <ScalarProperty Name="KindId" ColumnName="KindId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Children">
+            <EntityTypeMapping TypeName="masterModel.Child">
+              <MappingFragment StoreEntitySet="Child">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Tz" ColumnName="Tz" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="BornDate" ColumnName="BornDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChildKinderGardens">
+            <EntityTypeMapping TypeName="masterModel.ChildKinderGarden">
+              <MappingFragment StoreEntitySet="ChildKinderGarden">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ChildID" ColumnName="ChildID" />
+                <ScalarProperty Name="KindrGardenID" ColumnName="KindrGardenID" />
+                <ScalarProperty Name="BeginYear" ColumnName="BeginYear" />
+                <ScalarProperty Name="EndYear" ColumnName="EndYear" />
+                <ScalarProperty Name="EntitlementID" ColumnName="EntitlementID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entitlements">
+            <EntityTypeMapping TypeName="masterModel.Entitlement">
+              <MappingFragment StoreEntitySet="Entitlement">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProfessionId" ColumnName="ProfessionId" />
+                <ScalarProperty Name="NumHour" ColumnName="NumHour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kinds">
+            <EntityTypeMapping TypeName="masterModel.Kind">
+              <MappingFragment StoreEntitySet="Kind">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KinderGardens">
+            <EntityTypeMapping TypeName="masterModel.KinderGarden">
+              <MappingFragment StoreEntitySet="KinderGarden">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KindUsers">
+            <EntityTypeMapping TypeName="masterModel.KindUser">
+              <MappingFragment StoreEntitySet="KindUser">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Professionals">
+            <EntityTypeMapping TypeName="masterModel.Professional">
+              <MappingFragment StoreEntitySet="Professionals">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProfessionKind" ColumnName="ProfessionKind" />
+                <ScalarProperty Name="NumHourWork" ColumnName="NumHourWork" />
+                <ScalarProperty Name="NumDaysWork" ColumnName="NumDaysWork" />
+                <ScalarProperty Name="Sunday" ColumnName="Sunday" />
+                <ScalarProperty Name="Monday" ColumnName="Monday" />
+                <ScalarProperty Name="Thuesday" ColumnName="Thuesday" />
+                <ScalarProperty Name="Wednesday" ColumnName="Wednesday" />
+                <ScalarProperty Name="Tursday" ColumnName="Tursday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfessionKinds">
+            <EntityTypeMapping TypeName="masterModel.ProfessionKind">
+              <MappingFragment StoreEntitySet="ProfessionKind">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="masterModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="KindUser" ColumnName="KindUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

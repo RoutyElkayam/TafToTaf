@@ -1,0 +1,6 @@
+D:\Users\User\Documents\Project\TafToTafServer\DTO\bin\Debug\DTO.dll
+D:\Users\User\Documents\Project\TafToTafServer\DTO\bin\Debug\DTO.pdb
+D:\Users\User\Documents\Project\TafToTafServer\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
+D:\Users\User\Documents\Project\TafToTafServer\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\Users\User\Documents\Project\TafToTafServer\DTO\obj\Debug\DTO.dll
+D:\Users\User\Documents\Project\TafToTafServer\DTO\obj\Debug\DTO.pdb

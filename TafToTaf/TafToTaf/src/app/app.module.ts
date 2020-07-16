@@ -25,6 +25,12 @@ import { MonthlySystemComponent } from './components/monthly-system/monthly-syst
 import { ChildComponent } from './components/child/child.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { InsertChildComponent } from './components/insert-child/insert-child.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CommonModule } from '@angular/common';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -55,8 +61,13 @@ import { InsertChildComponent } from './components/insert-child/insert-child.com
     HttpClientModule,
     BrowserAnimationsModule,
     AccordionModule,
-  
-
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    CommonModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

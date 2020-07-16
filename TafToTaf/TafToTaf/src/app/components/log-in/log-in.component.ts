@@ -35,8 +35,8 @@ export class LogInComponent implements OnInit {
       }
       else alert("UserName or Password are not valid!")
     },err=>{
-      alert("UserName or Password are not valid!")
-    })
+      alert("UserName or Password are not valid!");
+    });
 
   }
 

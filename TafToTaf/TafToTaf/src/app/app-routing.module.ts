@@ -6,6 +6,8 @@ import { WorkerMainComponent } from './components/worker-main/worker-main.compon
 import { LogInComponent } from './components/log-in/log-in.component';
 import { ChildrenComponent } from './components/children/children.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { WeeklySystemComponent } from './components/weekly-system/weekly-system.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -13,15 +15,18 @@ const routes: Routes = [
   {component:LogInComponent,path:""},
   {component:ParentMainComponent,path:"parent-main"},
   {component:AdminMainComponent,path:"admin-main",children:[
-     {component:ChildrenComponent, path:"children"}
+     {component:ChildrenComponent, path:"children"},
+     {component:WeeklySystemComponent, path:"weekly-system"},
+    {component:WelcomeComponent, path:"welcome"},
   ]},
   {component:WorkerMainComponent, path:"worker-main"},
   {component:WelcomeComponent, path:"welcome"},
- 
+  
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+  CommonModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

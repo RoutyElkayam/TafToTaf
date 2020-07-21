@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms'
+import { FormsModule} from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LogInComponent } from './components/log-in/log-in.component';
@@ -30,6 +30,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CommonModule } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -53,6 +54,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     ChildComponent,
     WelcomeComponent,
     InsertChildComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -67,9 +70,10 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     }),
     CommonModule,
     NgbModalModule,
-    FlatpickrModule.forRoot(),
+    FlatpickrModule.forRoot(), 
+    NgbModule,
   ],
-  providers: [],
+  providers: [NgbActiveModal],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

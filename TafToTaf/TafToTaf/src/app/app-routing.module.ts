@@ -9,18 +9,23 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { WeeklySystemComponent } from './components/weekly-system/weekly-system.component';
 import { CommonModule } from '@angular/common';
 
+import { InsertChildComponent } from './components/insert-child/insert-child.component';
+
 
 
 const routes: Routes = [
   {component:LogInComponent,path:""},
   {component:ParentMainComponent,path:"parent-main"},
-  {component:AdminMainComponent,path:"admin-main",children:[
+  {component:AdminMainComponent,path:"admin-main",
+  children:[
+    {component:WelcomeComponent,path:""},
      {component:ChildrenComponent, path:"children"},
      {component:WeeklySystemComponent, path:"weekly-system"},
-    {component:WelcomeComponent, path:"welcome"},
+    
   ]},
   {component:WorkerMainComponent, path:"worker-main"},
-  {component:WelcomeComponent, path:"welcome"},
+  // {component:WelcomeComponent, path:"welcome"},
+  {component:InsertChildComponent, path:"insert"}
   
 ];
 

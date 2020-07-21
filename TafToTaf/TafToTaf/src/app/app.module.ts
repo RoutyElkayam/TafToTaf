@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms'
+import { FormsModule} from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LogInComponent } from './components/log-in/log-in.component';
@@ -26,6 +26,13 @@ import { ChildComponent } from './components/child/child.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { InsertChildComponent } from './components/insert-child/insert-child.component';
 import { InsertChildModalComponent } from './components/insert-child-modal/insert-child-modal.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CommonModule } from '@angular/common';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -57,10 +64,16 @@ import { InsertChildModalComponent } from './components/insert-child-modal/inser
     HttpClientModule,
     BrowserAnimationsModule,
     AccordionModule,
-  
-
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    CommonModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(), 
+    NgbModule,
   ],
-  providers: [],
+  providers: [NgbActiveModal],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

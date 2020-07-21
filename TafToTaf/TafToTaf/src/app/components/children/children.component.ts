@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { InsertChildComponent} from '../insert-child/insert-child.component';
 @Component({
   selector: 'app-children',
   templateUrl: './children.component.html',
@@ -7,11 +8,15 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ChildrenComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalService: NgbModal) { 
+    
+  }
   ngOnInit() {
   }
-  openModal():void
-  {
     
+
+  open() {
+    const modalRef = this.modalService.open(InsertChildComponent);
+    modalRef.componentInstance.name = 'World';
   }
 }

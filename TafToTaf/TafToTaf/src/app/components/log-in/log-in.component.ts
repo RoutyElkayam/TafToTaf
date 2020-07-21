@@ -43,18 +43,17 @@ export class LogInComponent implements OnInit {
     }
       this.user=this.accountService.currentUser();
       if (this.user) {
-            if (this.user.KindUser == 1) {
-              this.router.navigate(["admin-main"])
-            }
-            if (this.user.KindUser == 2) {
-              this.router.navigate(["worker-main"])
-            }
-            if (this.user.KindUser == 3) {
-              this.router.navigate(["parent-main"])
-            }
-          }
-          else alert("UserName or Password are not valid!")
-
-  }
+        if (this.user.KindUser == 1) {
+          this.router.navigate(["admin-main"])
+        }
+        if (this.user.KindUser == 2) {
+          this.router.navigate(["worker-main"])
+        }
+        if (this.user.KindUser == 3) {
+          this.router.navigate(["parent-main"])
+        }
+      }
+      else alert("UserName or Password are not valid!")
+    }
 
 }

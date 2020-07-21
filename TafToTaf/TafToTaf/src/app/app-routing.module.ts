@@ -7,6 +7,11 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { ChildrenComponent } from './components/children/children.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AuthGuard } from './auth.guard';
+import { WeeklySystemComponent } from './components/weekly-system/weekly-system.component';
+import { CommonModule } from '@angular/common';
+
+import { InsertChildComponent } from './components/insert-child/insert-child.component';
+
 
 
 const routes: Routes = [
@@ -18,10 +23,23 @@ const routes: Routes = [
   {component:WorkerMainComponent, path:"worker-main",canActivate:[AuthGuard]},
   {component:WelcomeComponent, path:"welcome"},
  
+  {component:ParentMainComponent,path:"parent-main"},
+  {component:AdminMainComponent,path:"admin-main",
+  children:[
+    {component:WelcomeComponent,path:""},
+     {component:ChildrenComponent, path:"children"},
+     {component:WeeklySystemComponent, path:"weekly-system"},
+    
+  ]},
+  {component:WorkerMainComponent, path:"worker-main"},
+  // {component:WelcomeComponent, path:"welcome"},
+  {component:InsertChildComponent, path:"insert"}
+  
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+  CommonModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

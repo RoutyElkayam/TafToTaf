@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalenderDto.cs" />
-    <Compile Include="ChildC.cs" />
+    <Compile Include="ChildDto.cs" />
     <Compile Include="ChildKinderGardenDto.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="EntitlementDto.cs" />

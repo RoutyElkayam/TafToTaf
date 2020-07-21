@@ -25,6 +25,7 @@ import { MonthlySystemComponent } from './components/monthly-system/monthly-syst
 import { ChildComponent } from './components/child/child.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { InsertChildComponent } from './components/insert-child/insert-child.component';
+import { InsertChildModalComponent } from './components/insert-child-modal/insert-child-modal.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { InsertChildComponent } from './components/insert-child/insert-child.com
     ChildComponent,
     WelcomeComponent,
     InsertChildComponent,
+    InsertChildModalComponent,
   ],
   imports: [
     BrowserModule,

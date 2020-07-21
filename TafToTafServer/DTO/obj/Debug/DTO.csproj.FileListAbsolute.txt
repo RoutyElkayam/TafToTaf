@@ -4,3 +4,9 @@ D:\Users\User\Documents\Project\TafToTafServer\DTO\obj\Debug\DTO.csprojAssemblyR
 D:\Users\User\Documents\Project\TafToTafServer\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\Users\User\Documents\Project\TafToTafServer\DTO\obj\Debug\DTO.dll
 D:\Users\User\Documents\Project\TafToTafServer\DTO\obj\Debug\DTO.pdb
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\DTO\bin\Debug\DTO.dll
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\DTO\bin\Debug\DTO.pdb
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\DTO\obj\Debug\DTO.dll
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\DTO\obj\Debug\DTO.pdb

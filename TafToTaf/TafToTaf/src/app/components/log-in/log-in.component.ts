@@ -20,23 +20,40 @@ export class LogInComponent implements OnInit {
   }
 
   login() {
-    this.accountService.login(this.username, this.password).subscribe(res => {
-      this.user = res;
+    // this.accountService.login(this.username, this.password).subscribe(res => {
+    //   this.user = res;
+    //   if (this.user) {
+    //     if (this.user.KindUser == 1) {
+    //       this.router.navigate(["admin-main"])
+    //     }
+    //     if (this.user.KindUser == 2) {
+    //       this.router.navigate(["worker-main"])
+    //     }
+    //     if (this.user.KindUser == 3) {
+    //       this.router.navigate(["parent-main"])
+    //     }
+    //   }
+    //   else alert("UserName or Password are not valid!")
+    // },err=>{
+    //   alert("UserName or Password are not valid!")
+    // });
+    if(this.accountService.currentUser()==null)
+    {
+      this.accountService.login(this.username,this.password);
+    }
+      this.user=this.accountService.currentUser();
       if (this.user) {
-        if (this.user.KindUser == 1) {
-          this.router.navigate(["admin-main"])
-        }
-        if (this.user.KindUser == 2) {
-          this.router.navigate(["worker-main"])
-        }
-        if (this.user.KindUser == 3) {
-          this.router.navigate(["parent-main"])
-        }
-      }
-      else alert("UserName or Password are not valid!")
-    },err=>{
-      alert("UserName or Password are not valid!")
-    })
+            if (this.user.KindUser == 1) {
+              this.router.navigate(["admin-main"])
+            }
+            if (this.user.KindUser == 2) {
+              this.router.navigate(["worker-main"])
+            }
+            if (this.user.KindUser == 3) {
+              this.router.navigate(["parent-main"])
+            }
+          }
+          else alert("UserName or Password are not valid!")
 
   }
 

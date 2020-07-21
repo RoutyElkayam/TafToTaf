@@ -10,12 +10,24 @@ import { Observable } from 'rxjs';
 })
 export class AccountService {
   
-  url=environment.base_url+"Users";
-
+  url=environment.base_url+"users";
+  key='currentUser';
+  
   constructor(private http:HttpClient) { }
 
-  login(username:string, password:string) :Observable<User>
+  login(username:string, password:string) 
   {
-    return this.http.post<User>(this.url+"/login",{userName:username,password:password});
+    let user={'userName':username,'password':password};
+    this.http.post<User>(this.url+"/login",user)
+    .subscribe((res)=>{
+      localStorage.setItem('currentuser',JSON.stringify(user));
+    }
+    ,(err)=>{console.log('error',err)});
+   
+    
+  }
+  currentUser()
+  {
+    return JSON.parse(localStorage.getItem(this.key));
   }
 }

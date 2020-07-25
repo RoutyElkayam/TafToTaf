@@ -108,49 +108,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="spt_fallback_usg">
-      <EntityTypeMapping TypeName="masterModel.spt_fallback_usg">
-        <MappingFragment StoreEntitySet="spt_fallback_usg">
-          <ScalarProperty Name="xserver_name" ColumnName="xserver_name" />
-          <ScalarProperty Name="xdttm_ins" ColumnName="xdttm_ins" />
-          <ScalarProperty Name="xdttm_last_ins_upd" ColumnName="xdttm_last_ins_upd" />
-          <ScalarProperty Name="xfallback_vstart" ColumnName="xfallback_vstart" />
-          <ScalarProperty Name="dbid" ColumnName="dbid" />
-          <ScalarProperty Name="segmap" ColumnName="segmap" />
-          <ScalarProperty Name="lstart" ColumnName="lstart" />
-          <ScalarProperty Name="sizepg" ColumnName="sizepg" />
-          <ScalarProperty Name="vstart" ColumnName="vstart" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="spt_monitor">
-      <EntityTypeMapping TypeName="masterModel.spt_monitor">
-        <MappingFragment StoreEntitySet="spt_monitor">
-          <ScalarProperty Name="lastrun" ColumnName="lastrun" />
-          <ScalarProperty Name="cpu_busy" ColumnName="cpu_busy" />
-          <ScalarProperty Name="io_busy" ColumnName="io_busy" />
-          <ScalarProperty Name="idle" ColumnName="idle" />
-          <ScalarProperty Name="pack_received" ColumnName="pack_received" />
-          <ScalarProperty Name="pack_sent" ColumnName="pack_sent" />
-          <ScalarProperty Name="connections" ColumnName="connections" />
-          <ScalarProperty Name="pack_errors" ColumnName="pack_errors" />
-          <ScalarProperty Name="total_read" ColumnName="total_read" />
-          <ScalarProperty Name="total_write" ColumnName="total_write" />
-          <ScalarProperty Name="total_errors" ColumnName="total_errors" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="spt_values">
-      <EntityTypeMapping TypeName="masterModel.spt_values">
-        <MappingFragment StoreEntitySet="spt_values">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="number" ColumnName="number" />
-          <ScalarProperty Name="type" ColumnName="type" />
-          <ScalarProperty Name="low" ColumnName="low" />
-          <ScalarProperty Name="high" ColumnName="high" />
-          <ScalarProperty Name="status" ColumnName="status" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

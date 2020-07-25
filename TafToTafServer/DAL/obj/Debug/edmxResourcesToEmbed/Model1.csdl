@@ -111,65 +111,6 @@
     <Property Name="KindUser" Type="Int32" />
     <NavigationProperty Name="KindUser1" Relationship="Self.FK_User_User" FromRole="User" ToRole="KindUser" />
   </EntityType>
-  <EntityType Name="spt_fallback_usg">
-    <Key>
-      <PropertyRef Name="xserver_name" />
-      <PropertyRef Name="xdttm_ins" />
-      <PropertyRef Name="xdttm_last_ins_upd" />
-      <PropertyRef Name="dbid" />
-      <PropertyRef Name="segmap" />
-      <PropertyRef Name="lstart" />
-      <PropertyRef Name="sizepg" />
-      <PropertyRef Name="vstart" />
-    </Key>
-    <Property Name="xserver_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="xdttm_ins" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="xdttm_last_ins_upd" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="xfallback_vstart" Type="Int32" />
-    <Property Name="dbid" Type="Int16" Nullable="false" />
-    <Property Name="segmap" Type="Int32" Nullable="false" />
-    <Property Name="lstart" Type="Int32" Nullable="false" />
-    <Property Name="sizepg" Type="Int32" Nullable="false" />
-    <Property Name="vstart" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="spt_monitor">
-    <Key>
-      <PropertyRef Name="lastrun" />
-      <PropertyRef Name="cpu_busy" />
-      <PropertyRef Name="io_busy" />
-      <PropertyRef Name="idle" />
-      <PropertyRef Name="pack_received" />
-      <PropertyRef Name="pack_sent" />
-      <PropertyRef Name="connections" />
-      <PropertyRef Name="pack_errors" />
-      <PropertyRef Name="total_read" />
-      <PropertyRef Name="total_write" />
-      <PropertyRef Name="total_errors" />
-    </Key>
-    <Property Name="lastrun" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="cpu_busy" Type="Int32" Nullable="false" />
-    <Property Name="io_busy" Type="Int32" Nullable="false" />
-    <Property Name="idle" Type="Int32" Nullable="false" />
-    <Property Name="pack_received" Type="Int32" Nullable="false" />
-    <Property Name="pack_sent" Type="Int32" Nullable="false" />
-    <Property Name="connections" Type="Int32" Nullable="false" />
-    <Property Name="pack_errors" Type="Int32" Nullable="false" />
-    <Property Name="total_read" Type="Int32" Nullable="false" />
-    <Property Name="total_write" Type="Int32" Nullable="false" />
-    <Property Name="total_errors" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="spt_values">
-    <Key>
-      <PropertyRef Name="number" />
-      <PropertyRef Name="type" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
-    <Property Name="number" Type="Int32" Nullable="false" />
-    <Property Name="type" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="low" Type="Int32" />
-    <Property Name="high" Type="Int32" />
-    <Property Name="status" Type="Int32" />
-  </EntityType>
   <Association Name="FK_Calander_Kind">
     <End Role="Kind" Type="Self.Kind" Multiplicity="1" />
     <End Role="Calander" Type="Self.Calander" Multiplicity="0..1" />
@@ -265,9 +206,6 @@
     <EntitySet Name="Professionals" EntityType="Self.Professional" />
     <EntitySet Name="ProfessionKinds" EntityType="Self.ProfessionKind" />
     <EntitySet Name="Users" EntityType="Self.User" />
-    <EntitySet Name="spt_fallback_usg" EntityType="Self.spt_fallback_usg" />
-    <EntitySet Name="spt_monitor" EntityType="Self.spt_monitor" />
-    <EntitySet Name="spt_values" EntityType="Self.spt_values" />
     <AssociationSet Name="FK_Calander_Kind" Association="Self.FK_Calander_Kind">
       <End Role="Kind" EntitySet="Kinds" />
       <End Role="Calander" EntitySet="Calanders" />

@@ -21,10 +21,9 @@ export class AccountService {
     this.http.post<User>(this.url+"/login",user)
     .subscribe((res)=>{
       localStorage.setItem('currentuser',JSON.stringify(user));
+      console.log(res);
     }
     ,(err)=>{console.log('error',err)});
-   
-    
   }
   currentUser()
   {

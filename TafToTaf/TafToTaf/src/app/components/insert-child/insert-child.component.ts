@@ -15,5 +15,8 @@ export class InsertChildComponent implements OnInit {
 
   ngOnInit() {
   }
+sumbit(){
+ this.name="fdfj";
+}
 
 }

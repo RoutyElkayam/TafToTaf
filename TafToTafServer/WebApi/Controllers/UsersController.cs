@@ -11,16 +11,16 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
-  [EnableCors(origins: "*", headers: "*", methods: "*")]
+  
   [RoutePrefix("api/Users")]
   public class UsersController : ApiController
   {
     [HttpGet]
-    [Route("api/users")]
+    [Route("user")]
     // GET: api/Users
     public IHttpActionResult GetUser()
     {
-      UserDto userDto = new UserDto() { FirstName = "Elchanan", KindUser = 2, Password = "211550231" };
+      UserDto userDto = new UserDto() { Password = "211550231" };
       if (userDto != null)
         return Ok(userDto);
       return BadRequest();
@@ -28,7 +28,7 @@ namespace WebApi.Controllers
 
     [HttpPost]
     [Route("login")]
-    public IHttpActionResult Login(UserLogin userLogin)
+    public IHttpActionResult Login([FromBody]UserLogin userLogin)
     {
       try
       {

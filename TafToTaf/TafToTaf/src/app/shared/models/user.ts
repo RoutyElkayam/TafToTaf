@@ -8,5 +8,5 @@ export class User
      Email :string;
      Tel:string;
      Phone :string;
-     KindUser :number;
+     kindUser :number;
 }

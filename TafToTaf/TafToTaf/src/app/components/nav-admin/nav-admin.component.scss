@@ -57,6 +57,7 @@ p{
   color: #fff;
   background-color: #b52f7a!important ;
   border-color: #b52f7a!important;
+  margin-left: 20px;
 }
 
 .btn-danger:hover {
@@ -77,4 +78,7 @@ border-bottom: grey;
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+}
+.navbar-brand{
+  height: 65px;
 }

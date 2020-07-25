@@ -16,11 +16,11 @@ import { InsertChildComponent } from './components/insert-child/insert-child.com
 
 const routes: Routes = [
   {component:LogInComponent,path:""},
-  {component:ParentMainComponent,path:"parent-main",canActivate:[AuthGuard]},
-  {component:AdminMainComponent,path:"admin-main",canActivate:[AuthGuard],children:[
+  {component:ParentMainComponent,path:"parent-main"},
+  {component:AdminMainComponent,path:"admin-main",children:[
      {component:ChildrenComponent, path:"children"}
   ]},
-  {component:WorkerMainComponent, path:"worker-main",canActivate:[AuthGuard]},
+  {component:WorkerMainComponent, path:"worker-main"},
   {component:WelcomeComponent, path:"welcome"},
  
   {component:ParentMainComponent,path:"parent-main"},

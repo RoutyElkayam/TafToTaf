@@ -1,4 +1,4 @@
-﻿using BLL.Converters;
+using BLL.Converters;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace BLL
     {
         public static UserDto Login(string username,string password)
         {
-            using (DAL.masterEntities db =new DAL.masterEntities())
+            using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
             {
                 var user= db.Users.FirstOrDefault(p => p.UserName == username && p.Password == password);
                 if (user == null)

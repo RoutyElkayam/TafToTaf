@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="TafToTafModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Calander">
     <Key>
       <PropertyRef Name="Id" />
@@ -20,6 +20,14 @@
     <Property Name="LastName" Type="nvarchar" MaxLength="50" />
     <Property Name="BornDate" Type="datetime" />
   </EntityType>
+  <EntityType Name="ChildEntitlement">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ChildID" Type="int" />
+    <Property Name="EntitlementID" Type="int" />
+  </EntityType>
   <EntityType Name="ChildKinderGarden">
     <Key>
       <PropertyRef Name="Id" />
@@ -29,7 +37,6 @@
     <Property Name="KindrGardenID" Type="int" />
     <Property Name="BeginYear" Type="datetime" />
     <Property Name="EndYear" Type="datetime" />
-    <Property Name="EntitlementID" Type="int" />
   </EntityType>
   <EntityType Name="Entitlement">
     <Key>
@@ -61,8 +68,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'master.dbo.MSreplication_options' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Professionals">
     <Key>
       <PropertyRef Name="Id" />
@@ -85,60 +90,15 @@ warning 6002: The table/view 'master.dbo.MSreplication_options' does not have a 
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'master.dbo.spt_fallback_db' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'master.dbo.spt_fallback_dev' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'master.dbo.spt_fallback_usg' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="spt_fallback_usg">
+  <EntityType Name="sysdiagrams">
     <Key>
-      <PropertyRef Name="xserver_name" />
-      <PropertyRef Name="xdttm_ins" />
-      <PropertyRef Name="xdttm_last_ins_upd" />
-      <PropertyRef Name="dbid" />
-      <PropertyRef Name="segmap" />
-      <PropertyRef Name="lstart" />
-      <PropertyRef Name="sizepg" />
-      <PropertyRef Name="vstart" />
+      <PropertyRef Name="diagram_id" />
     </Key>
-    <Property Name="xserver_name" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="xdttm_ins" Type="datetime" Nullable="false" />
-    <Property Name="xdttm_last_ins_upd" Type="datetime" Nullable="false" />
-    <Property Name="xfallback_vstart" Type="int" />
-    <Property Name="dbid" Type="smallint" Nullable="false" />
-    <Property Name="segmap" Type="int" Nullable="false" />
-    <Property Name="lstart" Type="int" Nullable="false" />
-    <Property Name="sizepg" Type="int" Nullable="false" />
-    <Property Name="vstart" Type="int" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'master.dbo.spt_monitor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="spt_monitor">
-    <Key>
-      <PropertyRef Name="lastrun" />
-      <PropertyRef Name="cpu_busy" />
-      <PropertyRef Name="io_busy" />
-      <PropertyRef Name="idle" />
-      <PropertyRef Name="pack_received" />
-      <PropertyRef Name="pack_sent" />
-      <PropertyRef Name="connections" />
-      <PropertyRef Name="pack_errors" />
-      <PropertyRef Name="total_read" />
-      <PropertyRef Name="total_write" />
-      <PropertyRef Name="total_errors" />
-    </Key>
-    <Property Name="lastrun" Type="datetime" Nullable="false" />
-    <Property Name="cpu_busy" Type="int" Nullable="false" />
-    <Property Name="io_busy" Type="int" Nullable="false" />
-    <Property Name="idle" Type="int" Nullable="false" />
-    <Property Name="pack_received" Type="int" Nullable="false" />
-    <Property Name="pack_sent" Type="int" Nullable="false" />
-    <Property Name="connections" Type="int" Nullable="false" />
-    <Property Name="pack_errors" Type="int" Nullable="false" />
-    <Property Name="total_read" Type="int" Nullable="false" />
-    <Property Name="total_write" Type="int" Nullable="false" />
-    <Property Name="total_errors" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -154,20 +114,6 @@ warning 6002: The table/view 'master.dbo.spt_monitor' does not have a primary ke
     <Property Name="Phone" Type="nvarchar" MaxLength="50" />
     <Property Name="KindUser" Type="int" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="spt_values">
-    <Key>
-      <PropertyRef Name="number" />
-      <PropertyRef Name="type" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="35" />
-    <Property Name="number" Type="int" Nullable="false" />
-    <Property Name="type" Type="nchar" MaxLength="3" Nullable="false" />
-    <Property Name="low" Type="int" />
-    <Property Name="high" Type="int" />
-    <Property Name="status" Type="int" />
-  </EntityType>
   <Association Name="FK_Calander_Kind">
     <End Role="Kind" Type="Self.Kind" Multiplicity="1" />
     <End Role="Calander" Type="Self.Calander" Multiplicity="0..1" />
@@ -180,6 +126,30 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ChildEntitlement_Child">
+    <End Role="Child" Type="Self.Child" Multiplicity="0..1" />
+    <End Role="ChildEntitlement" Type="Self.ChildEntitlement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Child">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ChildEntitlement">
+        <PropertyRef Name="ChildID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChildEntitlement_Entitlement">
+    <End Role="Entitlement" Type="Self.Entitlement" Multiplicity="0..1" />
+    <End Role="ChildEntitlement" Type="Self.ChildEntitlement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entitlement">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ChildEntitlement">
+        <PropertyRef Name="EntitlementID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ChildKinderGarden_Child">
     <End Role="Child" Type="Self.Child" Multiplicity="0..1" />
     <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
@@ -189,30 +159,6 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
       </Principal>
       <Dependent Role="ChildKinderGarden">
         <PropertyRef Name="ChildID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ChildKinderGarden_Entitlement">
-    <End Role="Entitlement" Type="Self.Entitlement" Multiplicity="0..1" />
-    <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Entitlement">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ChildKinderGarden">
-        <PropertyRef Name="EntitlementID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ChildKinderGarden_KinderGarden">
-    <End Role="KinderGarden" Type="Self.KinderGarden" Multiplicity="0..1" />
-    <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="KinderGarden">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ChildKinderGarden">
-        <PropertyRef Name="KindrGardenID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -240,21 +186,10 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_User_User">
-    <End Role="KindUser" Type="Self.KindUser" Multiplicity="1" />
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="KindUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityContainer Name="masterModelStoreContainer">
+  <EntityContainer Name="TafToTafModelStoreContainer">
     <EntitySet Name="Calander" EntityType="Self.Calander" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Child" EntityType="Self.Child" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChildEntitlement" EntityType="Self.ChildEntitlement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChildKinderGarden" EntityType="Self.ChildKinderGarden" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Entitlement" EntityType="Self.Entitlement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Kind" EntityType="Self.Kind" Schema="dbo" store:Type="Tables" />
@@ -262,59 +197,22 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
     <EntitySet Name="KindUser" EntityType="Self.KindUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Professionals" EntityType="Self.Professionals" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProfessionKind" EntityType="Self.ProfessionKind" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="spt_fallback_usg" EntityType="Self.spt_fallback_usg" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [spt_fallback_usg].[xserver_name] AS [xserver_name], 
-    [spt_fallback_usg].[xdttm_ins] AS [xdttm_ins], 
-    [spt_fallback_usg].[xdttm_last_ins_upd] AS [xdttm_last_ins_upd], 
-    [spt_fallback_usg].[xfallback_vstart] AS [xfallback_vstart], 
-    [spt_fallback_usg].[dbid] AS [dbid], 
-    [spt_fallback_usg].[segmap] AS [segmap], 
-    [spt_fallback_usg].[lstart] AS [lstart], 
-    [spt_fallback_usg].[sizepg] AS [sizepg], 
-    [spt_fallback_usg].[vstart] AS [vstart]
-    FROM [dbo].[spt_fallback_usg] AS [spt_fallback_usg]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="spt_monitor" EntityType="Self.spt_monitor" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [spt_monitor].[lastrun] AS [lastrun], 
-    [spt_monitor].[cpu_busy] AS [cpu_busy], 
-    [spt_monitor].[io_busy] AS [io_busy], 
-    [spt_monitor].[idle] AS [idle], 
-    [spt_monitor].[pack_received] AS [pack_received], 
-    [spt_monitor].[pack_sent] AS [pack_sent], 
-    [spt_monitor].[connections] AS [connections], 
-    [spt_monitor].[pack_errors] AS [pack_errors], 
-    [spt_monitor].[total_read] AS [total_read], 
-    [spt_monitor].[total_write] AS [total_write], 
-    [spt_monitor].[total_errors] AS [total_errors]
-    FROM [dbo].[spt_monitor] AS [spt_monitor]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="spt_values" EntityType="Self.spt_values" store:Type="Views" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [spt_values].[name] AS [name], 
-    [spt_values].[number] AS [number], 
-    [spt_values].[type] AS [type], 
-    [spt_values].[low] AS [low], 
-    [spt_values].[high] AS [high], 
-    [spt_values].[status] AS [status]
-    FROM [dbo].[spt_values] AS [spt_values]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK_Calander_Kind" Association="Self.FK_Calander_Kind">
       <End Role="Kind" EntitySet="Kind" />
       <End Role="Calander" EntitySet="Calander" />
     </AssociationSet>
+    <AssociationSet Name="FK_ChildEntitlement_Child" Association="Self.FK_ChildEntitlement_Child">
+      <End Role="Child" EntitySet="Child" />
+      <End Role="ChildEntitlement" EntitySet="ChildEntitlement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChildEntitlement_Entitlement" Association="Self.FK_ChildEntitlement_Entitlement">
+      <End Role="Entitlement" EntitySet="Entitlement" />
+      <End Role="ChildEntitlement" EntitySet="ChildEntitlement" />
+    </AssociationSet>
     <AssociationSet Name="FK_ChildKinderGarden_Child" Association="Self.FK_ChildKinderGarden_Child">
       <End Role="Child" EntitySet="Child" />
-      <End Role="ChildKinderGarden" EntitySet="ChildKinderGarden" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ChildKinderGarden_Entitlement" Association="Self.FK_ChildKinderGarden_Entitlement">
-      <End Role="Entitlement" EntitySet="Entitlement" />
-      <End Role="ChildKinderGarden" EntitySet="ChildKinderGarden" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ChildKinderGarden_KinderGarden" Association="Self.FK_ChildKinderGarden_KinderGarden">
-      <End Role="KinderGarden" EntitySet="KinderGarden" />
       <End Role="ChildKinderGarden" EntitySet="ChildKinderGarden" />
     </AssociationSet>
     <AssociationSet Name="FK_Entitlement_Profession" Association="Self.FK_Entitlement_Profession">
@@ -324,10 +222,6 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
     <AssociationSet Name="FK_Professionals_ProfessionKind" Association="Self.FK_Professionals_ProfessionKind">
       <End Role="ProfessionKind" EntitySet="ProfessionKind" />
       <End Role="Professionals" EntitySet="Professionals" />
-    </AssociationSet>
-    <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
-      <End Role="KindUser" EntitySet="KindUser" />
-      <End Role="User" EntitySet="User" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

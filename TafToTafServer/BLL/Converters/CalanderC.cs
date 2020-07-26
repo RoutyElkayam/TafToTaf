@@ -1,4 +1,4 @@
-﻿using DAL;
+using DAL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace BLL.Converters
 {
     public class CalanderC
     {
-        public  CalenderDto ToCalanderDto(Calander calander)
+        public static CalenderDto ToCalanderDto(Calander calander)
         {
             CalenderDto calanderDto = new CalenderDto()
             {
@@ -24,7 +24,7 @@ namespace BLL.Converters
             };
             return calanderDto;
         }
-        public Calander ToCalanderDal(CalenderDto calanderDto)
+        public static Calander ToCalanderDal(CalenderDto calanderDto)
         {
             Calander calander = new Calander()
             {

@@ -1,4 +1,4 @@
-﻿using DAL;
+using DAL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace BLL.Converters
 { 
         public class EntitlementC
         {
-            public EntitlementDto ToEntitlementDto(Entitlement entitlement)
+            public static EntitlementDto ToEntitlementDto(Entitlement entitlement)
             {
                 EntitlementDto entitlementDto = new EntitlementDto()
                 {
@@ -20,7 +20,7 @@ namespace BLL.Converters
                 };
                 return entitlementDto;
             }
-            public Entitlement ToEntitlement(EntitlementDto entitlementDto)
+            public static Entitlement ToEntitlement(EntitlementDto entitlementDto)
             {
                 Entitlement entitlement = new Entitlement()
                 {

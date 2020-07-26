@@ -1,4 +1,4 @@
-﻿using DAL;
+using DAL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace BLL.Converters
 {  
         public class ChildC
         {
-            public ChildDto ToChildDTO(Child child)
+            public static ChildDto ToChildDTO(Child child)
             {
                 ChildDto childDto = new ChildDto()
                 {
@@ -22,7 +22,7 @@ namespace BLL.Converters
                 };
                 return childDto;
             }
-            public Child ToChildDAL(ChildDto childDto)
+            public static Child  ToChildDAL(ChildDto childDto)
             {
                 Child child = new Child()
                 {

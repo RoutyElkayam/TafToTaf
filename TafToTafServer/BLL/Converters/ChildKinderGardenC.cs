@@ -1,4 +1,4 @@
-﻿using DAL;
+using DAL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace BLL.Converters
    
         public class ChildKinderGardenC
         {
-            public ChildKinderGardenDto ToChildKinderGardenDto(ChildKinderGarden childKinderGarden)
+            public static ChildKinderGardenDto ToChildKinderGardenDto(ChildKinderGarden childKinderGarden)
             {
                 ChildKinderGardenDto childKinderGardenDto = new ChildKinderGardenDto()
                 {
@@ -19,13 +19,12 @@ namespace BLL.Converters
                     ChildID = (int)childKinderGarden.ChildID,
                     BeginYear = (DateTime)childKinderGarden.BeginYear,
                     EndYear = (DateTime)childKinderGarden.EndYear,
-                    EntitlementID = (int)childKinderGarden.EntitlementID,
                     KindrGardenID = (int)childKinderGarden.KindrGardenID
 
                 };
                 return childKinderGardenDto;
             }
-            public ChildKinderGarden ToChildKinderGarden(ChildKinderGardenDto childKinderGardenDto)
+            public static ChildKinderGarden ToChildKinderGarden(ChildKinderGardenDto childKinderGardenDto)
             {
                 ChildKinderGarden childKinderGarden = new ChildKinderGarden()
                 {
@@ -33,7 +32,6 @@ namespace BLL.Converters
                     ChildID = childKinderGardenDto.ChildID,
                     BeginYear = childKinderGardenDto.BeginYear,
                     EndYear = childKinderGardenDto.EndYear,
-                    EntitlementID = childKinderGardenDto.EntitlementID,
                     KindrGardenID = childKinderGardenDto.KindrGardenID
 
                 };

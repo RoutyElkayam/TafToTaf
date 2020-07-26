@@ -16,4 +16,6 @@ namespace WebApi.Models
       Password = password;
     }
   }
+
+    }
 }

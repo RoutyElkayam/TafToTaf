@@ -1,4 +1,4 @@
-﻿using DAL;
+using DAL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace BLL.Converters
 {
     public class ProfessionKindC
     {
-        public ProfessionKindDto ToProfessionKindDto(ProfessionKind professionKind)
+        public static ProfessionKindDto ToProfessionKindDto(ProfessionKind professionKind)
         {
             ProfessionKindDto professionKindDto = new ProfessionKindDto()
             {
@@ -19,7 +19,7 @@ namespace BLL.Converters
             };
             return professionKindDto;
         }
-        public ProfessionKind ToProfessionKind(ProfessionKindDto professionKindDto)
+        public static ProfessionKind ToProfessionKind(ProfessionKindDto professionKindDto)
         {
             ProfessionKind professionKind = new ProfessionKind()
             {

@@ -1,4 +1,4 @@
-﻿using DAL;
+using DAL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace BLL.Converters
 {
         public class KindC
         {
-            public KindDto ToKindDto(Kind kind)
+            public static KindDto ToKindDto(Kind kind)
             {
                 KindDto kindDto = new KindDto()
                 {
@@ -19,7 +19,7 @@ namespace BLL.Converters
                 };
                 return kindDto;
             }
-            public Kind ToKind(KindDto kindDto)
+            public static Kind ToKind(KindDto kindDto)
             {
                 Kind kind = new Kind()
                 {

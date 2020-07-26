@@ -28,7 +28,7 @@ p{
   margin-top: 5px;
 }
 
-.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand .navbar-header:hover,
 .navbar-inverse .navbar-nav>li>a:hover {
   background-color:#f3f3f3;
   border-radius: 15px;
@@ -56,8 +56,8 @@ p{
   color: #fff;
   background-color: #b52f7a!important ;
   border-color: #b52f7a!important;
+  margin-left: 20px;
 }
-
 .btn-danger:hover {
   background-color: hsl(313, 68%, 46%)!important;
   border-color: hsl(313, 68%, 46%);
@@ -76,4 +76,7 @@ border-bottom: grey;
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+}
+.navbar-brand{
+  height: 70px;
 }

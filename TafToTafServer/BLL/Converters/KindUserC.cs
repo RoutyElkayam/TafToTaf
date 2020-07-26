@@ -1,4 +1,4 @@
-﻿using DAL;
+using DAL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace BLL.Converters
 {
     public class KindUserC
     {
-        public DTO.KindUserDto ToKindUserDto(DAL.KindUser kindUser)
+        public static DTO.KindUserDto ToKindUserDto(DAL.KindUser kindUser)
         {
             DTO.KindUserDto kindUserDto = new KindUserDto()
             {
@@ -19,7 +19,7 @@ namespace BLL.Converters
             };
             return kindUserDto;
         }
-        public DAL.KinderGarden ToKinderGardenDal(DTO.KinderGardenDto kinderGardenDto)
+        public static DAL.KinderGarden ToKinderGardenDal(DTO.KinderGardenDto kinderGardenDto)
         {
             DAL.KinderGarden kinderGarden = new KinderGarden()
             {

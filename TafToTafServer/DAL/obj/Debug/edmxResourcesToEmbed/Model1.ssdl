@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="TafToTafModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Calander">
     <Key>
       <PropertyRef Name="Id" />
@@ -29,15 +29,6 @@
     <Property Name="KindrGardenID" Type="int" />
     <Property Name="BeginYear" Type="datetime" />
     <Property Name="EndYear" Type="datetime" />
-    <Property Name="EntitlementID" Type="int" />
-  </EntityType>
-  <EntityType Name="Entitlement">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ProfessionId" Type="int" />
-    <Property Name="NumHour" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Kind">
     <Key>
@@ -121,18 +112,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ChildKinderGarden_Entitlement">
-    <End Role="Entitlement" Type="Self.Entitlement" Multiplicity="0..1" />
-    <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Entitlement">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ChildKinderGarden">
-        <PropertyRef Name="EntitlementID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ChildKinderGarden_KinderGarden">
     <End Role="KinderGarden" Type="Self.KinderGarden" Multiplicity="0..1" />
     <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
@@ -142,18 +121,6 @@
       </Principal>
       <Dependent Role="ChildKinderGarden">
         <PropertyRef Name="KindrGardenID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Entitlement_Profession">
-    <End Role="ProfessionKind" Type="Self.ProfessionKind" Multiplicity="0..1" />
-    <End Role="Entitlement" Type="Self.Entitlement" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProfessionKind">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Entitlement">
-        <PropertyRef Name="ProfessionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -170,22 +137,21 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_User_User">
-    <End Role="KindUser" Type="Self.KindUser" Multiplicity="1" />
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="KindUser" Type="Self.KindUser" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="KindUser">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="User">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="KindUser" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="masterModelStoreContainer">
+  <EntityContainer Name="TafToTafModelStoreContainer">
     <EntitySet Name="Calander" EntityType="Self.Calander" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Child" EntityType="Self.Child" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChildKinderGarden" EntityType="Self.ChildKinderGarden" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Entitlement" EntityType="Self.Entitlement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Kind" EntityType="Self.Kind" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KinderGarden" EntityType="Self.KinderGarden" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KindUser" EntityType="Self.KindUser" Schema="dbo" store:Type="Tables" />
@@ -200,17 +166,9 @@
       <End Role="Child" EntitySet="Child" />
       <End Role="ChildKinderGarden" EntitySet="ChildKinderGarden" />
     </AssociationSet>
-    <AssociationSet Name="FK_ChildKinderGarden_Entitlement" Association="Self.FK_ChildKinderGarden_Entitlement">
-      <End Role="Entitlement" EntitySet="Entitlement" />
-      <End Role="ChildKinderGarden" EntitySet="ChildKinderGarden" />
-    </AssociationSet>
     <AssociationSet Name="FK_ChildKinderGarden_KinderGarden" Association="Self.FK_ChildKinderGarden_KinderGarden">
       <End Role="KinderGarden" EntitySet="KinderGarden" />
       <End Role="ChildKinderGarden" EntitySet="ChildKinderGarden" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Entitlement_Profession" Association="Self.FK_Entitlement_Profession">
-      <End Role="ProfessionKind" EntitySet="ProfessionKind" />
-      <End Role="Entitlement" EntitySet="Entitlement" />
     </AssociationSet>
     <AssociationSet Name="FK_Professionals_ProfessionKind" Association="Self.FK_Professionals_ProfessionKind">
       <End Role="ProfessionKind" EntitySet="ProfessionKind" />

@@ -1,4 +1,4 @@
-﻿using DAL;
+using DAL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace BLL.Converters
 {
     public class ProfessionalC
     {
-        public ProfessionalDto ToProfessionalDto(Professional professional)
+        public static ProfessionalDto ToProfessionalDto(Professional professional)
         {
             ProfessionalDto professionalDto = new ProfessionalDto()
             {
@@ -27,7 +27,7 @@ namespace BLL.Converters
             };
             return professionalDto;
         }
-        public Professional ToProfessional(ProfessionalDto professionalDto)
+        public static Professional ToProfessional(ProfessionalDto professionalDto)
         {
             Professional professional = new Professional()
             {

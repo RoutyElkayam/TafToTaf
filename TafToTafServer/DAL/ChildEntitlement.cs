@@ -12,16 +12,13 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class ChildEntitlement
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Tel { get; set; }
-        public string Phone { get; set; }
-        public Nullable<int> KindUser { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> ChildID { get; set; }
+        public Nullable<int> EntitlementID { get; set; }
+    
+        public virtual Child Child { get; set; }
+        public virtual Entitlement Entitlement { get; set; }
     }
 }

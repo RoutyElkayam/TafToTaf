@@ -11,16 +11,25 @@ import { Observable } from 'rxjs';
 export class AccountService {
   
   url=environment.base_url+"Users";
-  key='currentUser';
   user:Observable<User>=null;
+  private key = 'token';
+
   constructor(private http:HttpClient) { }
 
   login(username:string, password:string) 
   {
-    return  this.user=this.http.post<User>(this.url+"/login",{password:password,userName:username}); 
+    return  this.http.post(this.url+"/login",{password:password,userName:username}); 
   }
-  currentUser()
+  getUser():Observable<User>
   {
-    return JSON.parse(localStorage.getItem(this.key));
+    return this.http.get<User>(this.url);
+  }
+  token()
+  {
+    return localStorage.getItem(this.key);
+  }
+  decodeToken(token: string): string
+  {
+    return token.slice(231,235);
   }
 }

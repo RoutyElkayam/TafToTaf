@@ -4,10 +4,22 @@ import {observable, Observable} from 'rxjs';
 import {AccountService} from '../app/shared/services/account.service';
 
 @Injectable()
-export class auInterceptor implements HttpInterceptor{
+export class AuInterceptor implements HttpInterceptor{
     
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        throw new Error("Method not implemented.");
+    constructor(private authService: AccountService) {}
+
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const token = this.authService.token(); 
+        
+        if (token) {
+            //immutable 
+            request = request.clone({
+                headers: request.headers.set('Authorization', ` ${token}`),
+            });
+        }
+    
+        return next.handle(request);
     }
 
 }
+

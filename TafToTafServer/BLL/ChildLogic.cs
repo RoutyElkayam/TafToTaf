@@ -38,6 +38,7 @@ namespace BLL
     }
     public static void InsertChild(ChildDto child, string kGardenName)
     {
+
       using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
       {
         int kGardenID = db.KinderGardens.First(kg => kg.Name == kGardenName).Id;
@@ -59,12 +60,18 @@ namespace BLL
       {
         using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
         {
-          var Child = db.Children.FirstOrDefault(ch => ch.Id == id);
-          if (Child != null)
+          var child = db.Children.FirstOrDefault(ch => ch.Id == id);
+          var childInKG = db.ChildKinderGardens.FirstOrDefault(ch => ch.ChildID == id);
+          if (child != null)
           {
-            db.Children.Remove(Child);
-            db.SaveChanges();
+            db.Children.Remove(child);
           }
+          if (childInKG != null)
+          {
+            db.ChildKinderGardens.Remove(childInKG);
+          }
+
+          db.SaveChanges();
         }
       }
       catch (Exception ex)
@@ -85,6 +92,7 @@ namespace BLL
           editChild.Tz = child.Tz;
           editChild.BornDate = child.BornDate;
           editChild.NumHoursConfirm = child.NumHoursConfirm;
+          editChild.parentID = child.ParentID;
 
         }
         db.SaveChanges();
@@ -107,3 +115,5 @@ namespace BLL
     }
   }
 }
+
+

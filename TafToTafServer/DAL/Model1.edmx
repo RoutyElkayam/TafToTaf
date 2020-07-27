@@ -25,6 +25,7 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="BornDate" Type="datetime" />
           <Property Name="parentID" Type="int" />
+          <Property Name="NumHoursConfirm" Type="float" />
         </EntityType>
         <EntityType Name="ChildKinderGarden">
           <Key>
@@ -228,6 +229,7 @@
           <NavigationProperty Name="ChildKinderGardens" Relationship="Self.FK_ChildKinderGarden_Child" FromRole="Child" ToRole="ChildKinderGarden" />
           <Property Name="parentID" Type="Int32" />
           <NavigationProperty Name="User" Relationship="TafToTafModel.FK_Child_User" FromRole="Child" ToRole="User" />
+          <Property Name="NumHoursConfirm" Type="Double" />
         </EntityType>
         <EntityType Name="ChildKinderGarden">
           <Key>
@@ -433,6 +435,7 @@
           <EntitySetMapping Name="Children">
             <EntityTypeMapping TypeName="TafToTafModel.Child">
               <MappingFragment StoreEntitySet="Child">
+                <ScalarProperty Name="NumHoursConfirm" ColumnName="NumHoursConfirm" />
                 <ScalarProperty Name="parentID" ColumnName="parentID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />

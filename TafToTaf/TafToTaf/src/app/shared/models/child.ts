@@ -5,5 +5,5 @@ export class Child
     tz:string;
     lastName:string;
     bornDate:Date;
-    
+    numHoursConfirm:number;
 }

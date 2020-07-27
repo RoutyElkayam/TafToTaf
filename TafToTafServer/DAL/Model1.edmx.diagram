@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="TafToTafModel.Kind" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.KinderGarden" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.KindUser" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TafToTafModel.Professional" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TafToTafModel.Professional" Width="1.5" PointX="3.125" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.ProfessionKind" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.User" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="TafToTafModel.FK_Calander_Kind" ManuallyRouted="false" />

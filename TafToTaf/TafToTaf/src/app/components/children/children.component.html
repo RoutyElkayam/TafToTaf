@@ -7,10 +7,10 @@
                         <button type="button" class="btn btn-info add-new" (click)="open()"><i class="fa fa-plus"></i> הוספת ילד</button>
                     </div>
                      <div class="col-sm-4">
-                        <select class="form-control">  
+                        <select class="form-control" [(ngModel)]="selectkng"  (change)="changeGan()">  
                             <option></option>                       
-                            <option *ngFor= "let kinderGarden of kinderGardens">
-                              גן   {{kinderGarden.name}}
+                            <option *ngFor= "let kinderGarden of kinderGardens" >
+                             {{kinderGarden.name}}
                             </option>
                           </select>
                     </div>
@@ -20,45 +20,21 @@
                 <thead>
                     <tr>
                         <th></th>
+                        <th>מספר שעות מאושרות</th>
                         <th>תעודת זהות</th>
                         <th>שם</th>
-                        <th> שעות מאושרות </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor> 
+                    <tr *ngFor="let child of children"> 
                          <td>
-							<a class="add" title="Add" data-toggle="tooltip" [routerLink]="['/insert-child']"><i class="material-icons"></i></a>
                             <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip" (click)="delete()"><i class="material-icons"></i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" (click)="delete(child)"><i class="material-icons"></i></a>                          
                         </td>                      
-                        <td>אורי</td>
-                        <td>****</td>
-                        <td>****</td> 
-                       
-                    </tr>
-                    <tr> 
-                        <td>
-							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons"></i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip" (click)="delete()"><i class="material-icons"></i></a>
-                        </td>
-                        <td>יעל</td>
-                        <td>Administration</td>
-                        <td>88***88***</td>
-                       
-                    </tr>
-                    <tr>
-                         <td>
-							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons"></i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip" (click)="delete()"><i class="material-icons"></i></a>
-                        </td>
-                        <td>דינה</td>
-                        <td>****</td>
-                        <td>****</td>
-                       
-                    </tr>      
+                        <td>{{child.numHoursConfirm}}</td> 
+                        <td>{{child.tz}}</td>
+                        <td>{{child.firstName}}  {{child.lastName}}</td>   
+                    </tr>             
                 </tbody>
             </table>
         </div>

@@ -26,6 +26,7 @@ namespace DAL
         public string LastName { get; set; }
         public Nullable<System.DateTime> BornDate { get; set; }
         public Nullable<int> parentID { get; set; }
+        public Nullable<double> NumHoursConfirm { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChildKinderGarden> ChildKinderGardens { get; set; }

@@ -80,7 +80,7 @@ import { ModalDeleteComponent } from './components/modal-delete/modal-delete.com
    
     
   ],
-  entryComponents:[InsertChildComponent],
+  entryComponents:[InsertChildComponent, ModalDeleteComponent],
   providers: [NgbActiveModal],
   bootstrap: [AppComponent],
 })

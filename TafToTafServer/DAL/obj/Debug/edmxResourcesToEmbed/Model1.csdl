@@ -23,6 +23,7 @@
     <NavigationProperty Name="ChildKinderGardens" Relationship="Self.FK_ChildKinderGarden_Child" FromRole="Child" ToRole="ChildKinderGarden" />
     <Property Name="parentID" Type="Int32" />
     <NavigationProperty Name="User" Relationship="TafToTafModel.FK_Child_User" FromRole="Child" ToRole="User" />
+    <Property Name="NumHoursConfirm" Type="Double" />
   </EntityType>
   <EntityType Name="ChildKinderGarden">
     <Key>

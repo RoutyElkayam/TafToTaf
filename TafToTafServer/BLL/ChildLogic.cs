@@ -9,14 +9,14 @@ using DAL;
 
 namespace BLL
 {
-   public class ChildLogic
+  public class ChildLogic
   {
     public static ChildDto SelectChild(int id)
     {
-      using(DAL.TafToTafEntities db= new DAL.TafToTafEntities())
+      using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
       {
-        var child = db.Children.FirstOrDefault(ch =>ch.Id==id);
-        if(child==null)
+        var child = db.Children.FirstOrDefault(ch => ch.Id == id);
+        if (child == null)
         {
           return null;
         }
@@ -36,7 +36,7 @@ namespace BLL
       }
       return childrenList;
     }
-    public static void InsertChild(ChildDto child,string kGardenName)
+    public static void InsertChild(ChildDto child, string kGardenName)
     {
       using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
       {
@@ -46,10 +46,10 @@ namespace BLL
         {
           ChildID = child.Id,
           KindrGardenID = kGardenID,
-          BeginYear =calcBeaginYear(),
-          EndYear = calcEndYear()
+          BeginYear = calcBeaginYear(),
+          EndYear = calcEndYear(),
         });
-        
+
         db.SaveChanges();
       }
     }
@@ -67,12 +67,12 @@ namespace BLL
           }
         }
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         throw new Exception(ex.Message);
       }
     }
-    
+
     public static void EditChild(int id, ChildDto child)
     {
       using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
@@ -84,15 +84,16 @@ namespace BLL
           editChild.LastName = child.LastName;
           editChild.Tz = child.Tz;
           editChild.BornDate = child.BornDate;
+          editChild.NumHoursConfirm = child.NumHoursConfirm;
 
-        } 
+        }
         db.SaveChanges();
       }
     }
     //help functions
     private static DateTime calcBeaginYear()
     {
-      if (DateTime.Now.Month>09)
+      if (DateTime.Now.Month > 09)
         return new DateTime(DateTime.Now.Year, 09, 01);
       return new DateTime(DateTime.Now.Year - 1, 09, 01);
 
@@ -100,7 +101,7 @@ namespace BLL
     private static DateTime calcEndYear()
     {
       if (DateTime.Now.Month > 09)
-        return new DateTime(DateTime.Now.Year+1, 07, 01);
+        return new DateTime(DateTime.Now.Year + 1, 07, 01);
       return new DateTime(DateTime.Now.Year, 07, 01);
 
     }

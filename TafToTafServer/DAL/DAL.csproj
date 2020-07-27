@@ -57,13 +57,7 @@
     <Compile Include="Child.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="ChildEntitlement.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="ChildKinderGarden.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entitlement.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Kind.cs">

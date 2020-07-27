@@ -7,9 +7,7 @@
       <Diagram DiagramId="d93d59b0027f4e00a3c1f591e4c54097" Name="Diagram1">
         <EntityTypeShape EntityType="TafToTafModel.Calander" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.Child" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TafToTafModel.ChildEntitlement" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.ChildKinderGarden" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TafToTafModel.Entitlement" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.Kind" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.KinderGarden" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.KindUser" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
@@ -18,11 +16,8 @@
         <EntityTypeShape EntityType="TafToTafModel.sysdiagram" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.User" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="TafToTafModel.FK_Calander_Kind" ManuallyRouted="false" />
-        <AssociationConnector Association="TafToTafModel.FK_ChildEntitlement_Child" ManuallyRouted="false" />
         <AssociationConnector Association="TafToTafModel.FK_ChildKinderGarden_Child" ManuallyRouted="false" />
-        <AssociationConnector Association="TafToTafModel.FK_ChildEntitlement_Entitlement" ManuallyRouted="false" />
         <AssociationConnector Association="TafToTafModel.FK_ChildKinderGarden_KinderGarden" ManuallyRouted="false" />
-        <AssociationConnector Association="TafToTafModel.FK_Entitlement_Profession" ManuallyRouted="false" />
         <AssociationConnector Association="TafToTafModel.FK_Professionals_ProfessionKind" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

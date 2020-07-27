@@ -20,18 +20,8 @@
     <Property Name="Tz" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="BornDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="ChildEntitlements" Relationship="Self.FK_ChildEntitlement_Child" FromRole="Child" ToRole="ChildEntitlement" />
     <NavigationProperty Name="ChildKinderGardens" Relationship="Self.FK_ChildKinderGarden_Child" FromRole="Child" ToRole="ChildKinderGarden" />
-  </EntityType>
-  <EntityType Name="ChildEntitlement">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="ChildID" Type="Int32" />
-    <Property Name="EntitlementID" Type="Int32" />
-    <NavigationProperty Name="Child" Relationship="Self.FK_ChildEntitlement_Child" FromRole="ChildEntitlement" ToRole="Child" />
-    <NavigationProperty Name="Entitlement" Relationship="Self.FK_ChildEntitlement_Entitlement" FromRole="ChildEntitlement" ToRole="Entitlement" />
+    <Property Name="NumHoursConfirm" Type="Double" />
   </EntityType>
   <EntityType Name="ChildKinderGarden">
     <Key>
@@ -44,16 +34,6 @@
     <Property Name="EndYear" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Child" Relationship="Self.FK_ChildKinderGarden_Child" FromRole="ChildKinderGarden" ToRole="Child" />
     <NavigationProperty Name="KinderGarden" Relationship="Self.FK_ChildKinderGarden_KinderGarden" FromRole="ChildKinderGarden" ToRole="KinderGarden" />
-  </EntityType>
-  <EntityType Name="Entitlement">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ProfessionId" Type="Int32" />
-    <Property Name="NumHour" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <NavigationProperty Name="ChildEntitlements" Relationship="Self.FK_ChildEntitlement_Entitlement" FromRole="Entitlement" ToRole="ChildEntitlement" />
-    <NavigationProperty Name="ProfessionKind" Relationship="Self.FK_Entitlement_Profession" FromRole="Entitlement" ToRole="ProfessionKind" />
   </EntityType>
   <EntityType Name="Kind">
     <Key>
@@ -101,7 +81,6 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Entitlements" Relationship="Self.FK_Entitlement_Profession" FromRole="ProfessionKind" ToRole="Entitlement" />
     <NavigationProperty Name="Professionals" Relationship="Self.FK_Professionals_ProfessionKind" FromRole="ProfessionKind" ToRole="Professionals" />
   </EntityType>
   <EntityType Name="sysdiagram">
@@ -140,18 +119,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ChildEntitlement_Child">
-    <End Role="Child" Type="Self.Child" Multiplicity="0..1" />
-    <End Role="ChildEntitlement" Type="Self.ChildEntitlement" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Child">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ChildEntitlement">
-        <PropertyRef Name="ChildID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ChildKinderGarden_Child">
     <End Role="Child" Type="Self.Child" Multiplicity="0..1" />
     <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
@@ -164,18 +131,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ChildEntitlement_Entitlement">
-    <End Role="Entitlement" Type="Self.Entitlement" Multiplicity="0..1" />
-    <End Role="ChildEntitlement" Type="Self.ChildEntitlement" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Entitlement">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ChildEntitlement">
-        <PropertyRef Name="EntitlementID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ChildKinderGarden_KinderGarden">
     <End Role="KinderGarden" Type="Self.KinderGarden" Multiplicity="0..1" />
     <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
@@ -185,18 +140,6 @@
       </Principal>
       <Dependent Role="ChildKinderGarden">
         <PropertyRef Name="KindrGardenID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Entitlement_Profession">
-    <End Role="ProfessionKind" Type="Self.ProfessionKind" Multiplicity="0..1" />
-    <End Role="Entitlement" Type="Self.Entitlement" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProfessionKind">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Entitlement">
-        <PropertyRef Name="ProfessionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -215,9 +158,7 @@
   <EntityContainer Name="TafToTafEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Calanders" EntityType="Self.Calander" />
     <EntitySet Name="Children" EntityType="Self.Child" />
-    <EntitySet Name="ChildEntitlements" EntityType="Self.ChildEntitlement" />
     <EntitySet Name="ChildKinderGardens" EntityType="Self.ChildKinderGarden" />
-    <EntitySet Name="Entitlements" EntityType="Self.Entitlement" />
     <EntitySet Name="Kinds" EntityType="Self.Kind" />
     <EntitySet Name="KinderGardens" EntityType="Self.KinderGarden" />
     <EntitySet Name="KindUsers" EntityType="Self.KindUser" />
@@ -229,25 +170,13 @@
       <End Role="Kind" EntitySet="Kinds" />
       <End Role="Calander" EntitySet="Calanders" />
     </AssociationSet>
-    <AssociationSet Name="FK_ChildEntitlement_Child" Association="Self.FK_ChildEntitlement_Child">
-      <End Role="Child" EntitySet="Children" />
-      <End Role="ChildEntitlement" EntitySet="ChildEntitlements" />
-    </AssociationSet>
     <AssociationSet Name="FK_ChildKinderGarden_Child" Association="Self.FK_ChildKinderGarden_Child">
       <End Role="Child" EntitySet="Children" />
       <End Role="ChildKinderGarden" EntitySet="ChildKinderGardens" />
     </AssociationSet>
-    <AssociationSet Name="FK_ChildEntitlement_Entitlement" Association="Self.FK_ChildEntitlement_Entitlement">
-      <End Role="Entitlement" EntitySet="Entitlements" />
-      <End Role="ChildEntitlement" EntitySet="ChildEntitlements" />
-    </AssociationSet>
     <AssociationSet Name="FK_ChildKinderGarden_KinderGarden" Association="Self.FK_ChildKinderGarden_KinderGarden">
       <End Role="KinderGarden" EntitySet="KinderGardens" />
       <End Role="ChildKinderGarden" EntitySet="ChildKinderGardens" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Entitlement_Profession" Association="Self.FK_Entitlement_Profession">
-      <End Role="ProfessionKind" EntitySet="ProfessionKinds" />
-      <End Role="Entitlement" EntitySet="Entitlements" />
     </AssociationSet>
     <AssociationSet Name="FK_Professionals_ProfessionKind" Association="Self.FK_Professionals_ProfessionKind">
       <End Role="ProfessionKind" EntitySet="ProfessionKinds" />

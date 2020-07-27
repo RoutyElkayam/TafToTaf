@@ -57,15 +57,20 @@ namespace WebApi.Controllers
     }
     [HttpPost]
     // POST: api/Child
-    public void Post([FromBody]ChildDto child)
+    public IHttpActionResult Post([FromBody]ChildDto child,[FromUri]string id)
     {
       try
       {
-        ChildLogic.InsertChild(child);
+        ChildLogic.InsertChild(child,id);
+        return Ok();
+      }
+      catch(HttpListenerException ex)
+      {
+        return BadRequest(ex.Message);
       }
       catch (Exception ex)
       {
-        throw new Exception(ex.Message);
+        return BadRequest(ex.Message);
       }
     }
    [HttpPut]
@@ -85,8 +90,7 @@ namespace WebApi.Controllers
       }
       catch (Exception ex)
       {
-
-        return BadRequest(ex.InnerException.InnerException.Message);
+        return BadRequest(ex.Message);
       }
     }
   }

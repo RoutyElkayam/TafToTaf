@@ -48,7 +48,6 @@
     <Compile Include="Converters\CalanderC.cs" />
     <Compile Include="Converters\ChildC.cs" />
     <Compile Include="Converters\ChildKinderGardenC.cs" />
-    <Compile Include="Converters\EntitlementC.cs" />
     <Compile Include="Converters\KindC.cs" />
     <Compile Include="Converters\KinderGardenC.cs" />
     <Compile Include="Converters\KindUserC.cs" />

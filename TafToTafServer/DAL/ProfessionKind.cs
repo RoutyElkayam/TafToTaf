@@ -17,15 +17,12 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProfessionKind()
         {
-            this.Entitlements = new HashSet<Entitlement>();
             this.Professionals = new HashSet<Professional>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Entitlement> Entitlements { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Professional> Professionals { get; set; }
     }

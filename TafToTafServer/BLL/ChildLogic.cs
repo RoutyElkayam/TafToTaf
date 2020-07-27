@@ -9,14 +9,14 @@ using DAL;
 
 namespace BLL
 {
-   public class ChildLogic
+  public class ChildLogic
   {
     public static ChildDto SelectChild(int id)
     {
-      using(DAL.TafToTafEntities db= new DAL.TafToTafEntities())
+      using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
       {
-        var child = db.Children.FirstOrDefault(ch =>ch.Id==id);
-        if(child==null)
+        var child = db.Children.FirstOrDefault(ch => ch.Id == id);
+        if (child == null)
         {
           return null;
         }
@@ -36,11 +36,21 @@ namespace BLL
       }
       return childrenList;
     }
-    public static void InsertChild(ChildDto child)
+    public static void InsertChild(ChildDto child, string kinderGardenName)
     {
+
       using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
       {
+        int kGardenID = db.KinderGardens.FirstOrDefault(kg => kg.Name == kinderGardenName).Id;
+
         db.Children.Add(ChildC.ToChildDAL(child));
+        db.ChildKinderGardens.Add(new ChildKinderGarden()
+        {
+          KindrGardenID = kGardenID,
+          ChildID = child.Id,
+          BeginYear = new DateTime(DateTime.Now.Year - 1, 09, 01),
+          EndYear = new DateTime(DateTime.Now.Year, 07, 01)
+        });
         db.SaveChanges();
       }
     }
@@ -50,29 +60,37 @@ namespace BLL
       {
         using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
         {
-          var Child = db.Children.FirstOrDefault(ch => ch.Id == id);
-          if (Child != null)
+          var child = db.Children.FirstOrDefault(ch => ch.Id == id);
+          var childInKG = db.ChildKinderGardens.FirstOrDefault(ch => ch.ChildID == id);
+          if (child != null)
           {
-            db.Children.Remove(Child);
-            db.SaveChanges();
+            db.Children.Remove(child);
           }
+          if (childInKG != null)
+          {
+            db.ChildKinderGardens.Remove(childInKG);
+          }
+
+          db.SaveChanges();
         }
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         throw new Exception(ex.Message);
-      }
+  }
+}
+
+public static void EditChild(int id, ChildDto child)
+{
+  using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
+  {
+    var childDal = db.Children.FirstOrDefault(ch => ch.Id == child.Id);
+    if (childDal != null)
+    {
+      childDal = ChildC.ToChildDAL(child);
+      db.SaveChanges();
     }
-    //חסר Update ,GetListChildren
-    //public static void EditChild(int id,ChildDto child)
-    //{
-    //  using (DAL.masterEntities db = new DAL.masterEntities())
-    //  {
-    //    if (db.Children.FirstOrDefault(ch => ch.Id == id) != null)
-    //    {
-    //      db.Children.FirstOrDefault(ch => ch.Id == id) = ChildC.ToChildDAL(child);
-    //    }
-    //  }
-    //}
+  }
+}
   }
 }

@@ -15,20 +15,12 @@
     <EntitySetMapping Name="Children">
       <EntityTypeMapping TypeName="TafToTafModel.Child">
         <MappingFragment StoreEntitySet="Child">
+          <ScalarProperty Name="NumHoursConfirm" ColumnName="NumHoursConfirm" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="Tz" ColumnName="Tz" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="BornDate" ColumnName="BornDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ChildEntitlements">
-      <EntityTypeMapping TypeName="TafToTafModel.ChildEntitlement">
-        <MappingFragment StoreEntitySet="ChildEntitlement">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="ChildID" ColumnName="ChildID" />
-          <ScalarProperty Name="EntitlementID" ColumnName="EntitlementID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -40,15 +32,6 @@
           <ScalarProperty Name="KindrGardenID" ColumnName="KindrGardenID" />
           <ScalarProperty Name="BeginYear" ColumnName="BeginYear" />
           <ScalarProperty Name="EndYear" ColumnName="EndYear" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Entitlements">
-      <EntityTypeMapping TypeName="TafToTafModel.Entitlement">
-        <MappingFragment StoreEntitySet="Entitlement">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ProfessionId" ColumnName="ProfessionId" />
-          <ScalarProperty Name="NumHour" ColumnName="NumHour" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

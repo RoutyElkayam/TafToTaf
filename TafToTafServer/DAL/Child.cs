@@ -17,7 +17,6 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Child()
         {
-            this.ChildEntitlements = new HashSet<ChildEntitlement>();
             this.ChildKinderGardens = new HashSet<ChildKinderGarden>();
         }
     
@@ -26,9 +25,8 @@ namespace DAL
         public string Tz { get; set; }
         public string LastName { get; set; }
         public Nullable<System.DateTime> BornDate { get; set; }
+        public Nullable<double> NumHoursConfirm { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChildEntitlement> ChildEntitlements { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChildKinderGarden> ChildKinderGardens { get; set; }
     }

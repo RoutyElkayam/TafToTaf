@@ -16,14 +16,25 @@ namespace WebApi.Controllers
   public class UsersController : ApiController
   {
     [HttpGet]
-    [Route("user")]
     // GET: api/Users
     public IHttpActionResult GetUser()
     {
-      UserDto userDto = new UserDto() { Password = "211550231" };
-      if (userDto != null)
-        return Ok(userDto);
-      return BadRequest();
+      try
+      {
+        UserDto userDto = UserLogic.isLoggedIn(Request.Headers.GetValues("Authorization").First());
+        if (userDto != null)
+          return Ok(userDto);
+        return BadRequest("Unauthorized");
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.Message);
+      }
+      catch (Exception ex)
+      {
+
+        return BadRequest(ex.Message);
+      }
     }
 
     [HttpPost]
@@ -34,8 +45,8 @@ namespace WebApi.Controllers
       {
         var user = UserLogic.Login(userLogin.UserName, userLogin.Password);
         if (user != null)
-          return Ok(user);
-        return BadRequest();
+          return Ok(TokenLogic.EncodeToken(user.Id));
+        return BadRequest("UserName or pasword are not valid");
       }
       catch (HttpListenerException ex)
       {

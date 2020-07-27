@@ -13,6 +13,7 @@ export class LogInComponent implements OnInit {
   username: string;
   password: string;
   user: User;
+  message = {error: ''};
   constructor(private accountService: AccountService,
     private router: Router) { }
 
@@ -20,9 +21,9 @@ export class LogInComponent implements OnInit {
   }
 
   login() {
-    this.accountService.login(this.username, this.password).subscribe(res => {
-      this.user = res;
-      localStorage.setItem("user",JSON.stringify( this.user));
+    this.accountService.login(this.username, this.password).subscribe((res:string )=> {
+      localStorage.setItem('token',res);
+      this.accountService.getUser().subscribe((user)=>this.user=user);
       if (this.user) {
         if (this.user.kindUser == 1) {
           this.router.navigate(["admin-main"])
@@ -37,7 +38,7 @@ export class LogInComponent implements OnInit {
       else alert("UserName or Password are not valid!")
     },err=>{
       alert("UserName or Password are not valid!");
-      console.log('error',err);
+      this.message.error = err.error.message;
     });
     
   }

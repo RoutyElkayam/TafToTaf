@@ -7,10 +7,8 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { ParentMainComponent } from './components/parent-main/parent-main.component';
 import { WorkerMainComponent } from './components/worker-main/worker-main.component';
 import { AdminMainComponent } from './components/admin-main/admin-main.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
-import {MenuItem} from 'primeng/api';
 import { NavAdminComponent } from './components/nav-admin/nav-admin.component';
 import { NavParentComponent } from './components/nav-parent/nav-parent.component';
 import { NavWorkerComponent } from './components/nav-worker/nav-worker.component';
@@ -34,6 +32,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { InsertTeamMeetingComponent } from './components/monthly-system/insert-team-meeting/insert-team-meeting.component';
 import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
+import { AuInterceptor } from './au.interceptor';
 
 @NgModule({
   declarations: [
@@ -67,7 +66,6 @@ import { ModalDeleteComponent } from './components/modal-delete/modal-delete.com
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AccordionModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
@@ -81,7 +79,13 @@ import { ModalDeleteComponent } from './components/modal-delete/modal-delete.com
     
   ],
   entryComponents:[InsertChildComponent],
-  providers: [NgbActiveModal],
+  providers:
+   [
+     NgbActiveModal,
+     {provide: HTTP_INTERCEPTORS,
+      useClass: AuInterceptor,
+      multi: true }
+    ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -81,38 +81,40 @@ namespace BLL
     }
 
 
-        public static void EditChild(int id, ChildDto child)
+    public static void EditChild(int id, ChildDto child)
+    {
+      using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
+      {
+        var editChild = db.Children.FirstOrDefault(ch => ch.Id == id);
+        if (editChild != null)
         {
-          using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
-          {
-            var editChild = db.Children.FirstOrDefault(ch => ch.Id == id);
-            if (editChild != null)
-            {
-              editChild.FirstName = child.FirstName;
-              editChild.LastName = child.LastName;
-              editChild.Tz = child.Tz;
-              editChild.BornDate = child.BornDate;
-
-            }
-            db.SaveChanges();
-          }
-        }
-        //help functions
-        private static DateTime calcBeaginYear()
-        {
-          if (DateTime.Now.Month > 09)
-            return new DateTime(DateTime.Now.Year, 09, 01);
-          return new DateTime(DateTime.Now.Year - 1, 09, 01);
+          editChild.FirstName = child.FirstName;
+          editChild.LastName = child.LastName;
+          editChild.Tz = child.Tz;
+          editChild.BornDate = child.BornDate;
+          editChild.NumHoursConfirm = child.NumHoursConfirm;
+          editChild.ParentID = child.ParentID;
 
         }
-        private static DateTime calcEndYear()
-        {
-          if (DateTime.Now.Month > 09)
-            return new DateTime(DateTime.Now.Year + 1, 07, 01);
-          return new DateTime(DateTime.Now.Year, 07, 01);
-
-        }
+        db.SaveChanges();
       }
     }
+    //help functions
+    private static DateTime calcBeaginYear()
+    {
+      if (DateTime.Now.Month > 09)
+        return new DateTime(DateTime.Now.Year, 09, 01);
+      return new DateTime(DateTime.Now.Year - 1, 09, 01);
+
+    }
+    private static DateTime calcEndYear()
+    {
+      if (DateTime.Now.Month > 09)
+        return new DateTime(DateTime.Now.Year + 1, 07, 01);
+      return new DateTime(DateTime.Now.Year, 07, 01);
+
+    }
+  }
+}
 
 

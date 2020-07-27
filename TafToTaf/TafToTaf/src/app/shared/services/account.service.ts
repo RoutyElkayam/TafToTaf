@@ -17,7 +17,6 @@ export class AccountService {
 
   login(username:string, password:string) 
   {
-    debugger;
     return  this.user=this.http.post<User>(this.url+"/login",{password:password,userName:username}); 
   }
   currentUser()

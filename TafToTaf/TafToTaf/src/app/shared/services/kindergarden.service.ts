@@ -7,7 +7,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class KindergardenService {
+
   url=environment.base_url+"KinderGarden";
-  constructor(private http:HttpClient) { }
+
+  constructor(public http:HttpClient) { }
   
+  getKinderGardens(): Observable<KinderGarden[]>{
+    
+    return this.http.get<KinderGarden[]>(this.url);
+    }
 }
+

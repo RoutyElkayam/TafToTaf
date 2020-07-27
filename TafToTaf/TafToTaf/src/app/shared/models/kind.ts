@@ -1,5 +1,5 @@
 export class Kind
 {
-    Id:number;
-    Name:string;
+    id:number;
+    name:string;
 }

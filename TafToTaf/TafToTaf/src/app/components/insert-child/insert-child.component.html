@@ -1,11 +1,38 @@
 <div class="modal-header">
-  <h4 class="modal-title">Hi there!</h4>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
+  <h4 class="modal-title">Hi there!   </h4>
 </div>
 <div class="modal-body">
   <p>Hello, {{name}}!</p>
+  <form>
+    <div class="form-group">
+      <label for="exampleInputPassword1">ת"ז</label>
+      <input type="Tz" class="form-control" id="exampleInputPassword1" placeholder="הכנס/י תעודת זהות">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">שם פרטי</label>
+      <input type="FirstName" class="form-control" id="exampleInputEmail1" placeholder="הכנס/י שם פרטי">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">שם משפחה</label>
+      <input type="LastName" class="form-control" id="exampleInputEmail1" placeholder="הכנס/י שם משפחה">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">תאריך לידה</label>
+      <input type="date" class="form-control" id="exampleInputEmail1" placeholder="הכנס/י תאריך לידה">
+    </div>
+    <div class="col-sm-4">
+      <select class="form-control">  
+        <option></option>                       
+        <option *ngFor= "let kinderGarden of kinderGardens">
+          גן   {{kinderGarden.name}}
+        </option>
+      </select>
+  </div>
+  <button type="submit" class="btn btn-default" (click) ="sumbit('name','tz')">Submit</button>
+  </form>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>

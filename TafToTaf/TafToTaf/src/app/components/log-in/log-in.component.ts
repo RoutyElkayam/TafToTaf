@@ -13,8 +13,8 @@ export class LogInComponent implements OnInit {
   username: string;
   password: string;
   user: User;
-  constructor(public accountService: AccountService,
-    public router: Router) { }
+  constructor(private accountService: AccountService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -39,23 +39,7 @@ export class LogInComponent implements OnInit {
       alert("UserName or Password are not valid!");
       console.log('error',err);
     });
-    // if(this.accountService.currentUser()==null)
-    // {
-    //   this.accountService.login(this.username,this.password);
-    // }
-    //   this.user=this.accountService.currentUser();
-    //   if (this.user) {
-    //     if (this.user.KindUser == 1) {
-    //       this.router.navigate(["admin-main"])
-    //     }
-    //     if (this.user.KindUser == 2) {
-    //       this.router.navigate(["worker-main"])
-    //     }
-    //     if (this.user.KindUser == 3) {
-    //       this.router.navigate(["parent-main"])
-    //     }
-    //   }
-    //   else alert("UserName or Password are not valid!")
-    // }
+    
   }
+
 }

@@ -32,7 +32,8 @@ import { CommonModule } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { InsertTeamMeetingComponent } from './components/monthly-system/insert-team-meeting/insert-team-meeting.component';
+import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,9 @@ import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     WelcomeComponent,
     InsertChildComponent,
     InsertChildModalComponent,
+    InsertTeamMeetingComponent,
+    ModalDeleteComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -71,9 +75,13 @@ import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     NgbModalModule,
     FlatpickrModule.forRoot(), 
-    NgbModule,
+    NgbModule, 
+
+   
+    
   ],
+  entryComponents:[InsertChildComponent],
   providers: [NgbActiveModal],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

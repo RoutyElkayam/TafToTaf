@@ -33,7 +33,6 @@ namespace DAL
         public virtual DbSet<KindUser> KindUsers { get; set; }
         public virtual DbSet<Professional> Professionals { get; set; }
         public virtual DbSet<ProfessionKind> ProfessionKinds { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }

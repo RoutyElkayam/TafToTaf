@@ -80,16 +80,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -152,6 +142,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_User">
+          <End Role="KindUser" Type="Self.KindUser" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KindUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="KindUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TafToTafModelStoreContainer">
           <EntitySet Name="Calander" EntityType="Self.Calander" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Child" EntityType="Self.Child" Schema="dbo" store:Type="Tables" />
@@ -161,7 +163,6 @@
           <EntitySet Name="KindUser" EntityType="Self.KindUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Professionals" EntityType="Self.Professionals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProfessionKind" EntityType="Self.ProfessionKind" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Calander_Kind" Association="Self.FK_Calander_Kind">
             <End Role="Kind" EntitySet="Kind" />
@@ -178,6 +179,10 @@
           <AssociationSet Name="FK_Professionals_ProfessionKind" Association="Self.FK_Professionals_ProfessionKind">
             <End Role="ProfessionKind" EntitySet="ProfessionKind" />
             <End Role="Professionals" EntitySet="Professionals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
+            <End Role="KindUser" EntitySet="KindUser" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -242,6 +247,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="TafToTafModel.FK_User_User" FromRole="KindUser" ToRole="User" />
         </EntityType>
         <EntityType Name="Professional">
           <Key>
@@ -267,16 +273,6 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Professionals" Relationship="Self.FK_Professionals_ProfessionKind" FromRole="ProfessionKind" ToRole="Professionals" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -290,6 +286,8 @@
           <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="KindUser" Type="Int32" />
+          <NavigationProperty Name="KindUser1" Relationship="TafToTafModel.FK_User_User" FromRole="User" ToRole="KindUser" />
+          <NavigationProperty Name="Children" Relationship="TafToTafModel.FK_Child_User" FromRole="User" ToRole="Child" />
         </EntityType>
         <Association Name="FK_Calander_Kind">
           <End Role="Kind" Type="Self.Kind" Multiplicity="1" />
@@ -348,7 +346,6 @@
           <EntitySet Name="KindUsers" EntityType="Self.KindUser" />
           <EntitySet Name="Professionals" EntityType="Self.Professional" />
           <EntitySet Name="ProfessionKinds" EntityType="Self.ProfessionKind" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Calander_Kind" Association="Self.FK_Calander_Kind">
             <End Role="Kind" EntitySet="Kinds" />
@@ -366,7 +363,39 @@
             <End Role="ProfessionKind" EntitySet="ProfessionKinds" />
             <End Role="Professionals" EntitySet="Professionals" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_User" Association="TafToTafModel.FK_User_User">
+            <End Role="KindUser" EntitySet="KindUsers" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Child_User" Association="TafToTafModel.FK_Child_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Child" EntitySet="Children" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_User_User">
+          <End Type="TafToTafModel.KindUser" Role="KindUser" Multiplicity="0..1" />
+          <End Type="TafToTafModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KindUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="KindUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Child_User">
+          <End Type="TafToTafModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="TafToTafModel.Child" Role="Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Child">
+              <PropertyRef Name="parentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -453,17 +482,6 @@
               <MappingFragment StoreEntitySet="ProfessionKind">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="TafToTafModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

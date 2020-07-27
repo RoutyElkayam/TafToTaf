@@ -39,32 +39,57 @@ namespace WebApi.Controllers
       try
       {
         var child = ChildLogic.SelectChild(id);
-        if(child!=null)
+        if (child == null)
         {
-          return Ok(child);
+          return BadRequest("null result");
+
         }
-        return BadRequest("null result");
+        return Ok(child);
       }
-      catch(HttpListenerException ex)
+      catch (HttpListenerException ex)
       {
         return BadRequest(ex.Message);
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         return BadRequest(ex.Message);
       }
 
     }
     [HttpPost]
-    // POST: api/Child
-    public IHttpActionResult Post([FromBody]ChildDto child,[FromUri]string id)
+
+    // POST: api/Child/kinderGardenName
+    public IHttpActionResult Post([FromBody]ChildDto child, [FromUri]string id)
     {
       try
       {
-        ChildLogic.InsertChild(child,id);
-        return Ok();
+        ChildLogic.InsertChild(child, id);
+        return Ok("nice");
       }
-      catch(HttpListenerException ex)
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.Message);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+
+    }
+    [HttpPut]
+    // PUT: api/Child/5
+    public IHttpActionResult Put(int id, [FromBody]ChildDto child)
+    {
+      try
+      {
+        if (child != null)
+        {
+          ChildLogic.EditChild(id, child);
+          return Ok("nicly");
+        }
+        return BadRequest("object to edit must have values");
+      }
+      catch (HttpListenerException ex)
       {
         return BadRequest(ex.Message);
       }
@@ -73,12 +98,6 @@ namespace WebApi.Controllers
         return BadRequest(ex.Message);
       }
     }
-   [HttpPut]
-    // PUT: api/Child/5
-    public void Put(int id, [FromBody]string value)
-    {
-
-    }
     [HttpDelete]
     // DELETE: api/Child/5
     public IHttpActionResult Delete(int id)
@@ -86,7 +105,7 @@ namespace WebApi.Controllers
       try
       {
         ChildLogic.DeleteChild(id);
-        return Ok();
+        return Ok("deleted");
       }
       catch (Exception ex)
       {

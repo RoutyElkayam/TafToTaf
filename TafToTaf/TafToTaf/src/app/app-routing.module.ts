@@ -9,32 +9,24 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AuthGuard } from './auth.guard';
 import { WeeklySystemComponent } from './components/weekly-system/weekly-system.component';
 import { CommonModule } from '@angular/common';
-
+import { TeamMeetingsComponent } from '../app/components/team-meetings/team-meetings.component';
 import { InsertChildComponent } from './components/insert-child/insert-child.component';
-
+import { ParentMeetingsComponent } from './components/parent-meetings/parent-meetings.component'
 
 
 const routes: Routes = [
   {component:LogInComponent,path:""},
   {component:ParentMainComponent,path:"parent-main"},
-  {component:AdminMainComponent,path:"admin-main",children:[
-     {component:ChildrenComponent, path:"children"}
-  ]},
-  {component:WorkerMainComponent, path:"worker-main"},
-  {component:WelcomeComponent, path:"welcome"},
- 
-  {component:ParentMainComponent,path:"parent-main"},
   {component:AdminMainComponent,path:"admin-main",
   children:[
     {component:WelcomeComponent,path:""},
-     {component:ChildrenComponent, path:"children"},
-     {component:WeeklySystemComponent, path:"weekly-system"},
+    {component:ChildrenComponent, path:"children"},
+    {component:WeeklySystemComponent, path:"weekly-system"},
+    { component:TeamMeetingsComponent, path: "team-meetings"},
+    {component: ParentMeetingsComponent,  path:"parent-meetings"},
     
   ]},
-  {component:WorkerMainComponent, path:"worker-main"},
-  // {component:WelcomeComponent, path:"welcome"},
-  {component:InsertChildComponent, path:"insert"}
-  
+  {component:WorkerMainComponent, path:"worker-main"} 
 ];
 
 @NgModule({

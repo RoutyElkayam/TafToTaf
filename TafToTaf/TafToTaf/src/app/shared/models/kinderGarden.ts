@@ -1,6 +1,6 @@
 export class KinderGarden
 {
-    Id:number;
-    Name:string;
-    Code:string;
+    id:number;
+    name:string;
+    code:string;
 }

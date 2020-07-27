@@ -1,5 +1,5 @@
 export class ProfessionKind
 {
-    Id:number;
-    Name:string;
+    id:number;
+    name:string;
 }

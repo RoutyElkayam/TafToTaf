@@ -1,12 +1,12 @@
 export class User
 {
-   Id :number;
-    UserName :string;
-    Password :string;
-     FirstName :string;
-     LastName:string;
-     Email :string;
-     Tel:string;
-     Phone :string;
+    id :number;
+    userName :string;
+    password :string;
+     firstName :string;
+     lastName:string;
+     email :string;
+     tel:string;
+     phone :string;
      kindUser :number;
 }

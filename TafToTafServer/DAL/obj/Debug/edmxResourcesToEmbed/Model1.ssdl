@@ -75,16 +75,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="Id" />
@@ -147,6 +137,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_User_User">
+    <End Role="KindUser" Type="Self.KindUser" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KindUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="KindUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="TafToTafModelStoreContainer">
     <EntitySet Name="Calander" EntityType="Self.Calander" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Child" EntityType="Self.Child" Schema="dbo" store:Type="Tables" />
@@ -156,7 +158,6 @@
     <EntitySet Name="KindUser" EntityType="Self.KindUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Professionals" EntityType="Self.Professionals" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProfessionKind" EntityType="Self.ProfessionKind" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Calander_Kind" Association="Self.FK_Calander_Kind">
       <End Role="Kind" EntitySet="Kind" />
@@ -173,6 +174,10 @@
     <AssociationSet Name="FK_Professionals_ProfessionKind" Association="Self.FK_Professionals_ProfessionKind">
       <End Role="ProfessionKind" EntitySet="ProfessionKind" />
       <End Role="Professionals" EntitySet="Professionals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
+      <End Role="KindUser" EntitySet="KindUser" />
+      <End Role="User" EntitySet="User" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

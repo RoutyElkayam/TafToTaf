@@ -22,3 +22,15 @@ C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\DAL\obj\Debug\DAL.csproj
 C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\DAL\obj\Debug\DAL.dll
 C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\DAL\obj\Debug\DAL.pdb
+D:\Users\User\Documents\GitHub\TafToTaf\TafToTafServer\DAL\bin\Debug\DAL.dll.config
+D:\Users\User\Documents\GitHub\TafToTaf\TafToTafServer\DAL\bin\Debug\DAL.dll
+D:\Users\User\Documents\GitHub\TafToTaf\TafToTafServer\DAL\bin\Debug\DAL.pdb
+D:\Users\User\Documents\GitHub\TafToTaf\TafToTafServer\DAL\bin\Debug\EntityFramework.dll
+D:\Users\User\Documents\GitHub\TafToTaf\TafToTafServer\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Users\User\Documents\GitHub\TafToTaf\TafToTafServer\DAL\bin\Debug\EntityFramework.xml
+D:\Users\User\Documents\GitHub\TafToTaf\TafToTafServer\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Users\User\Documents\GitHub\TafToTaf\TafToTafServer\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+D:\Users\User\Documents\GitHub\TafToTaf\TafToTafServer\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\Users\User\Documents\GitHub\TafToTaf\TafToTafServer\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\Users\User\Documents\GitHub\TafToTaf\TafToTafServer\DAL\obj\Debug\DAL.dll
+D:\Users\User\Documents\GitHub\TafToTaf\TafToTafServer\DAL\obj\Debug\DAL.pdb

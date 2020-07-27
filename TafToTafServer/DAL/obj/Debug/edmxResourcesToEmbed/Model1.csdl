@@ -21,6 +21,8 @@
     <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="BornDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="ChildKinderGardens" Relationship="Self.FK_ChildKinderGarden_Child" FromRole="Child" ToRole="ChildKinderGarden" />
+    <Property Name="parentID" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="TafToTafModel.FK_Child_User" FromRole="Child" ToRole="User" />
   </EntityType>
   <EntityType Name="ChildKinderGarden">
     <Key>
@@ -83,16 +85,6 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Professionals" Relationship="Self.FK_Professionals_ProfessionKind" FromRole="ProfessionKind" ToRole="Professionals" />
   </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="Id" />
@@ -107,6 +99,7 @@
     <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="KindUser" Type="Int32" />
     <NavigationProperty Name="KindUser1" Relationship="TafToTafModel.FK_User_User" FromRole="User" ToRole="KindUser" />
+    <NavigationProperty Name="Children" Relationship="TafToTafModel.FK_Child_User" FromRole="User" ToRole="Child" />
   </EntityType>
   <Association Name="FK_Calander_Kind">
     <End Role="Kind" Type="Self.Kind" Multiplicity="1" />
@@ -165,7 +158,6 @@
     <EntitySet Name="KindUsers" EntityType="Self.KindUser" />
     <EntitySet Name="Professionals" EntityType="Self.Professional" />
     <EntitySet Name="ProfessionKinds" EntityType="Self.ProfessionKind" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Users" EntityType="Self.User" />
     <AssociationSet Name="FK_Calander_Kind" Association="Self.FK_Calander_Kind">
       <End Role="Kind" EntitySet="Kinds" />
@@ -187,6 +179,10 @@
       <End Role="KindUser" EntitySet="KindUsers" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <AssociationSet Name="FK_Child_User" Association="TafToTafModel.FK_Child_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Child" EntitySet="Children" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK_User_User">
     <End Type="TafToTafModel.KindUser" Role="KindUser" Multiplicity="0..1" />
@@ -197,6 +193,18 @@
       </Principal>
       <Dependent Role="User">
         <PropertyRef Name="KindUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Child_User">
+    <End Type="TafToTafModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="TafToTafModel.Child" Role="Child" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Child">
+        <PropertyRef Name="parentID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { AccountService } from  '../../shared/services/account.service';
 @Component({
   selector: 'app-welcome',
@@ -8,7 +8,7 @@ import { AccountService } from  '../../shared/services/account.service';
 export class WelcomeComponent implements OnInit {
 
   constructor(private userService:AccountService) { }
-  
+  @Input() name;
   ngOnInit() {
   }
 

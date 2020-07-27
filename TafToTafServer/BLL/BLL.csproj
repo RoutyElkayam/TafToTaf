@@ -43,18 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChildKinderGardenLogic.cs" />
     <Compile Include="ChildLogic.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Converters\CalanderC.cs" />
     <Compile Include="Converters\ChildC.cs" />
     <Compile Include="Converters\ChildKinderGardenC.cs" />
-    <Compile Include="Converters\EntitlementC.cs" />
     <Compile Include="Converters\KindC.cs" />
     <Compile Include="Converters\KinderGardenC.cs" />
     <Compile Include="Converters\KindUserC.cs" />
     <Compile Include="Converters\ProfessionalC.cs" />
     <Compile Include="Converters\ProfessionKindC.cs" />
     <Compile Include="Converters\UserC.cs" />
+    <Compile Include="KinderGardenLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TokenLogic.cs" />
     <Compile Include="UserLogic.cs" />

@@ -17,13 +17,6 @@ import { ParentMeetingsComponent } from './components/parent-meetings/parent-mee
 const routes: Routes = [
   {component:LogInComponent,path:""},
   {component:ParentMainComponent,path:"parent-main"},
-  {component:AdminMainComponent,path:"admin-main",children:[
-     {component:ChildrenComponent, path:"children"}
-  ]},
-  {component:WorkerMainComponent, path:"worker-main"},
-  {component:WelcomeComponent, path:"welcome"},
- 
-  {component:ParentMainComponent,path:"parent-main"},
   {component:AdminMainComponent,path:"admin-main",
   children:[
     {component:WelcomeComponent,path:""},
@@ -33,10 +26,7 @@ const routes: Routes = [
     {component: ParentMeetingsComponent,  path:"parent-meetings"},
     
   ]},
-  {component:WorkerMainComponent, path:"worker-main"},
-  // {component:WelcomeComponent, path:"welcome"},
-  {component:InsertChildComponent, path:"insert"}
-  
+  {component:WorkerMainComponent, path:"worker-main"} 
 ];
 
 @NgModule({

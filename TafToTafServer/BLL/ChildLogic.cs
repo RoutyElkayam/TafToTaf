@@ -36,11 +36,20 @@ namespace BLL
       }
       return childrenList;
     }
-    public static void InsertChild(ChildDto child)
+    public static void InsertChild(ChildDto child,string kGardenName)
     {
       using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
       {
+        int kGardenID = db.KinderGardens.First(kg => kg.Name == kGardenName).Id;
         db.Children.Add(ChildC.ToChildDAL(child));
+        db.ChildKinderGardens.Add(new ChildKinderGarden()
+        {
+          ChildID = child.Id,
+          KindrGardenID = kGardenID,
+          BeginYear =calcBeaginYear(),
+          EndYear = calcEndYear()
+        });
+        
         db.SaveChanges();
       }
     }
@@ -63,16 +72,37 @@ namespace BLL
         throw new Exception(ex.Message);
       }
     }
-    //חסר Update ,GetListChildren
-    //public static void EditChild(int id,ChildDto child)
-    //{
-    //  using (DAL.masterEntities db = new DAL.masterEntities())
-    //  {
-    //    if (db.Children.FirstOrDefault(ch => ch.Id == id) != null)
-    //    {
-    //      db.Children.FirstOrDefault(ch => ch.Id == id) = ChildC.ToChildDAL(child);
-    //    }
-    //  }
-    //}
+    
+    public static void EditChild(int id, ChildDto child)
+    {
+      using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
+      {
+        var editChild = db.Children.FirstOrDefault(ch => ch.Id == id);
+        if (editChild != null)
+        {
+          editChild.FirstName = child.FirstName;
+          editChild.LastName = child.LastName;
+          editChild.Tz = child.Tz;
+          editChild.BornDate = child.BornDate;
+
+        } 
+        db.SaveChanges();
+      }
+    }
+    //help functions
+    private static DateTime calcBeaginYear()
+    {
+      if (DateTime.Now.Month>09)
+        return new DateTime(DateTime.Now.Year, 09, 01);
+      return new DateTime(DateTime.Now.Year - 1, 09, 01);
+
+    }
+    private static DateTime calcEndYear()
+    {
+      if (DateTime.Now.Month > 09)
+        return new DateTime(DateTime.Now.Year+1, 07, 01);
+      return new DateTime(DateTime.Now.Year, 07, 01);
+
+    }
   }
 }

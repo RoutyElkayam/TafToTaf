@@ -1,9 +1,9 @@
 export class Child
 {
     Id:number;
-    FirstName:string;
-    Tz:string;
-    LastName:string;
-    BornDate:Date;
+    firstName:string;
+    tz:string;
+    lastName:string;
+    bornDate:Date;
     
 }

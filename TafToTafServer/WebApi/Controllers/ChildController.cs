@@ -39,40 +39,64 @@ namespace WebApi.Controllers
       try
       {
         var child = ChildLogic.SelectChild(id);
-        if(child!=null)
+        if (child == null)
         {
-          return Ok(child);
+          return BadRequest("null result");
+
         }
-        return BadRequest("null result");
+        return Ok(child);
       }
-      catch(HttpListenerException ex)
+      catch (HttpListenerException ex)
       {
         return BadRequest(ex.Message);
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         return BadRequest(ex.Message);
       }
 
     }
     [HttpPost]
-    // POST: api/Child
-    public void Post([FromBody]ChildDto child)
+
+    // POST: api/Child/kinderGardenName
+    public IHttpActionResult Post([FromBody]ChildDto child, [FromUri]string id)
     {
       try
       {
-        ChildLogic.InsertChild(child);
+        ChildLogic.InsertChild(child, id);
+        return Ok("nice");
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.Message);
       }
       catch (Exception ex)
       {
-        throw new Exception(ex.Message);
+        return BadRequest(ex.Message);
       }
-    }
-   [HttpPut]
-    // PUT: api/Child/5
-    public void Put(int id, [FromBody]string value)
-    {
 
+    }
+    [HttpPut]
+    // PUT: api/Child/5
+    public IHttpActionResult Put(int id, [FromBody]ChildDto child)
+    {
+      try
+      {
+        if (child != null)
+        {
+          ChildLogic.EditChild(id, child);
+          return Ok("nicly");
+        }
+        return BadRequest("object to edit must have values");
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.Message);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
     }
     [HttpDelete]
     // DELETE: api/Child/5
@@ -81,12 +105,12 @@ namespace WebApi.Controllers
       try
       {
         ChildLogic.DeleteChild(id);
-        return Ok();
+        return Ok("deleted");
       }
       catch (Exception ex)
       {
 
-        return BadRequest(ex.InnerException.InnerException.Message);
+        return BadRequest(ex.Message);
       }
     }
   }

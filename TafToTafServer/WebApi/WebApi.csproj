@@ -128,6 +128,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CalenderController.cs" />
     <Compile Include="Controllers\ChildController.cs" />
+    <Compile Include="Controllers\ChildKinderardenController.cs" />
     <Compile Include="Controllers\KinderGardenController.cs" />
     <Compile Include="Controllers\ProfessionalController.cs" />
     <Compile Include="Controllers\TokenController.cs" />

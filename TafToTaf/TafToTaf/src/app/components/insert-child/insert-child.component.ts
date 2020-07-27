@@ -1,5 +1,6 @@
 import { Component, OnInit ,Input} from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { KinderGarden } from 'src/app/shared/models/kinderGarden';
 
 
 @Component({
@@ -9,14 +10,18 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class InsertChildComponent implements OnInit {
 
-  @Input() name;
+  @Input() kinderGardens:KinderGarden[];
 
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit() {
   }
 sumbit(){
- this.name="fdfj";
+
+}
+helpfunc()
+{
+  
 }
 
 }

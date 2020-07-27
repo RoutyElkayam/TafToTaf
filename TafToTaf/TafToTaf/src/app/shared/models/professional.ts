@@ -1,12 +1,12 @@
 export class Professional {
-    Id: number;
-    Name: string;
-    ProfessionKind: number
-    NumHourWork: number;
-    NumDaysWork: number;
-    Sunday: boolean;
-    Monday: boolean;
-    Thuesday: boolean;
-    Wednesday: boolean;
-    Tursday: boolean;
+    id: number;
+    name: string;
+    professionKind: number
+    numHourWork: number;
+    numDaysWork: number;
+    sunday: boolean;
+    monday: boolean;
+    thuesday: boolean;
+    wednesday: boolean;
+    tursday: boolean;
 }

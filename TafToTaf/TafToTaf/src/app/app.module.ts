@@ -33,8 +33,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { InsertTeamMeetingComponent } from './components/monthly-system/insert-team-meeting/insert-team-meeting.component';
-
-import { from } from 'rxjs';
+import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +58,7 @@ import { from } from 'rxjs';
     InsertChildComponent,
     InsertChildModalComponent,
     InsertTeamMeetingComponent,
+    ModalDeleteComponent,
   
   ],
   imports: [

@@ -1,9 +1,9 @@
 export class ChildKinderGarden
 {
-    Id:number;
-    ChildID:number;
-    KindrGardenID:number;
-    BeginYear:Date;
-    EndYear:Date;
-   EntitlementID:number;
+    id:number;
+    childID:number;
+    kindrGardenID:number;
+    beginYear:Date;
+    endYear:Date;
+    entitlementID:number;
 }

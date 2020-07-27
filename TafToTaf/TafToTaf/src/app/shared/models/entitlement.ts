@@ -1,6 +1,6 @@
 export class Entitlement
 {
-    Id:number;
-    ProfessionId:number;
-    NumHour:string;
+    id:number;
+    professionId:number;
+    numHour:string;
 }

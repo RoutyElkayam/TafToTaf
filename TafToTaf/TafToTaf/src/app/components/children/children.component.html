@@ -2,18 +2,16 @@
 <div class="container">
         <div class="table-wrapper">
             <div class="table-title">
-                <div class="row">
-                   
+                <div class="row">                   
                     <div class="col-sm-8">
                         <button type="button" class="btn btn-info add-new" (click)="open()"><i class="fa fa-plus"></i> הוספת ילד</button>
-                    
                     </div>
                      <div class="col-sm-4">
-                        <select class="form-control">
-                          
-                            <option>גן רבקה</option>
-                            <option>גן איטי</option>
-                            <option>גן חנה</option>
+                        <select class="form-control">  
+                            <option></option>                       
+                            <option *ngFor= "let kinderGarden of kinderGardens">
+                              גן   {{kinderGarden.name}}
+                            </option>
                           </select>
                     </div>
                 </div>
@@ -22,17 +20,17 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>שם</th>
                         <th>תעודת זהות</th>
+                        <th>שם</th>
                         <th> שעות מאושרות </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr> 
+                    <tr *ngFor> 
                          <td>
 							<a class="add" title="Add" data-toggle="tooltip" [routerLink]="['/insert-child']"><i class="material-icons"></i></a>
                             <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" (click)="delete()"><i class="material-icons"></i></a>
                         </td>                      
                         <td>אורי</td>
                         <td>****</td>
@@ -43,7 +41,7 @@
                         <td>
 							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons"></i></a>
                             <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" (click)="delete()"><i class="material-icons"></i></a>
                         </td>
                         <td>יעל</td>
                         <td>Administration</td>
@@ -54,7 +52,7 @@
                          <td>
 							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons"></i></a>
                             <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" (click)="delete()"><i class="material-icons"></i></a>
                         </td>
                         <td>דינה</td>
                         <td>****</td>

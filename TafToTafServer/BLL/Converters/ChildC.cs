@@ -18,7 +18,8 @@ namespace BLL.Converters
                     Tz = child.Tz,
                     FirstName = child.FirstName,
                     LastName = child.LastName,
-                    BornDate = (DateTime) child.BornDate
+                    BornDate = (DateTime) child.BornDate,
+                    ParentID = (int)child.parentID
                 };
                 return childDto;
             }
@@ -30,7 +31,8 @@ namespace BLL.Converters
                     Tz = childDto.Tz,
                     FirstName = childDto.FirstName,
                     LastName = childDto.LastName,
-                    BornDate = childDto.BornDate
+                    BornDate = childDto.BornDate,
+                    parentID = childDto.ParentID
                 };
                 return child;
             }

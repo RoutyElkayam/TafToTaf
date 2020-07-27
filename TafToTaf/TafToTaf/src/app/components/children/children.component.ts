@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { InsertChildComponent} from '../insert-child/insert-child.component';
+import { InsertChildComponent } from '../insert-child/insert-child.component';
 import { KindergardenService } from 'src/app/shared/services/kindergarden.service';
 import { KinderGarden } from '../../shared/models/kinderGarden';
 import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
@@ -15,54 +15,60 @@ import { ChildKinderGardenService } from 'src/app/shared/services/child-kinder-g
 })
 export class ChildrenComponent implements OnInit {
 
-  kinderGardens:KinderGarden[];
-  children : Child[];
-  selectkng: string=null;
-  selectchld : Child;
-  
-  constructor(private modalService: NgbModal, 
-   public kinderGardenService: KindergardenService,
-   public childService: ChildService,
-   public childKinderGardenService: ChildKinderGardenService
-   ) { 
-    
+  kinderGardens: KinderGarden[];
+  children: Child[];
+  selectkng: string = null;
+  selectchld: Child;
+
+  constructor(private modalService: NgbModal,
+    public kinderGardenService: KindergardenService,
+    public childService: ChildService,
+    public childKinderGardenService: ChildKinderGardenService
+  ) {
+
   }
   ngOnInit() {
     this.getKinderGardens();
     this.getChildren();
   }
 
-  getKinderGardens(): void{
-   this.kinderGardenService.getKinderGardens()
-    .subscribe(kinderGardens => {this.kinderGardens=kinderGardens,console.log(this.kinderGardens)});
+  getKinderGardens(): void {
+    this.kinderGardenService.getKinderGardens()
+      .subscribe(kinderGardens => { this.kinderGardens = kinderGardens, console.log(this.kinderGardens) });
   }
 
-  getChildren(): void{
+  getChildren(): void {
     this.childService.getChildren()
-    .subscribe(children => {this.children=children});
+      .subscribe(children => { this.children = children });
   }
 
-  getChildInKinderGarden(): void{
+  getChildInKinderGarden(): void {
     console.log(this.selectkng);
     this.childKinderGardenService.getChildren(this.selectkng)
-    .subscribe(res=> this.children=res);
+      .subscribe(res => this.children = res);
   }
 
   open() {
     const modalRef = this.modalService.open(InsertChildComponent);
     modalRef.componentInstance.kinderGardens = this.kinderGardens;
   }
-  delete(child: Child): void{
-    console.log(child.Id);
+  delete(child: Child): void {
+    console.log(child.id);
 
     const modalRef = this.modalService.open(ModalDeleteComponent);
-    modalRef.componentInstance.selectchld= this.selectchld;
-    
+    modalRef.componentInstance.child = child;
+    modalRef.result.then((result) => {
+     
+      this.getChildren();
+    }).catch((res) => {
+      this.getChildren();
+    });
+
 
   }
-  changeGan(){
-    if(this.selectkng != null)
+  changeGan() {
+    if (this.selectkng != null)
       this.getChildInKinderGarden();
-    
+
   }
 }

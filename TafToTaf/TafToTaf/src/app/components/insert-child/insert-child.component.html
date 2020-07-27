@@ -1,4 +1,4 @@
-<div class="modal-header">
+<!-- <div class="modal-header">
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -36,4 +36,42 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-</div>
+</div> -->
+<div class="modal-header">
+<form class="seminor-login-form">
+  <div class="form-group">
+    <input type="firstName" class="form-control" [(ngModel)]="firstName" required autocomplete="off">
+    <label class="form-control-placeholder" for="name">שם פרטי</label>
+  </div>
+  <div class="form-group">
+    <input type="lastName" class="form-control" [(ngModel)]="lastName" required autocomplete="off">
+    <label class="form-control-placeholder" for="name">שם משפחה</label>
+  </div>
+    <div class="form-group">
+    <input type="tz" class="form-control" [(ngModel)]="tz" required autocomplete="off">
+    <label class="form-control-placeholder" for="name">תעודת זהות</label>
+  </div>
+  <div class="form-group">
+  <label class="select-form-control-placeholder"  for="sel1">לאיזה גן אני נכנס?</label>
+   <select class="form-control"  id="sel1" name="sellist1" [(ngModel)]="kinderGardenName">
+     <option></option>
+    <option *ngFor= "let kinderGarden of kinderGardens">
+       {{kinderGarden.name}}
+    </option>
+   </select>
+  </div>
+  <div class="form-group" [(ngModel)]="bornDate">
+    <!-- <label class="select-form-control-placeholder" for="sel1">לאיזה גן אני נכנס?</label> -->
+    <input type="date" class="form-control" required autocomplete="off" placeholder="תאריך לידה">
+    <!-- <label  class="form-control-placeholder" for="name">ה</label> -->
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" [(ngModel)]="parentID" required autocomplete="off">
+    <label class="form-control-placeholder" for="name">תעודת זהות אב</label>
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" [(ngModel)]="numHoursConfirm" required autocomplete="off">
+    <label class="form-control-placeholder" for="password">מספר שעות מאושרות</label>
+  </div>
+  <button type="submit" class="btn btn-default" (click)="sumbit()">Submit</button>

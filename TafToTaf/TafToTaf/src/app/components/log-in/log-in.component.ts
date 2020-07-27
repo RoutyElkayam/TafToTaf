@@ -21,9 +21,8 @@ export class LogInComponent implements OnInit {
   }
 
   login() {
-    this.accountService.login(this.username, this.password).subscribe((res:string )=> {
-      localStorage.setItem('token',res);
-      this.accountService.getUser().subscribe((user)=>this.user=user);
+    this.accountService.login(this.username, this.password).subscribe((res:User )=> {
+     this.user= res
       if (this.user) {
         if (this.user.kindUser == 1) {
           this.router.navigate(["admin-main"])

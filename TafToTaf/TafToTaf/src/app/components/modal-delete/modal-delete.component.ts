@@ -14,8 +14,9 @@ export class ModalDeleteComponent implements OnInit {
 
   @Input() child:Child;
  
-  constructor(private activeModal:NgbActiveModal) { }
-  public childService: ChildService
+  constructor(private activeModal:NgbActiveModal,
+    public childService: ChildService) { }
+  
   
 
   ngOnInit() {
@@ -23,7 +24,10 @@ export class ModalDeleteComponent implements OnInit {
 
   delete(): void{
    
-    this.childService.deleteChild(this.child.Id);
+    this.childService.deleteChild(this.child.id).subscribe(res=>{
+      this.activeModal.close();
+    });
+   
     console.log("delete!!!!!!!!!!!");
 
   }

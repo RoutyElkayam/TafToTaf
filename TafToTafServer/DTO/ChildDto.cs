@@ -12,7 +12,7 @@ namespace DTO
         public string FirstName { get; set; }
         public string Tz { get; set; }
         public string LastName { get; set; }
-        public DateTime BornDate  { get; set; }
+        public DateTime BornDate { get; set; }
         public double NumHoursConfirm { get; set; }
         public int ParentID { get; set; }
   }

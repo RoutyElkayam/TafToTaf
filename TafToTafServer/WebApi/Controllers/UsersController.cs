@@ -11,7 +11,7 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
-  
+
   [RoutePrefix("api/Users")]
   public class UsersController : ApiController
   {
@@ -44,8 +44,13 @@ namespace WebApi.Controllers
       try
       {
         var user = UserLogic.Login(userLogin.UserName, userLogin.Password);
+        string token = null;
         if (user != null)
-          return Ok(TokenLogic.EncodeToken(user.Id));
+        {
+          token = TokenLogic.EncodeToken(user.Id);
+          return Ok(token);
+        }
+        
         return BadRequest("UserName or pasword are not valid");
       }
       catch (HttpListenerException ex)

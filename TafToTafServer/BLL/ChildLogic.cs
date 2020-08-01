@@ -61,16 +61,15 @@ namespace BLL
         using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
         {
           var child = db.Children.FirstOrDefault(ch => ch.Id == id);
-          var childInKG = db.ChildKinderGardens.FirstOrDefault(ch => ch.ChildID == id);
           if (child != null)
           {
             db.Children.Remove(child);
           }
-          if (childInKG != null)
+          foreach (var childInKGarden in db.ChildKinderGardens)
           {
-            db.ChildKinderGardens.Remove(childInKG);
+            if (childInKGarden.ChildID == id)
+              db.ChildKinderGardens.Remove(childInKGarden);
           }
-
           db.SaveChanges();
         }
       }
@@ -92,7 +91,7 @@ namespace BLL
           editChild.Tz = child.Tz;
           editChild.BornDate = child.BornDate;
           editChild.NumHoursConfirm = child.NumHoursConfirm;
-          editChild.parentID = child.ParentID;
+          editChild.ParentID = child.ParentID;
 
         }
         db.SaveChanges();

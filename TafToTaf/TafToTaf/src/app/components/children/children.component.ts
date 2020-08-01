@@ -7,6 +7,7 @@ import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
 import { Child } from 'src/app/shared/models/child';
 import { ChildService } from 'src/app/shared/services/child.service';
 import { ChildKinderGardenService } from 'src/app/shared/services/child-kinder-garden.service';
+import { EditChildComponent } from '../edit-child/edit-child.component';
 
 @Component({
   selector: 'app-children',
@@ -48,25 +49,46 @@ export class ChildrenComponent implements OnInit {
       .subscribe(res => this.children = res);
   }
 
-  open() {
+  sendChild() {
     const modalRef = this.modalService.open(InsertChildComponent);
     modalRef.componentInstance.kinderGardens = this.kinderGardens;
+    modalRef.result.then((result) => {
+     
+      this.getChildren();
+      this.selectkng='';
+    }).catch((res) => {
+      this.getChildren();
+      
+    });
   }
   delete(child: Child): void {
-    console.log(child.id);
-
     const modalRef = this.modalService.open(ModalDeleteComponent);
     modalRef.componentInstance.child = child;
     modalRef.result.then((result) => {
      
       this.getChildren();
+      this.selectkng='';
     }).catch((res) => {
       this.getChildren();
+      
     });
-
-
   }
-  changeGan() {
+  edit(child){
+    const modalRef = this.modalService.open(EditChildComponent);
+    modalRef.componentInstance.child = child;
+    modalRef.componentInstance.kinderGardenOfChild=this.selectkng;
+    modalRef.componentInstance.kinderGardens = this.kinderGardens;
+    modalRef.result.then((result) => {
+     
+      this.getChildren();
+      this.selectkng='';
+    }).catch((res) => {
+      this.getChildren();
+      
+    });
+  }
+ 
+  OnchangeGan() {
     if (this.selectkng != null)
       this.getChildInKinderGarden();
 

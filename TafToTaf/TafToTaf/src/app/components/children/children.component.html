@@ -4,11 +4,11 @@
             <div class="table-title">
                 <div class="row">                   
                     <div class="col-sm-8">
-                        <button type="button" class="btn btn-info add-new" (click)="open()"><i class="fa fa-plus"></i> הוספת ילד</button>
+                        <button type="button" class="btn btn-info add-new" (click)="sendChild()"><i class="fa fa-plus"></i> הוספת ילד</button>
                     </div>
                      <div class="col-sm-4">
-                        <select class="form-control" [(ngModel)]="selectkng"  (change)="changeGan()">  
-                            <option></option>                       
+                        <select class="form-control" [(ngModel)]="selectkng"  (change)="OnchangeGan()">  
+                            <option>{{selectkng}}</option>                       
                             <option *ngFor= "let kinderGarden of kinderGardens" >
                              {{kinderGarden.name}}
                             </option>
@@ -28,7 +28,7 @@
                 <tbody>
                     <tr *ngFor="let child of children"> 
                          <td>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+                            <a class="edit" title="Edit" data-toggle="tooltip" (click)="edit(child)"><i class="material-icons"></i></a>
                             <a class="delete" title="Delete" data-toggle="tooltip" (click)="delete(child)"><i class="material-icons"></i></a>                          
                         </td>                      
                         <td>{{child.numHoursConfirm}}</td> 

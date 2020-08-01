@@ -32,5 +32,6 @@ namespace DAL
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Child> Children { get; set; }
+        public virtual KindUser KindUser1 { get; set; }
     }
 }

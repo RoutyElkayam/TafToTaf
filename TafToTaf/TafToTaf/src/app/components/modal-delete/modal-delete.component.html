@@ -1,11 +1,11 @@
 <div class="modal-header">
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
+    <button type="button" class="close btn-danger" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;  </span>
     </button>
-    <h4 class="modal-title">Hi there!   </h4>
+    
 
   <div class="modal-body">
-    <p>Hello, {{name}}!</p>
+    <p>     הי, אנא אשרי את מחיקת  {{child.firstName}} {{child.lastName}}</p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="delete()">Ok</button>

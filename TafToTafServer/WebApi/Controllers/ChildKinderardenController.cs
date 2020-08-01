@@ -18,11 +18,8 @@ namespace WebApi.Controllers
     {
       try
       {
-        
         List<ChildDto> children = ChildKinderGardenLogic.GetChildrenInKinderGarden(id);
         return Ok(children);
-       
-
       }
       catch (HttpListenerException ex)
       {

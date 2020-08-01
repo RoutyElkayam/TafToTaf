@@ -10,14 +10,13 @@ import { AuthGuard } from './auth.guard';
 import { WeeklySystemComponent } from './components/weekly-system/weekly-system.component';
 import { CommonModule } from '@angular/common';
 import { TeamMeetingsComponent } from '../app/components/team-meetings/team-meetings.component';
-import { InsertChildComponent } from './components/insert-child/insert-child.component';
 import { ParentMeetingsComponent } from './components/parent-meetings/parent-meetings.component'
 
 
 const routes: Routes = [
   {component:LogInComponent,path:""},
   {component:ParentMainComponent,path:"parent-main",canActivate:[AuthGuard]},
-  {component:AdminMainComponent,path:"admin-main",canActivate:[AuthGuard],
+  {component:AdminMainComponent,path:"admin-main",
   children:[
     {component:WelcomeComponent,path:""},
     {component:ChildrenComponent, path:"children"},

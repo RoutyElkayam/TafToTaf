@@ -11,5 +11,5 @@ export class AdminMainComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
 }

@@ -1,0 +1,43 @@
+
+<div class="modal-header">
+    <form class="seminor-login-form">
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="form-group">
+        <input  class="form-control" value={{child.firstName}}  autocomplete="off" >
+        <label class="form-control-placeholder" for="name">שם פרטי</label>
+      </div>
+      <div class="form-group">
+        <input  class="form-control" value={{child.lastName}} required autocomplete="off">
+        <label class="form-control-placeholder" for="name">שם משפחה</label>
+      </div>
+        <div class="form-group">
+        <input type="tz" class="form-control" value={{child.tz}} required autocomplete="off">
+        <label class="form-control-placeholder" for="name">תעודת זהות</label>
+      </div>
+      <div class="form-group">
+      <label class="select-form-control-placeholder"  for="sel1">לאיזה גן אני נכנס?</label>
+       <select class="form-control"  id="sel1" name="sellist1" value={{kinderGardenOfChild}} >
+         <option></option>
+        <option *ngFor= "let kinderGarden of kinderGardens">
+           {{kinderGarden.name}}
+        </option>
+       </select>
+      </div>
+      <div class="form-group"  >
+        <!-- <label class="select-form-control-placeholder" for="sel1">לאיזה גן אני נכנס?</label> -->
+        <input type="date" class="form-control" required autocomplete="off" placeholder="תאריך לידה" value={{child.bornDate}}>
+        <!-- <label  class="form-control-placeholder" for="name">ה</label> -->
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" value={{child.parentID}} required autocomplete="off">
+        <label class="form-control-placeholder" for="name">תעודת זהות אב</label>
+      </div>
+    
+      <div class="form-group">
+        <input  class="form-control" value={{child.numHoursConfirm}} required autocomplete="off">
+        <label class="form-control-placeholder" >מספר שעות מאושרות</label>
+      </div>
+      <button type="submit" class="btn btn-default" (click)="Edit()">עדכן פרטי ילד</button>
+    

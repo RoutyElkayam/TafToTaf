@@ -8,7 +8,7 @@ export class AuInterceptor implements HttpInterceptor{
     
     constructor(private authService: AccountService) {}
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {//header של הבקשה את הטוקן בשביל שהסרבר יוכל לדעת מיהו המשתש   כשמקבלים משתמש הוא דוחף ל
         const token = this.authService.token(); 
         
         if (token) {
@@ -20,6 +20,5 @@ export class AuInterceptor implements HttpInterceptor{
     
         return next.handle(request);
     }
-
 }
 

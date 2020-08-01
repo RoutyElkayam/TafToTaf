@@ -33,6 +33,7 @@ import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { InsertTeamMeetingComponent } from './components/monthly-system/insert-team-meeting/insert-team-meeting.component';
 import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
 import { AuInterceptor } from './au.interceptor';
+import { EditChildComponent } from './components/edit-child/edit-child.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { AuInterceptor } from './au.interceptor';
     InsertChildModalComponent,
     InsertTeamMeetingComponent,
     ModalDeleteComponent,
+    EditChildComponent,
   
   ],
   imports: [
@@ -78,7 +80,7 @@ import { AuInterceptor } from './au.interceptor';
    
     
   ],
-  entryComponents:[InsertChildComponent, ModalDeleteComponent],
+  entryComponents:[InsertChildComponent, ModalDeleteComponent,EditChildComponent],
   providers:
    [
      NgbActiveModal,

@@ -10,7 +10,7 @@ namespace BLL
 {
   public class UserLogic
   {
-    public static UserDto isLoggedIn(string token)
+    public static UserDto IsLoggedIn(string token)
     {
 
       int idUser = TokenLogic.DecodeToken(token);

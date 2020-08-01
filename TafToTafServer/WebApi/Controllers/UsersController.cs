@@ -21,7 +21,7 @@ namespace WebApi.Controllers
     {
       try
       {
-        UserDto userDto = UserLogic.isLoggedIn(Request.Headers.GetValues("Authorization").First());
+        UserDto userDto = UserLogic.IsLoggedIn(Request.Headers.GetValues("Authorization").First());
         if (userDto != null)
           return Ok(userDto);
         return BadRequest("Unauthorized");
@@ -44,9 +44,13 @@ namespace WebApi.Controllers
       try
       {
         var user = UserLogic.Login(userLogin.UserName, userLogin.Password);
+        string token = null;
         if (user != null)
-          return Ok(TokenLogic.EncodeToken(user.Id));
-        return BadRequest("UserName or pasword are not valid");
+        {
+          token = TokenLogic.EncodeToken(user.Id);
+          return Ok(token);
+        }  
+          return BadRequest("UserName or Pasword are not valid");
       }
       catch (HttpListenerException ex)
       {

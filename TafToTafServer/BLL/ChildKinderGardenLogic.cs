@@ -19,7 +19,8 @@ namespace BLL
         int kinderGardenId = db.KinderGardens.First(kg => kg.Name == kinderGardenName).Id;
         foreach (var childKinderGarden in db.ChildKinderGardens)
         {
-          if (childKinderGarden.KindrGardenID== kinderGardenId)
+          if (childKinderGarden.KindrGardenID== kinderGardenId
+            && ((DateTime)childKinderGarden.BeginYear).Year==DateTime.Now.Year)
           {
             Child childDAL=db.Children.First(ch => ch.Id == childKinderGarden.ChildID);
             ChildrenDTO.Add(ChildC.ToChildDTO(childDAL));

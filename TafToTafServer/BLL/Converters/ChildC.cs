@@ -19,7 +19,7 @@ namespace BLL.Converters
         FirstName = child.FirstName,
         LastName = child.LastName,
         BornDate = (DateTime)child.BornDate,
-        ParentID = (int)child.parentID,
+        ParentID = (int)child.ParentID,
         NumHoursConfirm = (double)child.NumHoursConfirm
       };
       return childDto;
@@ -33,7 +33,7 @@ namespace BLL.Converters
         FirstName = childDto.FirstName,
         LastName = childDto.LastName,
         BornDate = childDto.BornDate,
-        parentID = childDto.ParentID,
+        ParentID = childDto.ParentID,
         NumHoursConfirm = childDto.NumHoursConfirm
       };
       return child;

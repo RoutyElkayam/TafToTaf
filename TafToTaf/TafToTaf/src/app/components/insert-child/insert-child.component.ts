@@ -13,7 +13,7 @@ import {ChildService} from 'src/app/shared/services/child.service';
 export class InsertChildComponent implements OnInit {
 
   @Input() kinderGardens:KinderGarden[];
-  @Input() insertChild:Child;
+  
 
   
     firstName:string;
@@ -38,8 +38,8 @@ export class InsertChildComponent implements OnInit {
    'lastName': this.lastName,
    'tz':this.tz,
    'bornDate':this.bornDate,
-   'numHoursConfirm':18,
-   'parentID':5
+   'numHoursConfirm':this.numHoursConfirm,
+   'parentID':this.parentID
    }
     return this.childService.postChild(child,this.kinderGardenName).subscribe(res=>{},err=>{console.log('error',err)});
   

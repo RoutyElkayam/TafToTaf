@@ -27,8 +27,8 @@ export class ModalDeleteComponent implements OnInit {
     this.childService.deleteChild(this.child.id).subscribe(res=>{
       this.activeModal.close();
     });
-   
-    console.log("delete!!!!!!!!!!!");
+    
+
 
   }
 }

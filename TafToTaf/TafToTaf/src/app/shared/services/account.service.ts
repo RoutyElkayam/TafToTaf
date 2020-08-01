@@ -18,7 +18,7 @@ export class AccountService {
 
   login(username:string, password:string) 
   {
-    return  this.http.post(this.url+"/login",{password:password,userName:username}); 
+    return  this.http.post<User>(this.url+"/login",{password:password,userName:username}); 
   }
   getUser():Observable<User>
   {

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
@@ -24,8 +24,8 @@
           <Property Name="Tz" Type="nvarchar" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="BornDate" Type="datetime" />
+          <Property Name="parentID" Type="int" />
           <Property Name="NumHoursConfirm" Type="float" />
-          <Property Name="ParentID" Type="int" />
         </EntityType>
         <EntityType Name="ChildKinderGarden">
           <Key>
@@ -230,6 +230,11 @@
           <Property Name="ParentID" Type="Int32" />
           <NavigationProperty Name="User" Relationship="Self.FK_Child_Child" FromRole="Child" ToRole="User" />
           <NavigationProperty Name="ChildKinderGardens" Relationship="Self.FK_ChildKinderGarden_Child" FromRole="Child" ToRole="ChildKinderGarden" />
+
+          <Property Name="parentID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="TafToTafModel.FK_Child_User" FromRole="Child" ToRole="User" />
+          <Property Name="NumHoursConfirm" Type="Double" />
+         
         </EntityType>
         <EntityType Name="ChildKinderGarden">
           <Key>
@@ -432,6 +437,10 @@
           <EntitySetMapping Name="Children">
             <EntityTypeMapping TypeName="TafToTafModel.Child">
               <MappingFragment StoreEntitySet="Child">
+                
+                <ScalarProperty Name="NumHoursConfirm" ColumnName="NumHoursConfirm" />
+                <ScalarProperty Name="parentID" ColumnName="parentID" />
+              
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Tz" ColumnName="Tz" />

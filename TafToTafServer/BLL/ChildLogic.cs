@@ -48,7 +48,7 @@ namespace BLL
           ChildID = child.Id,
           KindrGardenID = kGardenID,
           BeginYear = calcBeaginYear(),
-          EndYear = calcEndYear()
+          EndYear = calcEndYear(),
         });
 
         db.SaveChanges();
@@ -80,7 +80,6 @@ namespace BLL
       }
     }
 
-
     public static void EditChild(int id, ChildDto child)
     {
       using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
@@ -93,7 +92,7 @@ namespace BLL
           editChild.Tz = child.Tz;
           editChild.BornDate = child.BornDate;
           editChild.NumHoursConfirm = child.NumHoursConfirm;
-          editChild.ParentID = child.ParentID;
+          editChild.parentID = child.ParentID;
 
         }
         db.SaveChanges();

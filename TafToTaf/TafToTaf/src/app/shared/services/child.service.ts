@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Child } from '../models/child';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,19 +19,19 @@ export class ChildService {
     return this.http.get<Child>(url);
   }
   getChildren() :Observable<Child[]>{
-     return this.http.get<Child[]>(this.url);
+    return  this.http.get<Child[]>(this.url);
   }
   editChild(child:Child){
-    const url=`${this.url}/${child.Id}`;
-    this.http.put(url,child);
+    const url=`${this.url}/${child.id}`;
+   return this.http.put(url,child);
   }
   deleteChild(id:number){
     const url=`${this.url}/${id}`;
-    this.http.delete(url);
+   return this.http.delete(url);
   }
-  postChild(child:Child, kinderGardenName:string){
+  postChild(child, kinderGardenName:string){
     const url = `${this.url}/${kinderGardenName}`;
-    this.http.post(url,child)
+   return this.http.post(url,child)
 
   }
 }

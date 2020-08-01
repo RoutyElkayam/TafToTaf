@@ -78,7 +78,7 @@ import { AuInterceptor } from './au.interceptor';
    
     
   ],
-  entryComponents:[InsertChildComponent],
+  entryComponents:[InsertChildComponent, ModalDeleteComponent],
   providers:
    [
      NgbActiveModal,

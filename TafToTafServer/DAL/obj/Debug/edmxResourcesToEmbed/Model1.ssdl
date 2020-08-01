@@ -19,8 +19,8 @@
     <Property Name="Tz" Type="nvarchar" MaxLength="50" />
     <Property Name="LastName" Type="nvarchar" MaxLength="50" />
     <Property Name="BornDate" Type="datetime" />
+    <Property Name="parentID" Type="int" />
     <Property Name="NumHoursConfirm" Type="float" />
-    <Property Name="ParentID" Type="int" />
   </EntityType>
   <EntityType Name="ChildKinderGarden">
     <Key>

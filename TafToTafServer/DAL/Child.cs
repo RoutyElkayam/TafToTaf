@@ -25,8 +25,8 @@ namespace DAL
         public string Tz { get; set; }
         public string LastName { get; set; }
         public Nullable<System.DateTime> BornDate { get; set; }
+        public Nullable<int> parentID { get; set; }
         public Nullable<double> NumHoursConfirm { get; set; }
-        public Nullable<int> ParentID { get; set; }
     
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

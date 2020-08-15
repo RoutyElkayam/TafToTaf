@@ -16,7 +16,7 @@ import { AuthGuardAdmin,AuthGuardParent,AuthGuardWorker } from './auth.guard';
 const routes: Routes = [
   {component:LogInComponent,path:""},
   {component:ParentMainComponent,path:"parent-main"},
-  {component:AdminMainComponent,path:"admin-main",canActivate:[AuthGuardAdmin],
+  {component:AdminMainComponent,path:"admin-main",
   children:[
     {component:WelcomeComponent,path:""},
     {component:ChildrenComponent, path:"children"},

@@ -5,16 +5,15 @@
             <div class="row">
                
                 <div class="col-sm-8">
-                    <button type="button" class="btn btn-info add-new" (click)="open()"><i class="fa fa-plus"></i> הוספת ילד</button>
-                
+                    <button type="button" class="btn btn-info add-new" (click)="open()"><i class="fa fa-plus"></i> הוספת עובדת</button>
                 </div>
-                 <div class="col-sm-4">
-                    <select class="form-control">
-                      
-                        <option>גן רבקה</option>
-                        <option>גן איטי</option>
-                        <option>גן חנה</option>
-                      </select>
+                 <div class="col-sm-4">                      
+                        <select class="form-control" [(ngModel)]="selectkng"  (change)="OnchangeGan()">  
+                            <option>{{selectkng}}</option>                       
+                            <option *ngFor= "let kinderGarden of kinderGardens" >
+                             {{kinderGarden.name}}
+                            </option>
+                          </select>
                 </div>
             </div>
         </div>

@@ -30,7 +30,7 @@ import { CommonModule } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { InsertTeamMeetingComponent } from './components/monthly-system/insert-team-meeting/insert-team-meeting.component';
+import { InsertTeamMeetingComponent } from './components/insert-team-meeting/insert-team-meeting.component';
 import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
 import { AuInterceptor } from './au.interceptor';
 import { EditChildComponent } from './components/edit-child/edit-child.component';

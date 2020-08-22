@@ -28,7 +28,7 @@ namespace BLL
       List<ChildDto> childrenList = new List<ChildDto>();
       using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
       {
-        var children = db.Children.ToList();
+        var children = db.Children.OrderBy(c=>c.LastName).ToList();
         foreach (var child in children)
         {
           childrenList.Add(ChildC.ToChildDTO(child));
@@ -47,8 +47,8 @@ namespace BLL
         {
           ChildID = child.Id,
           KindrGardenID = kGardenID,
-          BeginYear = calcBeaginYear(),
-          EndYear = calcEndYear(),
+          BeginYear= PublicLogic.CalcBeaginYear(),
+          EndYear=   PublicLogic.CalcEndYear(),
         });
 
         db.SaveChanges();
@@ -97,21 +97,7 @@ namespace BLL
         db.SaveChanges();
       }
     }
-    //help functions
-    private static DateTime calcBeaginYear()
-    {
-      if (DateTime.Now.Month > 09)
-        return new DateTime(DateTime.Now.Year, 09, 01);
-      return new DateTime(DateTime.Now.Year - 1, 09, 01);
-
-    }
-    private static DateTime calcEndYear()
-    {
-      if (DateTime.Now.Month > 09)
-        return new DateTime(DateTime.Now.Year + 1, 07, 01);
-      return new DateTime(DateTime.Now.Year, 07, 01);
-
-    }
+    
   }
 }
 

@@ -131,7 +131,6 @@
     <Compile Include="Controllers\ChildKinderardenController.cs" />
     <Compile Include="Controllers\KinderGardenController.cs" />
     <Compile Include="Controllers\ProfessionalController.cs" />
-    <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

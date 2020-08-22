@@ -41,8 +41,12 @@ export class InsertChildComponent implements OnInit {
    'numHoursConfirm':this.numHoursConfirm,
    'parentID':this.parentID
    }
-    return this.childService.postChild(child,this.kinderGardenName).subscribe(res=>{},err=>{console.log('error',err)});
-  
+    return this.childService.postChild(child,this.kinderGardenName).
+    subscribe(res=>
+      {
+        this.activeModal.close();
+      },err=>{console.log('error',err)});
+    
   }
 
 }

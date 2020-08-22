@@ -5,7 +5,7 @@
     <span aria-hidden="true">&times;</span>
   </button>
   <div class="form-group">
-    <input  class="form-control" name="fName" [(ngModel)]="firstName" required autocomplete="off" >
+    <input  class="form-control" name="firstName" [(ngModel)]="firstName" required autocomplete="off" >
     <label class="form-control-placeholder" for="name">שם פרטי</label>
   </div>
   <div class="form-group">
@@ -18,7 +18,7 @@
   </div>
   <div class="form-group">
   <label class="select-form-control-placeholder"  for="sel1">לאיזה גן אני נכנס?</label>
-   <select class="form-control"  id="sel1" name="sellist1" name="kinderGarden" [(ngModel)]="kinderGardenName">
+   <select class="form-control"  id="sel1" name="sellist1" name="kinderGardenName" [(ngModel)]="kinderGardenName">
      <option></option>
     <option *ngFor= "let kinderGarden of kinderGardens">
        {{kinderGarden.name}}
@@ -27,16 +27,16 @@
   </div>
   <div class="form-group"   >
     <!-- <label class="select-form-control-placeholder" for="sel1">לאיזה גן אני נכנס?</label> -->
-    <input type="date" class="form-control" required autocomplete="off" placeholder="תאריך לידה"  [(ngModel)]="bornDate">
+    <input type="date" class="form-control" required autocomplete="off" placeholder="תאריך לידה" name="bornDate" [(ngModel)]="bornDate">
     <!-- <label  class="form-control-placeholder" for="name">ה</label> -->
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" name="parentID" [(ngModel)]="parentID" required autocomplete="off">
+    <input type="text" class="form-control"  name="parentID" [(ngModel)]="parentID" required autocomplete="off">
     <label class="form-control-placeholder" for="name">תעודת זהות אב</label>
   </div>
 
   <div class="form-group">
-    <input class="form-control" name="numHours" [(ngModel)]="numHoursConfirm" required autocomplete="off">
+    <input class="form-control" name="numHoursConfirm" [(ngModel)]="numHoursConfirm" required autocomplete="off">
     <label class="form-control-placeholder" >מספר שעות מאושרות</label>
   </div>
   <button type="submit" class="btn btn-default" (click)="sumbit()">הכנס ילד</button>

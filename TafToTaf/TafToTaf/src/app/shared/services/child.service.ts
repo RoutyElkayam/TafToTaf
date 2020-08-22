@@ -22,8 +22,8 @@ export class ChildService {
     return  this.http.get<Child[]>(this.url);
   }
   editChild(child:Child){
-    const url=`${this.url}/${child.id}`;
-   return this.http.put(url,child);
+  const url=`${this.url}/${child.id}`;
+    return this.http.put(url,child);
   }
   deleteChild(id:number){
     const url=`${this.url}/${id}`;

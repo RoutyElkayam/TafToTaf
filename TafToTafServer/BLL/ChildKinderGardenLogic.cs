@@ -20,13 +20,24 @@ namespace BLL
         foreach (var childKinderGarden in db.ChildKinderGardens)
         {
           if (childKinderGarden.KindrGardenID== kinderGardenId
-            && ((DateTime)childKinderGarden.BeginYear).Year==DateTime.Now.Year)
+            && (DateTime)childKinderGarden.BeginYear==PublicLogic.CalcBeaginYear())
           {
             Child childDAL=db.Children.First(ch => ch.Id == childKinderGarden.ChildID);
             ChildrenDTO.Add(ChildC.ToChildDTO(childDAL));
           }
         }
         return ChildrenDTO;
+      }
+    }
+    public static string GetKinderGardenOfChild(int childID)
+    {
+      using (TafToTafEntities db = new TafToTafEntities())
+      {
+        var childKG=db.ChildKinderGardens.FirstOrDefault(ch => ch.Id == childID);
+        if (childKG == null)
+          return null;
+        string kGardenName = db.KinderGardens.First(ch => ch.Id == childKG.KindrGardenID).Name;
+         return kGardenName;
       }
     }
   }

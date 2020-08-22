@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TafToTafModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TafToTafModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Calander">
           <Key>
             <PropertyRef Name="Id" />
@@ -24,8 +24,8 @@
           <Property Name="Tz" Type="nvarchar" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="BornDate" Type="datetime" />
-          <Property Name="ParentID" Type="int" />
           <Property Name="NumHoursConfirm" Type="float" />
+          <Property Name="ParentID" Type="int" />
         </EntityType>
         <EntityType Name="ChildKinderGarden">
           <Key>
@@ -73,6 +73,7 @@
           <Property Name="Thuesday" Type="bit" />
           <Property Name="Wednesday" Type="bit" />
           <Property Name="Tursday" Type="bit" />
+          <Property Name="userID" Type="int" />
         </EntityType>
         <EntityType Name="ProfessionKind">
           <Key>
@@ -107,7 +108,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Child_User">
+        <Association Name="FK_Child_Child">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Child" Type="Self.Child" Multiplicity="*" />
           <ReferentialConstraint>
@@ -120,7 +121,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChildKinderGarden_Child">
-          <End Role="Child" Type="Self.Child" Multiplicity="0..1" />
+          <End Role="Child" Type="Self.Child" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Child">
@@ -132,7 +135,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChildKinderGarden_KinderGarden">
-          <End Role="KinderGarden" Type="Self.KinderGarden" Multiplicity="0..1" />
+          <End Role="KinderGarden" Type="Self.KinderGarden" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KinderGarden">
@@ -155,15 +160,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_User">
-          <End Role="KindUser" Type="Self.KindUser" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+        <Association Name="FK_Professionals_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Professionals" Type="Self.Professionals" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="KindUser">
+            <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="KindUser" />
+            <Dependent Role="Professionals">
+              <PropertyRef Name="userID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -181,7 +186,7 @@
             <End Role="Kind" EntitySet="Kind" />
             <End Role="Calander" EntitySet="Calander" />
           </AssociationSet>
-          <AssociationSet Name="FK_Child_User" Association="Self.FK_Child_User">
+          <AssociationSet Name="FK_Child_Child" Association="Self.FK_Child_Child">
             <End Role="User" EntitySet="User" />
             <End Role="Child" EntitySet="Child" />
           </AssociationSet>
@@ -197,13 +202,12 @@
             <End Role="ProfessionKind" EntitySet="ProfessionKind" />
             <End Role="Professionals" EntitySet="Professionals" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
-            <End Role="KindUser" EntitySet="KindUser" />
+          <AssociationSet Name="FK_Professionals_User" Association="Self.FK_Professionals_User">
             <End Role="User" EntitySet="User" />
+            <End Role="Professionals" EntitySet="Professionals" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TafToTafModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -284,6 +288,8 @@
           <Property Name="Wednesday" Type="Boolean" />
           <Property Name="Tursday" Type="Boolean" />
           <NavigationProperty Name="ProfessionKind1" Relationship="Self.FK_Professionals_ProfessionKind" FromRole="Professionals" ToRole="ProfessionKind" />
+          <Property Name="userID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="TafToTafModel.FK_Professionals_User" FromRole="Professional" ToRole="User" />
         </EntityType>
         <EntityType Name="ProfessionKind">
           <Key>
@@ -308,6 +314,7 @@
           <Property Name="KindUser" Type="Int32" />
           <NavigationProperty Name="Children" Relationship="Self.FK_Child_User" FromRole="User" ToRole="Child" />
           <NavigationProperty Name="KindUser1" Relationship="Self.FK_User_User" FromRole="User" ToRole="KindUser" />
+          <NavigationProperty Name="Professionals" Relationship="TafToTafModel.FK_Professionals_User" FromRole="User" ToRole="Professional" />
         </EntityType>
         <Association Name="FK_Calander_Kind">
           <End Role="Kind" Type="Self.Kind" Multiplicity="1" />
@@ -415,7 +422,23 @@
             <End Role="ProfessionKind" EntitySet="ProfessionKinds" />
             <End Role="Professionals" EntitySet="Professionals" />
           </AssociationSet>
+          <AssociationSet Name="FK_Professionals_User" Association="TafToTafModel.FK_Professionals_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Professional" EntitySet="Professionals" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Professionals_User">
+          <End Type="TafToTafModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="TafToTafModel.Professional" Role="Professional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Professional">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -485,6 +508,7 @@
           <EntitySetMapping Name="Professionals">
             <EntityTypeMapping TypeName="TafToTafModel.Professional">
               <MappingFragment StoreEntitySet="Professionals">
+                <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ProfessionKind" ColumnName="ProfessionKind" />

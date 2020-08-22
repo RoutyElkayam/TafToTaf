@@ -24,7 +24,9 @@ namespace DAL
         public Nullable<bool> Thuesday { get; set; }
         public Nullable<bool> Wednesday { get; set; }
         public Nullable<bool> Tursday { get; set; }
+        public Nullable<int> userID { get; set; }
     
         public virtual ProfessionKind ProfessionKind1 { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -45,8 +45,6 @@
     <Compile Include="CalenderDto.cs" />
     <Compile Include="ChildDto.cs" />
     <Compile Include="ChildKinderGardenDto.cs" />
-    <Compile Include="Class1.cs" />
-    <Compile Include="EntitlementDto.cs" />
     <Compile Include="KindDto.cs" />
     <Compile Include="KinderGardenDto.cs" />
     <Compile Include="KindUserDto.cs" />

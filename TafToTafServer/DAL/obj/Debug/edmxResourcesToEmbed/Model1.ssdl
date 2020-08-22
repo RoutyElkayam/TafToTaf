@@ -68,6 +68,7 @@
     <Property Name="Thuesday" Type="bit" />
     <Property Name="Wednesday" Type="bit" />
     <Property Name="Tursday" Type="bit" />
+    <Property Name="userID" Type="int" />
   </EntityType>
   <EntityType Name="ProfessionKind">
     <Key>
@@ -150,6 +151,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Professionals_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Professionals" Type="Self.Professionals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Professionals">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_User">
     <End Role="KindUser" Type="Self.KindUser" Multiplicity="0..1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -190,6 +203,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Professionals_ProfessionKind" Association="Self.FK_Professionals_ProfessionKind">
       <End Role="ProfessionKind" EntitySet="ProfessionKind" />
+      <End Role="Professionals" EntitySet="Professionals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Professionals_User" Association="Self.FK_Professionals_User">
+      <End Role="User" EntitySet="User" />
       <End Role="Professionals" EntitySet="Professionals" />
     </AssociationSet>
     <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">

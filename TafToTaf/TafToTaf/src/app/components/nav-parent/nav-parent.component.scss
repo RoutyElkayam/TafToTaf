@@ -1,83 +1,9 @@
-body {
-    font-family:'Segoe UI';
-    direction: rtl;
-  }
-  
-  h1,h2,h3,h4,h5,h6{
-    font-family:montserrat;
-  }
-  
-  p{
-    font-size:17px;   
-  }
-  
-  .navbar {
-    border-radius: 0;
-    font-family:montserrat;
-    font-weight:600;
-  }
-  
-  .navbar-inverse {
-    background-color: #fff;
-    border:solid #f3f3f3 1.5px;
-  }
-  
-  .navbar-inverse .navbar-brand,
-  .navbar-inverse .navbar-nav>li>a {
-    color: #b52f7a;
-    margin-top: 5px;
-  }
-  
-  .navbar-inverse .navbar-brand:hover,
-  .navbar-inverse .navbar-nav>li>a:hover {
-    background-color:#f3f3f3;
-    border-radius: 15px;
-  }
-  
-  .navbar-inverse .navbar-nav>.open>a,
-  .navbar-inverse .navbar-nav>.open>a:hover,
-  .navbar-inverse .navbar-nav>.open>a:focus {
-    background-color: #f3f3f3;
-  }
-  
-  .navbar-inverse .navbar-nav>.active>a,
-  .navbar-inverse .navbar-nav>.active>a:hover,
-  .navbar-inverse .navbar-nav>.active>a:focus {
-    background-color: #f3f3f3;
-  }
-  
-  .btn-margin-right {
-    margin-right: 10px;
-    margin-top: 12px;
-    margin-left: 5px;
-  }
-  
-  .btn-danger {
-    color: #fff;
-    background-color: #b52f7a!important ;
-    border-color: #b52f7a!important;
-    margin-left: 20px;
-  }
-  
-  .btn-danger:hover {
-    background-color: hsl(313, 68%, 46%)!important;
-    border-color: hsl(313, 68%, 46%);
-  }
-  
-  .container-fluid{
-    display: block;
-  border-bottom: grey;
-  }
-  .navbar-nav {
-    display: -webkit-box;
-    display: block;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    flex-direction: column;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-  }
-  .navbar-brand{
-    height: 70px;
-  }
+.topnav a:hover {
+  border-bottom: 3px solid #b52f7a ;
+}
+button{
+  background-color:#b52f7a  ;
+}
+.topnav li {
+  margin-right: 30px !important;
+}

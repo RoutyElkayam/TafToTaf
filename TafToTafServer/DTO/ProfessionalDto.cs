@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +18,7 @@ namespace DTO
         public bool Thuesday { get; set; }
         public bool Wednesday { get; set; }
         public bool Tursday { get; set; }
+        public int UserID { get; set; }
 
-        //public virtual ProfessionKind ProfessionKind1 { get; set; }
-    }
+  }
 }

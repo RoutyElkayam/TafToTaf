@@ -12,11 +12,10 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class KinderGarden
+    public partial class Holiday
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Code { get; set; }
-        public string MeetingDay { get; set; }
+        public int id { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public string NameHoliday { get; set; }
     }
 }

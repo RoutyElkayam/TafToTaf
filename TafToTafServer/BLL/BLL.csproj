@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalenderLogic.cs" />
     <Compile Include="ChildKinderGardenLogic.cs" />
     <Compile Include="ChildLogic.cs" />
     <Compile Include="Converters\CalanderC.cs" />

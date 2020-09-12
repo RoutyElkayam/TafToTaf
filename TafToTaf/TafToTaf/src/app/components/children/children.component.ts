@@ -10,7 +10,7 @@ import { ChildKinderGardenService } from 'src/app/shared/services/child-kinder-g
 import { EditChildComponent } from '../edit-child/edit-child.component';
 
 @Component({
-  selector: 'app-children',
+  selector: 'children',
   templateUrl: './children.component.html',
   styleUrls: ['./children.component.scss']
 })

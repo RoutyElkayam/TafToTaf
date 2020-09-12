@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ParentMainComponent } from './components/parent-main/parent-main.component';
 import { AdminMainComponent } from './components/admin-main/admin-main.component';
@@ -20,12 +20,16 @@ const routes: Routes = [
     {component:WelcomeComponent,path:""},
     {component:ChildrenComponent, path:"children"},
     {component:WeeklySystemComponent, path:"weekly-system"},
-    { component:TeamMeetingsComponent, path: "team-meetings"},
+    {component:TeamMeetingsComponent, path: "team-meetings"},
     {component: ParentMeetingsComponent,  path:"parent-meetings"},
     
   ]},
-  {component:WorkerMainComponent, path:"worker-main",children:[
-
+  {component:WorkerMainComponent, path:"worker-main",
+  children:[
+    {component:WelcomeComponent, path:""},
+    {component:ChildrenComponent, path:"children"},
+    {component:ParentMeetingsComponent, path:"parent-meetings"},
+    {component:TeamMeetingsComponent, path:"team-meetings"}
   ]} 
 ];
 

@@ -28,8 +28,8 @@ export class LogInComponent implements OnInit {
 
   login() {
     this.accountService.login(this.username, this.password).subscribe((res:string )=> {
-      localStorage.setItem('token',res)}); 
-      this.navigationByKindUser();
+      localStorage.setItem('token',res)
+      this.navigationByKindUser();}); 
   }
   navigationByKindUser()
   {

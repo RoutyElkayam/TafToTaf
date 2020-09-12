@@ -18,7 +18,6 @@ namespace DAL
         public string Name { get; set; }
         public Nullable<int> ProfessionKind { get; set; }
         public Nullable<int> NumHourWork { get; set; }
-        public Nullable<int> NumDaysWork { get; set; }
         public Nullable<bool> Sunday { get; set; }
         public Nullable<bool> Monday { get; set; }
         public Nullable<bool> Thuesday { get; set; }

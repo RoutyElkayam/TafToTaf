@@ -13,9 +13,21 @@ namespace BLL
   {
     public static ChildDto SelectChild(int id)
     {
-      using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
+      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
       {
         var child = db.Children.FirstOrDefault(ch => ch.Id == id);
+        if (child == null)
+        {
+          return null;
+        }
+        return Converters.ChildC.ToChildDTO(child);
+      }
+    }
+    public static ChildDto SelectChildByParentId(int parentId)
+    {
+      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      {
+        var child = db.Children.FirstOrDefault(ch => ch.ParentID == parentId);
         if (child == null)
         {
           return null;
@@ -26,7 +38,7 @@ namespace BLL
     public static List<ChildDto> SelectChildren()
     {
       List<ChildDto> childrenList = new List<ChildDto>();
-      using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
+      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
       {
         var children = db.Children.OrderBy(c=>c.LastName).ToList();
         foreach (var child in children)
@@ -39,7 +51,7 @@ namespace BLL
     public static void InsertChild(ChildDto child, string kGardenName)
     {
 
-      using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
+      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
       {
         int kGardenID = db.KinderGardens.First(kg => kg.Name == kGardenName).Id;
         db.Children.Add(ChildC.ToChildDAL(child));
@@ -58,7 +70,7 @@ namespace BLL
     {
       try
       {
-        using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
+        using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
         {
           var child = db.Children.FirstOrDefault(ch => ch.Id == id);
           if (child != null)
@@ -81,7 +93,7 @@ namespace BLL
 
     public static void EditChild(int id, ChildDto child)
     {
-      using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
+      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
       {
         var editChild = db.Children.FirstOrDefault(ch => ch.Id == id);
         if (editChild != null)

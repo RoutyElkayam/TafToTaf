@@ -31,14 +31,30 @@ namespace WebApi.Controllers
         return BadRequest(ex.Message);
       }
     }
+    [HttpGet]
+    // GET: api/ChildKinderarden
+    public IHttpActionResult GetKinderGNameOfChild()
+    {
+      try
+      {
+        var queryString = Request.GetQueryNameValuePairs();
+        if (queryString == null)
+          return BadRequest("null query string");
+        string kGardenName = BLL.ChildKinderGardenLogic.GetKinderGardenOfChild(int.Parse(queryString.FirstOrDefault(kv=>kv.Key=="ChildID").Value));
+        return Ok(kGardenName);
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.InnerException.Message);
+      }
+      catch (Exception ex)
+      {
 
-    // GET: api/ChildKinderarden/5
-    //public string Get(int id)
-    //{
-    //  return "value";
-    //}
+        return BadRequest(ex.Message);
+      }
+    }
 
-    // POST: api/ChildKinderarden
+
     public void Post([FromBody]string value)
     {
     }

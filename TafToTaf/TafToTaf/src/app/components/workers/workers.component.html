@@ -1,0 +1,43 @@
+
+<div class="container">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">                   
+                <div class="col-sm-8">
+                    <button type="button" class="btn btn-secondary add-new" (click)="sendProfessional()"><i class="fa fa-plus"></i> הוספת עובדת</button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>סה"כ שעות שבועיות</th>
+                    <th> חמישי </th>
+                    <th> רביעי </th>
+                    <th> שלישי </th>
+                    <th> שני </th>
+                    <th> ראשון </th>
+                    <th>מקצוע</th>
+                    <th>שם</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let professional of professionals"> 
+                     <td>
+                        <a class="edit" title="Edit" data-toggle="tooltip" (click)="edit(professional)"><i class="material-icons"></i></a>
+                        <a class="delete" title="Delete" data-toggle="tooltip" (click)="delete(professional)"><i class="material-icons"></i></a>                          
+                    </td>                      
+                    <td>{{professional.numHourWork}}</td> 
+                    <td >{{isWorkToday(professional.tursday)}} </td>
+                    <td> {{isWorkToday(professional.wednesday)}}  </td>
+                    <td> {{isWorkToday(professional.thuesday)}} </td>
+                    <td> {{isWorkToday(professional.monday)}}  </td>
+                    <td>{{isWorkToday(professional.sunday)}}   </td>
+                    <td>{{getProfessionName(professional.professionKind)}}</td>
+                    <td>{{professional.name}}</td>
+                </tr>             
+            </tbody>
+        </table>
+    </div>
+</div>    

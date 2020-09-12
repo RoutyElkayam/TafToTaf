@@ -18,6 +18,7 @@ namespace DAL
         public Child()
         {
             this.ChildKinderGardens = new HashSet<ChildKinderGarden>();
+            this.Calanders = new HashSet<Calander>();
         }
     
         public int Id { get; set; }
@@ -31,5 +32,7 @@ namespace DAL
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChildKinderGarden> ChildKinderGardens { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Calander> Calanders { get; set; }
     }
 }

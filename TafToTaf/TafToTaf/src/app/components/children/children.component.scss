@@ -33,8 +33,15 @@ body {
 .table-title .add-new i {
     margin-left: 4px;
 }
-.btn-add-new{
-    background-color: #b52f7a ;
+.btn-secondary {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #5bc0de;
+}
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
 }
 table.table {
     table-layout: fixed;
@@ -95,6 +102,8 @@ body{
     direction: rtl;
     background-color: #f8fbfd;
 }
-// .btn-info{
-//     background-color: #85054d !important;
-// }
+
+
+
+
+

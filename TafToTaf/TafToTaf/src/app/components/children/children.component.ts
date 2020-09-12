@@ -19,7 +19,6 @@ export class ChildrenComponent implements OnInit {
   kinderGardens: KinderGarden[];
   children: Child[];
   selectkng: string = null;
-  selectchld: Child;
 
   constructor(private modalService: NgbModal,
     public kinderGardenService: KindergardenService,

@@ -1,39 +1,75 @@
-﻿using System;
+using BLL;
+using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace WebApi.Controllers
 {
-    public class CalenderController : ApiController
+  [EnableCors(origins: "*", headers: "*", methods: "*")]
+  [RoutePrefix("api/Calender")]
+  public class CalenderController : ApiController
+  {
+
+    // GET: api/Calender/ChildCalendar
+    [HttpGet]
+    [Route("AdminParentMeetings")]
+    public IHttpActionResult GetAdminParentMeetings()
     {
-        // GET: api/Calender
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Calender/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Calender
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Calender/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Calender/5
-        public void Delete(int id)
-        {
-        }
+      try
+      {
+        List<CalenderDto> adminParentMeetings = CalenderLogic.SelectAdminParentMeetings();
+        return Ok(adminParentMeetings);
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.Message);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
     }
+    [HttpGet]
+    [Route("AdminTeamMeetings")]
+    public IHttpActionResult GetAdminTeamMeetings()
+    {
+      try
+      {
+        List<CalenderDto> AdminTeamMeetings = CalenderLogic.SelectAdminTeamMeetings();
+        return Ok(AdminTeamMeetings);
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.Message);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+    [HttpGet]
+    [Route("CalendarKinderGarden/{id}")]
+    public IHttpActionResult GetCalendarKinderGarden(int id)
+    {
+      try
+      {
+        List<CalenderDto> CalendarKinderGarden = CalenderLogic.SelectCalendarKinderGarden(id);
+        return Ok(CalendarKinderGarden);
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.Message);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+  }
 }

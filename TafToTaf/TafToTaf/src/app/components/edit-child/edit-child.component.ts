@@ -15,8 +15,6 @@ export class EditChildComponent implements OnInit {
   @Input() kinderGardenOfChild:string;
   @Input() kinderGardens:KinderGarden[];
 
-
-
   constructor(public activeModal: NgbActiveModal , 
     public childService:ChildService) { }
 
@@ -24,7 +22,6 @@ export class EditChildComponent implements OnInit {
 
   }
   Edit(){
-    
     console.log(this.child);
     return this.childService.editChild(this.child).
     subscribe(res=>

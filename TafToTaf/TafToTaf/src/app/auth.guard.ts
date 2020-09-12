@@ -11,15 +11,16 @@ export class AuthGuardAdmin implements CanActivate{
 
     canActivate( route:ActivatedRouteSnapshot, state:RouterStateSnapshot)
     {
-      if(this.account.token())
+      if(this.account.currentUser)
        {
-        // if(this.account.currentUser.kindUser==1)
+        if(this.account.currentUser.kindUser==1)
           return true;
        }
-      this.router.navigate([""]);
+      this.router.navigate(["login"]);
       return false;
     }
 }
+@Injectable({providedIn: 'root'})
 export class AuthGuardWorker implements CanActivate{
   private kindUser:number;
 
@@ -27,15 +28,16 @@ export class AuthGuardWorker implements CanActivate{
 
   canActivate( route:ActivatedRouteSnapshot, state:RouterStateSnapshot)//מאפשרת לפי תנאי להתמתב לדפים
   {
-    if(this.account.token())
+    if(this.account.currentUser)
      {
-      // if(this.account.currentUser.kindUser==2)
+      if(this.account.currentUser.kindUser==2)
         return true;
      }
-    this.router.navigate([""]);
+    this.router.navigate(["login"]);
     return false;
   }
 }
+@Injectable({providedIn: 'root'})
 export class AuthGuardParent implements CanActivate{
   private kindUser:number;
 
@@ -43,12 +45,12 @@ export class AuthGuardParent implements CanActivate{
 
   canActivate( route:ActivatedRouteSnapshot, state:RouterStateSnapshot)
   {
-    if(this.account.token())
+    if(this.account.currentUser)
      {
-      //  if(this.account.currentUser.kindUser==3)
+       if(this.account.currentUser.kindUser==3)
         return true;
      }
-    this.router.navigate([""]);
+    this.router.navigate(["login"]);
     return false;
   }
 }

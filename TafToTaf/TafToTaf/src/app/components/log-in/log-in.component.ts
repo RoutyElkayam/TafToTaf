@@ -15,6 +15,7 @@ export class LogInComponent implements OnInit {
   password: string;
   user: User;
   message = {error: ''};
+  isLoading:boolean=false;
   
   constructor(private accountService: AccountService,
     private router: Router) { }
@@ -27,33 +28,34 @@ export class LogInComponent implements OnInit {
   }
 
   login() {
-    this.accountService.login(this.username, this.password).subscribe((res:string )=> {
-      localStorage.setItem('token',res)}); 
-      this.navigationByKindUser();
+      this.accountService.login(this.username, this.password).subscribe((res:string )=> {
+      localStorage.setItem('token',res)
+      this.navigationByKindUser()}); 
   }
   navigationByKindUser()
   {
-      this.accountService.getUser().subscribe(user=>
+      this.isLoading=true;
+      this.accountService.getUser().subscribe(res=>
+      {
+      this.accountService.currentUser=res;
+      console.log(this.accountService.currentUser);
+      if(this.accountService.currentUser)
         {
-          this.user=user; console.log(this.user);
-           if(this.user)
-          {
-            if (this.user.kindUser == 1) {
-            this.router.navigate(["admin-main"])
+          if (this.accountService.currentUser.kindUser == 1) {
+          this.router.navigate(["admin-main"])
           }
-          if (this.user.kindUser == 2) {
+          if (this.accountService.currentUser.kindUser == 2) {
             this.router.navigate(["worker-main"])
           }
-          if (this.user.kindUser == 3) {
+          if (this.accountService.currentUser.kindUser == 3) {
             this.router.navigate(["parent-main"])
           }
+
         }
-        else alert("UserName or Password are not valid!");
-      },err=>{
-        alert("UserName or Password are not valid!");
-        this.message.error = err.error.message;
-      });
-    }
+      else alert("UserName or Password are not valid!");
+      this.isLoading=false;
+    });
   }
+}
     
 

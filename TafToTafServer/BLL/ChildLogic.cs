@@ -36,13 +36,33 @@ namespace BLL
       }
       return childrenList;
     }
-    public static void InsertChild(ChildDto child, string kGardenName)
+    public static void InsertChild(DTO.ChildPost child, string kGardenName)
     {
 
       using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
       {
         int kGardenID = db.KinderGardens.First(kg => kg.Name == kGardenName).Id;
-        db.Children.Add(ChildC.ToChildDAL(child));
+        User user = new User()
+        {
+          LastName = child.LastName,
+          FirstName = child.ParentName,
+          KindUser = 3,
+          UserName = "TLT" + "3",
+          Email = child.ParentEmail,
+          Password = child.Tz,
+        };
+        db.Users.Add(user);
+        db.SaveChanges();
+        ChildDto childDto = new ChildDto()
+        {
+          FirstName = child.FirstName,
+          LastName = child.LastName,
+          BornDate = child.BornDate,
+          NumHoursConfirm = child.NumHoursConfirm,
+          Tz = child.Tz,
+          ParentID = db.Users.First(u => u.Password == child.Tz).Id
+        };
+        db.Children.Add(ChildC.ToChildDAL(childDto));
         db.ChildKinderGardens.Add(new ChildKinderGarden()
         {
           ChildID = child.Id,
@@ -50,8 +70,7 @@ namespace BLL
           BeginYear= PublicLogic.CalcBeaginYear(),
           EndYear=   PublicLogic.CalcEndYear(),
         });
-
-        db.SaveChanges();
+       db.SaveChanges();
       }
     }
     public static void DeleteChild(int id)
@@ -65,11 +84,11 @@ namespace BLL
           {
             db.Children.Remove(child);
           }
-          foreach (var childInKGarden in db.ChildKinderGardens)
-          {
-            if (childInKGarden.ChildID == id)
-              db.ChildKinderGardens.Remove(childInKGarden);
-          }
+          var childInKGarden = db.ChildKinderGardens.First(ch => ch.ChildID == id);
+          db.ChildKinderGardens.Remove(childInKGarden);
+          var parent = db.Users.FirstOrDefault(u => u.Password == child.Tz);
+          if (parent != null)
+            db.Users.Remove(parent);
           db.SaveChanges();
         }
       }

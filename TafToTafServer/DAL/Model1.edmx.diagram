@@ -5,15 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="359c856787514bbca6d4afb8fb1397a3" Name="Diagram1">
-        <EntityTypeShape EntityType="TafToTafModel.Calander" Width="1.5" PointX="2.125" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TafToTafModel.Child" Width="1.5" PointX="5.375" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TafToTafModel.ChildKinderGarden" Width="1.5" PointX="7.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TafToTafModel.Kind" Width="1.5" PointX="0.5" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TafToTafModel.KinderGarden" Width="1.5" PointX="4.875" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TafToTafModel.KindUser" Width="1.5" PointX="1.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TafToTafModel.Professional" Width="1.5" PointX="9.25" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TafToTafModel.ProfessionKind" Width="1.5" PointX="7" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TafToTafModel.User" Width="1.5" PointX="3.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TafToTafModel.Calander" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TafToTafModel.Child" Width="1.5" PointX="3.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TafToTafModel.ChildKinderGarden" Width="1.5" PointX="5.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TafToTafModel.Kind" Width="1.5" PointX="0.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TafToTafModel.KinderGarden" Width="1.5" PointX="3.875" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TafToTafModel.KindUser" Width="1.5" PointX="2.125" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TafToTafModel.Professional" Width="1.5" PointX="7.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TafToTafModel.ProfessionKind" Width="1.5" PointX="5.625" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TafToTafModel.User" Width="1.5" PointX="2.25" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="TafToTafModel.FK_Calander_Kind" ManuallyRouted="false" />
         <AssociationConnector Association="TafToTafModel.FK_Child_User" ManuallyRouted="false" />
         <AssociationConnector Association="TafToTafModel.FK_ChildKinderGarden_Child" ManuallyRouted="false" />
@@ -21,6 +21,10 @@
         <AssociationConnector Association="TafToTafModel.FK_User_User" ManuallyRouted="false" />
         <AssociationConnector Association="TafToTafModel.FK_Professionals_ProfessionKind" ManuallyRouted="false" />
         <AssociationConnector Association="TafToTafModel.FK_Professionals_User" />
+        <AssociationConnector Association="TafToTafModel.FK_Calander_Kind1" />
+        <AssociationConnector Association="TafToTafModel.FK_Calander_KinderGarden" />
+        <AssociationConnector Association="TafToTafModel.FK_Calander_Professionals" />
+        <AssociationConnector Association="TafToTafModel.FK_Calander_Child" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

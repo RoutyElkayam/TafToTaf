@@ -1,3 +1,4 @@
+
 using BLL;
 using DTO;
 using System;
@@ -7,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using WebApi.Models;
 
 namespace WebApi.Controllers
 {
@@ -48,7 +50,7 @@ namespace WebApi.Controllers
       }
       catch (HttpListenerException ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex.InnerException.Message);
       }
       catch (Exception ex)
       {
@@ -60,7 +62,7 @@ namespace WebApi.Controllers
     [HttpPost]
 
     // POST: api/Child/kinderGardenName
-    public IHttpActionResult Post([FromBody]ChildDto child, [FromUri]string id)
+    public IHttpActionResult Post([FromBody]ChildPost child, [FromUri]string id)
     {
       try
       {

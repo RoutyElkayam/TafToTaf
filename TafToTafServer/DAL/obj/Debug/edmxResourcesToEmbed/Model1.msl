@@ -4,8 +4,11 @@
     <EntitySetMapping Name="Calanders">
       <EntityTypeMapping TypeName="TafToTafModel.Calander">
         <MappingFragment StoreEntitySet="Calander">
+          <ScalarProperty Name="ChildID" ColumnName="ChildID" />
+          <ScalarProperty Name="NameMeeting" ColumnName="NameMeeting" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+          <ScalarProperty Name="dateStart" ColumnName="dateStart" />
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="KinderGardenId" ColumnName="KinderGardenId" />
           <ScalarProperty Name="ProfessionalId" ColumnName="ProfessionalId" />
           <ScalarProperty Name="KindId" ColumnName="KindId" />

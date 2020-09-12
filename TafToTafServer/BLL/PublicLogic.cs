@@ -11,14 +11,14 @@ namespace BLL
     //help functions--Dates
     public static DateTime CalcBeaginYear()
     {
-      if (DateTime.Now.Month > 09)
+      if (DateTime.Now.Month >= 09)
         return new DateTime(DateTime.Now.Year, 09, 01);
       return new DateTime(DateTime.Now.Year - 1, 09, 01);
 
     }
     public static DateTime CalcEndYear()
     {
-      if (DateTime.Now.Month > 09)
+      if (DateTime.Now.Month >= 09)
         return new DateTime(DateTime.Now.Year + 1, 07, 01);
       return new DateTime(DateTime.Now.Year, 07, 01);
 

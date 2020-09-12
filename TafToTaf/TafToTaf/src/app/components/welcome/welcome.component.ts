@@ -7,7 +7,7 @@ import { AccountService } from  '../../shared/services/account.service';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor(private userService:AccountService) { }
+  constructor(public userService:AccountService) { }
   @Input() name;
   ngOnInit() {
   }

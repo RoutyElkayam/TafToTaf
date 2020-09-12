@@ -16,10 +16,10 @@ namespace BLL.Converters
                 ChildKinderGardenDto childKinderGardenDto = new ChildKinderGardenDto()
                 {
                     Id = childKinderGarden.Id,
-                    ChildID = (int)childKinderGarden.ChildID,
-                    BeginYear = (DateTime)childKinderGarden.BeginYear,
-                    EndYear = (DateTime)childKinderGarden.EndYear,
-                    KindrGardenID = (int)childKinderGarden.KindrGardenID
+                    ChildID = childKinderGarden.ChildID.GetValueOrDefault(),
+                    BeginYear = childKinderGarden.BeginYear.GetValueOrDefault(),
+                    EndYear = childKinderGarden.EndYear.GetValueOrDefault(),
+                    KindrGardenID = childKinderGarden.KindrGardenID.GetValueOrDefault()
 
                 };
                 return childKinderGardenDto;

@@ -17,13 +17,11 @@ import { ChildDailySystemComponent } from './components/child-daily-system/child
 import { ChildrenComponent } from './components/children/children.component';
 import { TeamMeetingsComponent } from './components/team-meetings/team-meetings.component';
 import { ParentMeetingsComponent } from './components/parent-meetings/parent-meetings.component';
-import { DailySystemComponent } from './components/daily-system/daily-system.component';
 import { WeeklySystemComponent } from './components/weekly-system/weekly-system.component';
 import { MonthlySystemComponent } from './components/monthly-system/monthly-system.component';
 import { ChildComponent } from './components/child/child.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { InsertChildComponent } from './components/insert-child/insert-child.component';
-import { InsertChildModalComponent } from './components/insert-child-modal/insert-child-modal.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CommonModule } from '@angular/common';
@@ -34,6 +32,11 @@ import { InsertTeamMeetingComponent } from './components/insert-team-meeting/ins
 import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
 import { AuInterceptor } from './au.interceptor';
 import { EditChildComponent } from './components/edit-child/edit-child.component';
+import { WorkersComponent } from './components/workers/workers.component';
+import { InsertWorkerComponent } from './components/insert-worker/insert-worker.component';
+import { EditWorkerComponent } from './components/edit-worker/edit-worker.component';
+import { DeleteWorkerComponent } from './components/delete-worker/delete-worker.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -50,16 +53,19 @@ import { EditChildComponent } from './components/edit-child/edit-child.component
     ChildrenComponent,
     TeamMeetingsComponent,
     ParentMeetingsComponent,
-    DailySystemComponent,
     WeeklySystemComponent,
     MonthlySystemComponent,
     ChildComponent,
     WelcomeComponent,
     InsertChildComponent,
-    InsertChildModalComponent,
     InsertTeamMeetingComponent,
     ModalDeleteComponent,
     EditChildComponent,
+    WorkersComponent,
+    InsertWorkerComponent,
+    EditWorkerComponent,
+    DeleteWorkerComponent,
+    LoaderComponent,
   
   ],
   imports: [
@@ -80,7 +86,8 @@ import { EditChildComponent } from './components/edit-child/edit-child.component
    
     
   ],
-  entryComponents:[InsertChildComponent, ModalDeleteComponent,EditChildComponent],
+  entryComponents:[InsertChildComponent, ModalDeleteComponent,EditChildComponent,EditWorkerComponent
+  ,DeleteWorkerComponent,InsertWorkerComponent],
   providers:
    [
      NgbActiveModal,

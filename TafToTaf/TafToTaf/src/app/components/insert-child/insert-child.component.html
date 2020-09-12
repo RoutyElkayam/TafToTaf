@@ -1,9 +1,11 @@
 
 <div class="modal-header">
-<form class="seminor-login-form">
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
+    <span >&times;</span>
   </button>
+</div>
+<div class="modal-body" >
+<form class="seminor-login-form">
   <div class="form-group">
     <input  class="form-control" name="firstName" [(ngModel)]="firstName" required autocomplete="off" >
     <label class="form-control-placeholder" for="name">שם פרטי</label>
@@ -31,14 +33,17 @@
     <!-- <label  class="form-control-placeholder" for="name">ה</label> -->
   </div>
   <div class="form-group">
-    <input type="text" class="form-control"  name="parentID" [(ngModel)]="parentID" required autocomplete="off">
-    <label class="form-control-placeholder" for="name">תעודת זהות אב</label>
+    <input type="text" class="form-control"  name="parentName" [(ngModel)]="parentName" required autocomplete="off">
+    <label class="form-control-placeholder" for="name">שם הורה הילד</label>
   </div>
-
+  <div class="form-group">
+    <input type="text" class="form-control" value={{this.parentEmail}} name="parentEmail" [(ngModel)]="this.parentEmail"  required autocomplete="off">
+    <label class="form-control-placeholder" for="name">Email</label>
+  </div>
   <div class="form-group">
     <input class="form-control" name="numHoursConfirm" [(ngModel)]="numHoursConfirm" required autocomplete="off">
     <label class="form-control-placeholder" >מספר שעות מאושרות</label>
   </div>
-  <button type="submit" class="btn btn-default" (click)="sumbit()">הכנס ילד</button>
+  <button type="submit" class="btn btn-success" (click)="sumbit()">הכנס ילד</button>
 </form>
 </div>

@@ -1,39 +1,117 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using DTO;
+using BLL;
+using System.Web.Http.Cors;
 
 namespace WebApi.Controllers
 {
-    public class ProfessionalController : ApiController
+  [EnableCors(origins: "*", headers: "*", methods: "*")]
+  [RoutePrefix("api/Professional")]
+  public class ProfessionalController : ApiController
     {
-        // GET: api/Professional
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+    [HttpGet]
+    // GET: api/Child
 
-        // GET: api/Professional/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Professional
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Professional/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Professional/5
-        public void Delete(int id)
-        {
-        }
+    public IHttpActionResult Get()
+    {
+      try
+      {
+        List<ProfessionalDTO> professionals = ProffessionalLogic.SelectProffesionals();
+        return Ok(professionals);
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.Message);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
     }
+
+    [HttpGet]
+    // GET: api/Proffesional/5
+    public IHttpActionResult Get(int id)
+    {
+      try
+      {
+        var proffesional = ProffessionalLogic.SelectProfessional(id);
+        if (proffesional == null)
+        {
+          return BadRequest("null result");
+
+        }
+        return Ok(proffesional);
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.InnerException.Message);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+
+      }
+
+    }
+    [HttpPost]
+    public IHttpActionResult Post([FromBody]ProffessionalPost professional)
+    {
+      try
+      {
+        ProffessionalLogic.InsertProffesional(professional);
+        return Ok();
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.Message);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+
+    }
+    [HttpPut]
+    // PUT: api/Child/5
+    public IHttpActionResult Put(int id, [FromBody]ProfessionalDTO professional)
+    {
+      try
+      {
+        if (professional != null)
+        {
+          ProffessionalLogic.EditProffesional(id, professional);
+          return Ok("nicly");
+        }
+        return BadRequest();
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.Message);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+    [HttpDelete]
+    // DELETE: api/Proffesional/5
+    public IHttpActionResult Delete(int id)
+    {
+      try
+      {
+        ProffessionalLogic.DeleteProffesional(id);
+        return Ok("deleted");
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+  }
 }

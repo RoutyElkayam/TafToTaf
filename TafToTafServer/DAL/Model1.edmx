@@ -10,10 +10,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Date" Type="datetime" />
+          <Property Name="dateStart" Type="datetime" />
+          <Property Name="DateEnd" Type="datetime" />
           <Property Name="KinderGardenId" Type="int" />
           <Property Name="ProfessionalId" Type="int" />
           <Property Name="KindId" Type="int" />
+          <Property Name="NameMeeting" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChildID" Type="int" />
         </EntityType>
         <EntityType Name="Child">
           <Key>
@@ -66,7 +69,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="ProfessionKind" Type="int" />
-          <Property Name="NumHourWork" Type="int" />
+          <Property Name="NumHourWork" Type="float" />
           <Property Name="NumDaysWork" Type="int" />
           <Property Name="Sunday" Type="bit" />
           <Property Name="Monday" Type="bit" />
@@ -96,15 +99,51 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="KindUser" Type="int" />
         </EntityType>
+        <Association Name="FK_Calander_Child">
+          <End Role="Child" Type="Self.Child" Multiplicity="0..1" />
+          <End Role="Calander" Type="Self.Calander" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Child">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calander">
+              <PropertyRef Name="ChildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Calander_Kind">
-          <End Role="Kind" Type="Self.Kind" Multiplicity="1" />
-          <End Role="Calander" Type="Self.Calander" Multiplicity="0..1" />
+          <End Role="Kind" Type="Self.Kind" Multiplicity="0..1" />
+          <End Role="Calander" Type="Self.Calander" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Kind">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Calander">
+              <PropertyRef Name="KindId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calander_KinderGarden">
+          <End Role="KinderGarden" Type="Self.KinderGarden" Multiplicity="0..1" />
+          <End Role="Calander" Type="Self.Calander" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KinderGarden">
               <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calander">
+              <PropertyRef Name="KinderGardenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calander_Professionals">
+          <End Role="Professionals" Type="Self.Professionals" Multiplicity="0..1" />
+          <End Role="Calander" Type="Self.Calander" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professionals">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calander">
+              <PropertyRef Name="ProfessionalId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -182,8 +221,20 @@
           <EntitySet Name="Professionals" EntityType="Self.Professionals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProfessionKind" EntityType="Self.ProfessionKind" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Calander_Child" Association="Self.FK_Calander_Child">
+            <End Role="Child" EntitySet="Child" />
+            <End Role="Calander" EntitySet="Calander" />
+          </AssociationSet>
           <AssociationSet Name="FK_Calander_Kind" Association="Self.FK_Calander_Kind">
             <End Role="Kind" EntitySet="Kind" />
+            <End Role="Calander" EntitySet="Calander" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calander_KinderGarden" Association="Self.FK_Calander_KinderGarden">
+            <End Role="KinderGarden" EntitySet="KinderGarden" />
+            <End Role="Calander" EntitySet="Calander" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calander_Professionals" Association="Self.FK_Calander_Professionals">
+            <End Role="Professionals" EntitySet="Professionals" />
             <End Role="Calander" EntitySet="Calander" />
           </AssociationSet>
           <AssociationSet Name="FK_Child_Child" Association="Self.FK_Child_Child">
@@ -216,11 +267,18 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="KinderGardenId" Type="Int32" />
           <Property Name="ProfessionalId" Type="Int32" />
           <Property Name="KindId" Type="Int32" />
           <NavigationProperty Name="Kind" Relationship="Self.FK_Calander_Kind" FromRole="Calander" ToRole="Kind" />
+          <Property Name="dateStart" Type="DateTime" Precision="3" />
+          <Property Name="DateEnd" Type="DateTime" Precision="3" />
+          <Property Name="NameMeeting" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kind1" Relationship="TafToTafModel.FK_Calander_Kind1" FromRole="Calander" ToRole="Kind" />
+          <NavigationProperty Name="KinderGarden" Relationship="TafToTafModel.FK_Calander_KinderGarden" FromRole="Calander" ToRole="KinderGarden" />
+          <NavigationProperty Name="Professional" Relationship="TafToTafModel.FK_Calander_Professionals" FromRole="Calander" ToRole="Professional" />
+          <Property Name="ChildID" Type="Int32" />
+          <NavigationProperty Name="Child" Relationship="TafToTafModel.FK_Calander_Child" FromRole="Calander" ToRole="Child" />
         </EntityType>
         <EntityType Name="Child">
           <Key>
@@ -235,6 +293,7 @@
           <Property Name="NumHoursConfirm" Type="Double" />
           <NavigationProperty Name="User" Relationship="Self.FK_Child_User" FromRole="Child" ToRole="User" />
           <NavigationProperty Name="ChildKinderGardens" Relationship="Self.FK_ChildKinderGarden_Child" FromRole="Child" ToRole="ChildKinderGarden" />
+          <NavigationProperty Name="Calanders" Relationship="TafToTafModel.FK_Calander_Child" FromRole="Child" ToRole="Calander" />
         </EntityType>
         <EntityType Name="ChildKinderGarden">
           <Key>
@@ -255,6 +314,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Calander" Relationship="Self.FK_Calander_Kind" FromRole="Kind" ToRole="Calander" />
+          <NavigationProperty Name="Calanders" Relationship="TafToTafModel.FK_Calander_Kind1" FromRole="Kind" ToRole="Calander" />
         </EntityType>
         <EntityType Name="KinderGarden">
           <Key>
@@ -264,6 +324,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChildKinderGardens" Relationship="Self.FK_ChildKinderGarden_KinderGarden" FromRole="KinderGarden" ToRole="ChildKinderGarden" />
+          <NavigationProperty Name="Calanders" Relationship="TafToTafModel.FK_Calander_KinderGarden" FromRole="KinderGarden" ToRole="Calander" />
         </EntityType>
         <EntityType Name="KindUser">
           <Key>
@@ -290,6 +351,7 @@
           <NavigationProperty Name="ProfessionKind1" Relationship="Self.FK_Professionals_ProfessionKind" FromRole="Professionals" ToRole="ProfessionKind" />
           <Property Name="userID" Type="Int32" />
           <NavigationProperty Name="User" Relationship="TafToTafModel.FK_Professionals_User" FromRole="Professional" ToRole="User" />
+          <NavigationProperty Name="Calanders" Relationship="TafToTafModel.FK_Calander_Professionals" FromRole="Professional" ToRole="Calander" />
         </EntityType>
         <EntityType Name="ProfessionKind">
           <Key>
@@ -426,6 +488,22 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Professional" EntitySet="Professionals" />
           </AssociationSet>
+          <AssociationSet Name="FK_Calander_Kind1" Association="TafToTafModel.FK_Calander_Kind1">
+            <End Role="Kind" EntitySet="Kinds" />
+            <End Role="Calander" EntitySet="Calanders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calander_KinderGarden" Association="TafToTafModel.FK_Calander_KinderGarden">
+            <End Role="KinderGarden" EntitySet="KinderGardens" />
+            <End Role="Calander" EntitySet="Calanders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calander_Professionals" Association="TafToTafModel.FK_Calander_Professionals">
+            <End Role="Professional" EntitySet="Professionals" />
+            <End Role="Calander" EntitySet="Calanders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calander_Child" Association="TafToTafModel.FK_Calander_Child">
+            <End Role="Child" EntitySet="Children" />
+            <End Role="Calander" EntitySet="Calanders" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Professionals_User">
           <End Type="TafToTafModel.User" Role="User" Multiplicity="0..1" />
@@ -439,6 +517,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Calander_Kind1">
+          <End Type="TafToTafModel.Kind" Role="Kind" Multiplicity="0..1" />
+          <End Type="TafToTafModel.Calander" Role="Calander" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kind">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calander">
+              <PropertyRef Name="KindId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calander_KinderGarden">
+          <End Type="TafToTafModel.KinderGarden" Role="KinderGarden" Multiplicity="0..1" />
+          <End Type="TafToTafModel.Calander" Role="Calander" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KinderGarden">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calander">
+              <PropertyRef Name="KinderGardenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calander_Professionals">
+          <End Type="TafToTafModel.Professional" Role="Professional" Multiplicity="0..1" />
+          <End Type="TafToTafModel.Calander" Role="Calander" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professional">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calander">
+              <PropertyRef Name="ProfessionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calander_Child">
+          <End Type="TafToTafModel.Child" Role="Child" Multiplicity="0..1" />
+          <End Type="TafToTafModel.Calander" Role="Calander" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Child">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calander">
+              <PropertyRef Name="ChildID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -448,8 +574,11 @@
           <EntitySetMapping Name="Calanders">
             <EntityTypeMapping TypeName="TafToTafModel.Calander">
               <MappingFragment StoreEntitySet="Calander">
+                <ScalarProperty Name="ChildID" ColumnName="ChildID" />
+                <ScalarProperty Name="NameMeeting" ColumnName="NameMeeting" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="dateStart" ColumnName="dateStart" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="KinderGardenId" ColumnName="KinderGardenId" />
                 <ScalarProperty Name="ProfessionalId" ColumnName="ProfessionalId" />
                 <ScalarProperty Name="KindId" ColumnName="KindId" />

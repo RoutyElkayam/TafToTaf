@@ -18,9 +18,9 @@ namespace BLL.Converters
         Tz = child.Tz,
         FirstName = child.FirstName,
         LastName = child.LastName,
-        BornDate = (DateTime)child.BornDate,
-        ParentID = (int)child.ParentID,
-        NumHoursConfirm = (double)child.NumHoursConfirm
+        BornDate =child.BornDate.GetValueOrDefault(),
+        ParentID = child.ParentID.GetValueOrDefault(),
+        NumHoursConfirm = child.NumHoursConfirm.GetValueOrDefault()
       };
       return childDto;
     }

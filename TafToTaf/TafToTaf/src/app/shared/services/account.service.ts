@@ -13,6 +13,7 @@ export class AccountService {
   url=environment.base_url+"Users";
   user:Observable<User>=null;
   private key = 'token';
+  public currentUser:User=null;
 
   constructor(private http:HttpClient) { }
 
@@ -20,16 +21,17 @@ export class AccountService {
   {
     return  this.http.post(this.url+"/login",{password:password,userName:username}); 
   }
-  getUser():Observable<User>
+  getUser()
   {
     return this.http.get<User>(this.url);
+    
   }
   token()
   {
     return localStorage.getItem(this.key);
   }
-  decodeToken(token: string): string
-  {
-    return token.slice(231,235);
-  }
+  // decodeToken(token: string): string
+  // {
+  //   return token.slice(231,235);
+  // }
 }

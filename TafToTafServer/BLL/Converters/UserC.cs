@@ -1,4 +1,4 @@
-﻿using DAL;
+using DAL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace BLL.Converters
                 Phone = user.Phone,
                 UserName = user.UserName,
                 Password = user.Password,
-                KindUser = (int)user.KindUser
+                KindUser = user.KindUser.Value//צריך לוודא שלעולם לא ייכנס נאל לסוג המשתמש
             };
             return userDto;
         }

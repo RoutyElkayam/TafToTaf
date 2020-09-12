@@ -10,24 +10,24 @@ namespace BLL.Converters
 {
     public class ProfessionalC
     {
-        public static ProfessionalDto ToProfessionalDto(Professional professional)
+        public static DTO.ProfessionalDTO ToProfessionalDto(Professional professional)
         {
-            ProfessionalDto professionalDto = new ProfessionalDto()
+            ProfessionalDTO professionalDto = new ProfessionalDTO()
             {
                 Id = professional.Id,
                 Name = professional.Name,
-                NumDaysWork = (int)professional.NumDaysWork,
-                NumHourWork = (int)professional.NumHourWork,
-                ProfessionKind = (int)professional.ProfessionKind,
-                Sunday = (bool)professional.Sunday,
-                Monday = (bool)professional.Monday,
-                Thuesday = (bool)professional.Thuesday,
-                Tursday = (bool)professional.Tursday,
-                Wednesday = (bool)professional.Wednesday
+                NumDaysWork = professional.NumDaysWork.GetValueOrDefault(),
+                NumHourWork = professional.NumHourWork.GetValueOrDefault(),
+                ProfessionKind = professional.ProfessionKind.GetValueOrDefault(),
+                Sunday = professional.Sunday.GetValueOrDefault(),
+                Monday = professional.Monday.GetValueOrDefault(),
+                Thuesday = professional.Thuesday.GetValueOrDefault(),
+                Tursday = professional.Tursday.GetValueOrDefault(),
+                Wednesday = professional.Wednesday.GetValueOrDefault()
             };
             return professionalDto;
         }
-        public static Professional ToProfessional(ProfessionalDto professionalDto)
+        public static Professional ToProfessional(ProfessionalDTO professionalDto)
         {
             Professional professional = new Professional()
             {

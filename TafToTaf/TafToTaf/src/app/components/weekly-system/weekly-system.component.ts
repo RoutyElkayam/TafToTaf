@@ -1,5 +1,5 @@
 import { Component,ChangeDetectionStrategy,  ViewChild,  TemplateRef,}  from '@angular/core';
-import {  startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours,} from 'date-fns';
+import {  startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, addMinutes,} from 'date-fns';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView,} from 'angular-calendar';
@@ -43,14 +43,15 @@ export class WeeklySystemComponent  {
 
   events: CalendarEvent[] = [
     {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
+      start: addHours(startOfDay(new Date()), 9),
+      end: addMinutes(new Date(), 45),
+      title: 'קלינאית תקשורת:נירית ילד:שיר גולדשטיין',
       color: colors.yellow,
     },
     {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
+      start: addHours(startOfDay(new Date()), 9),
+      end: addMinutes(new Date(), 45),
+      title: 'קלינאית תקשורת :נירית ילד: נועם כחלון',
       color: colors.yellow,
     },
     {
@@ -62,7 +63,7 @@ export class WeeklySystemComponent  {
     {
       start: addHours(startOfDay(new Date()), 2),
       end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
+      title: 'פיזיותרפיה:אלינוי ילדה: חן שמחה עזראן',
       color: colors.yellow,
     },
   ];

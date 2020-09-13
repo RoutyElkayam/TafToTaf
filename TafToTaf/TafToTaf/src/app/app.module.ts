@@ -36,7 +36,7 @@ import { WorkersComponent } from './components/workers/workers.component';
 import { InsertWorkerComponent } from './components/insert-worker/insert-worker.component';
 import { EditWorkerComponent } from './components/edit-worker/edit-worker.component';
 import { DeleteWorkerComponent } from './components/delete-worker/delete-worker.component';
-import { LoaderComponent } from './loader/loader.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [

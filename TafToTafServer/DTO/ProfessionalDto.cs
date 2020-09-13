@@ -11,8 +11,8 @@ namespace DTO
         public int Id { get; set; }
         public string Name { get; set; }
         public int ProfessionKind { get; set; }
-        public int NumHourWork { get; set; }
-        public int NumDaysWork { get; set; }
+        public double NumHourWork { get; set; }
+        //public int NumDaysWork { get; set; }
         public bool Sunday { get; set; }
         public bool Monday { get; set; }
         public bool Thuesday { get; set; }

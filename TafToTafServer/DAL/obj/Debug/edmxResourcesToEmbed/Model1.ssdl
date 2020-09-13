@@ -35,6 +35,16 @@
     <Property Name="BeginYear" Type="datetime" />
     <Property Name="EndYear" Type="datetime" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Holiday">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="date" />
+    <Property Name="NameHoliday" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Kind">
     <Key>
       <PropertyRef Name="Id" />
@@ -49,6 +59,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="MeetingDay" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="KindUser">
     <Key>
@@ -79,6 +90,16 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -215,7 +236,15 @@
     <EntitySet Name="KindUser" EntityType="Self.KindUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Professionals" EntityType="Self.Professionals" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProfessionKind" EntityType="Self.ProfessionKind" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Holiday" EntityType="Self.Holiday" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Holiday].[ID] AS [ID], 
+    [Holiday].[Date] AS [Date], 
+    [Holiday].[NameHoliday] AS [NameHoliday]
+    FROM [dbo].[Holiday] AS [Holiday]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Calander_Child" Association="Self.FK_Calander_Child">
       <End Role="Child" EntitySet="Child" />
       <End Role="Calander" EntitySet="Calander" />

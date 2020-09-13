@@ -3,55 +3,38 @@
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
-               
-                <div class="col-sm-8">
-                    <button type="button" class="btn btn-info add-new" (click)="open()"><i class="fa fa-plus"></i> הוספת עובדת</button>
-                </div>
-                 <div class="col-sm-4">                      
-                        <select class="form-control" [(ngModel)]="selectkng"  (change)="OnchangeGan()">  
-                            <option>{{selectkng}}</option>                       
-                            <option *ngFor= "let kinderGarden of kinderGardens" >
-                             {{kinderGarden.name}}
-                            </option>
-                          </select>
-                </div>
             </div>
         </div>
         <table class="table table-bordered">
             <thead>
-                <tr>                   
-                    <th>תאריך</th>
+                <tr> 
+                    <th>סטטוס</th>                  
                     <th>מיקום</th>
-                    <th>סטטוס</th>
+                    <th>תאריך</th>
                 </tr>
             </thead>
             <tbody>
-                <tr> 
-                    <td>****</td>
-                    <td>****</td>
+                <tr>
                      <td>
-                        <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
+                        הסתיימה
                     </td>                      
-                   
-                   
-                </tr>
-                <tr> 
-                    <td>****</td>
-                    <td>****</td>
-                     <td>
-                        <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                    </td>      
+                    <td>חדר ישיבות קומה 2</td>
+                    <td>02/09/2020</td>  
                 </tr>
                 <tr>
-                    <td>****</td>
-                    <td>****</td>
-                     <td>
-                        <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
-                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"></i></a>
-                    </td>      
-                </tr>      
+                    <td>
+                       <a class="done" title="done" data-toggle="tooltip" (click)="done()" ><i class="fa fa-check"></i></a>                          
+                   </td>                      
+                   <td>אולם קומה 4</td>
+                   <td>25/10/2020</td>  
+               </tr>        
+               <tr>
+                <td>
+                   <a class="done" title="done" data-toggle="tooltip" (click)="done()" ><i class="fa fa-check"></i></a>                          
+               </td>                      
+               <td>אולם קומה 4</td>
+               <td>25/10/2020</td>  
+           </tr>
             </tbody>
         </table>
     </div>

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
- public class KinderGardenLogic
+  public class KinderGardenLogic
   {
     public static List<KinderGardenDto> SelectKinderGardens()
     {
       List<KinderGardenDto> listKinderGardens = new List<KinderGardenDto>();
-      using (DAL.TafToTafEntities db = new DAL.TafToTafEntities())
+      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
       {
         var kinderGardens = db.KinderGardens.ToList();
         foreach (var kinderGarden in kinderGardens)
@@ -23,6 +23,27 @@ namespace BLL
       }
       return listKinderGardens;
     }
-    
+    public static List<KinderGardenDto> SelectWorkersKinderGardens(int profossionalId)//בוחרת גנים שהעובדת עובדת בהם
+    {
+      List<KinderGardenDto> listKinderGardens = new List<KinderGardenDto>();
+     List<int> kndId = new List<int>();
+      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      {
+        var calendersKinderGarden = db.Calanders.Where(c => c.ProfessionalId==profossionalId).ToList();
+        
+        foreach (var calenderkndg in calendersKinderGarden)
+        {
+          if (kndId.Contains(calenderkndg.KinderGardenId.Value) == false)
+            kndId.Add(calenderkndg.KinderGardenId.Value);
+        }
+        foreach (var kndid in kndId)
+        {
+          listKinderGardens.Add(KinderGardenC.ToKinderGardenDto(db.KinderGardens.First(knd => knd.Id == kndid)));
+        }
+      }
+      return listKinderGardens;
+    }
+
+
   }
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ParentMainComponent } from './components/parent-main/parent-main.component';
 import { AdminMainComponent } from './components/admin-main/admin-main.component';
@@ -19,7 +19,7 @@ const routes: Routes = [
   {component:ParentMainComponent,path:"parent-main",canActivate:[AuthGuardParent],
    children:[
      {component:WelcomeComponent,path:""},
-     {component:WeeklySystemComponent, path:"calendar"}
+     {component:WeeklySystemComponent, path:"Calendar"}
    ]},
   {component:AdminMainComponent,path:"admin-main",canActivate:[AuthGuardAdmin],
   children:[
@@ -31,10 +31,12 @@ const routes: Routes = [
     {component: ParentMeetingsComponent,  path:"parent-meetings"},
     
   ]},
-  {component:WorkerMainComponent, path:"worker-main",canActivate:[AuthGuardWorker],
+  {component:WorkerMainComponent, path:"worker-main",
   children:[
-    {component:WelcomeComponent,path:""},
-    {component:WeeklySystemComponent, path:"Calendar"},
+    {component:WelcomeComponent, path:""},
+    {component:ChildrenComponent, path:"children"},
+    {component:ParentMeetingsComponent, path:"parent-meetings"},
+    {component:TeamMeetingsComponent, path:"team-meetings"}
   ]} 
 ];
 

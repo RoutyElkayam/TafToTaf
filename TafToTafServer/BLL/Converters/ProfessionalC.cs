@@ -16,7 +16,6 @@ namespace BLL.Converters
             {
                 Id = professional.Id,
                 Name = professional.Name,
-                NumDaysWork = professional.NumDaysWork.GetValueOrDefault(),
                 NumHourWork = professional.NumHourWork.GetValueOrDefault(),
                 ProfessionKind = professional.ProfessionKind.GetValueOrDefault(),
                 Sunday = professional.Sunday.GetValueOrDefault(),
@@ -33,7 +32,6 @@ namespace BLL.Converters
             {
                 Id = professionalDto.Id,
                 Name = professionalDto.Name,
-                NumDaysWork = professionalDto.NumDaysWork,
                 NumHourWork = professionalDto.NumHourWork,
                 ProfessionKind = professionalDto.ProfessionKind,
                 Sunday = professionalDto.Sunday,

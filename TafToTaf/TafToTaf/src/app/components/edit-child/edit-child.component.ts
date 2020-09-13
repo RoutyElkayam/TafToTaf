@@ -19,7 +19,7 @@ export class EditChildComponent implements OnInit {
     public childService:ChildService) { }
 
   ngOnInit() {
-
+     console.log('kg',this.kinderGardenOfChild);
   }
   Edit(){
     console.log(this.child);

@@ -130,5 +130,8 @@
       }
     }
   },
-  "defaultProject": "TafToTaf"
+  "defaultProject": "TafToTaf",
+  "cli": {
+    "analytics": "2dc521b2-1705-43f3-8574-28f391ee365a"
+  }
 }

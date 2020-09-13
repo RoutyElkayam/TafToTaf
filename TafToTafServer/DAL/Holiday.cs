@@ -12,9 +12,10 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class KindUser
+    public partial class Holiday
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int ID { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public string NameHoliday { get; set; }
     }
 }

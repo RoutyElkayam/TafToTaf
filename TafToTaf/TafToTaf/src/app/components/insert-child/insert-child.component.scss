@@ -1,5 +1,6 @@
  body{
- 	direction: rtl;
+	 direction: rtl !important;
+	 
  }
 // .form-group{
 // 	direction: rtl;
@@ -20,6 +21,9 @@
 	opacity: 1;
 	text-decoration: none;
 	outline:0;
+   }
+  .form-group label{
+	   margin-right: 300px !important;
    }
    
    .seminor-login-modal .modal-dialog .modal-content{

@@ -40,7 +40,7 @@ namespace WebApi.Controllers
         var queryString = Request.GetQueryNameValuePairs();
         if (queryString == null)
           return BadRequest("null query string");
-        string kGardenName = BLL.ChildKinderGardenLogic.GetKinderGardenOfChild(int.Parse(queryString.FirstOrDefault(kv=>kv.Key=="ChildID").Value));
+        string kGardenName = BLL.ChildKinderGardenLogic.GetKinderGardenOfChild(int.Parse(queryString.First(kv=>kv.Key=="ChildID").Value));
         return Ok(kGardenName);
       }
       catch (HttpListenerException ex)

@@ -10,7 +10,7 @@ import { ChildKinderGardenService } from 'src/app/shared/services/child-kinder-g
 import { EditChildComponent } from '../edit-child/edit-child.component';
 
 @Component({
-  selector: 'app-children',
+  selector: 'children',
   templateUrl: './children.component.html',
   styleUrls: ['./children.component.scss']
 })
@@ -72,10 +72,16 @@ export class ChildrenComponent implements OnInit {
       
     });
   }
-  edit(child){
+  edit(child:Child){
     const modalRef = this.modalService.open(EditChildComponent);
     modalRef.componentInstance.child = child;
-    modalRef.componentInstance.kinderGardenOfChild=this.selectkng;
+    if(this.selectkng!=null)
+      modalRef.componentInstance.kinderGardenOfChild=this.selectkng;
+    else 
+       this.childKinderGardenService
+      .getKinderGNameOfChild(child.id.toString()).subscribe(res=>{
+        modalRef.componentInstance.kinderGardenOfChild=res,console.log('res',res)}
+        );
     modalRef.componentInstance.kinderGardens = this.kinderGardens;
     modalRef.result.then((result) => {
      

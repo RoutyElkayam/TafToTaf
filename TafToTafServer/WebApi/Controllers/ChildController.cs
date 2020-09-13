@@ -79,6 +79,14 @@ namespace WebApi.Controllers
       }
 
     }
+    //[HttpPost]
+    //public IHttpActionResult PostChildWorker([FromBody] ChildDto child, [FromUri] string id)
+    //{
+    //  foreach (var item in work)
+    //  {
+
+    //  }
+    //}
     [HttpPut]
     // PUT: api/Child/5
     public IHttpActionResult Put(int id, [FromBody]ChildDto child)

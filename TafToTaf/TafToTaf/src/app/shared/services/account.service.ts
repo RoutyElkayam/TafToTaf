@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Child } from '../models/child';
+import { id } from 'date-fns/locale';
 
 
 @Injectable({
@@ -16,6 +17,7 @@ export class AccountService {
   private key = 'token';
   public currentUser:User=null;
   userChild:Child;
+  userWorker:Worker;
 
   constructor(private http:HttpClient) { }
 
@@ -23,10 +25,12 @@ export class AccountService {
   {
     return  this.http.post(this.url+"/login",{password:password,userName:username}); 
   }
+
   getUser()
   {
     return this.http.get<User>(this.url);  
   }
+
   getChildOfUser()
   {
     if(this.currentUser)
@@ -36,10 +40,12 @@ export class AccountService {
       return this.http.get<Child>(url);
     }
   }
+
   token()
   {
     return localStorage.getItem(this.key);
   }
+
   // decodeToken(token: string): string
   // {
   //   return token.slice(231,235);

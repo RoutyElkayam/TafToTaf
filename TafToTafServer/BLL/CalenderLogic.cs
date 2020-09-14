@@ -57,7 +57,6 @@ namespace BLL
       }
       return calenderDtos;
     }
-
     public static List<CalenderDto> SelectCalenderChild(int childId)//מקבלת קוד ילד ומחזירה את כל הטיפולים שלן
     {
       using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())

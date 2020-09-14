@@ -4,6 +4,8 @@ import { KinderGarden } from 'src/app/shared/models/kinderGarden';
 import { ChildKinderGardenService } from 'src/app/shared/services/child-kinder-garden.service';
 import { ChildService } from 'src/app/shared/services/child.service';
 import { KindergardenService } from 'src/app/shared/services/kindergarden.service';
+import {AccountService} from 'src/app/shared/services/account.service';
+
 
 @Component({
   selector: 'app-child-worker',
@@ -19,7 +21,8 @@ export class ChildWorkerComponent implements OnInit {
 
   constructor( public kinderGardenService: KindergardenService,
     public childService: ChildService,
-    public childKinderGardenService: ChildKinderGardenService) { }
+    public childKinderGardenService: ChildKinderGardenService,
+    public accountService: AccountService) { }
 
   ngOnInit() {
 

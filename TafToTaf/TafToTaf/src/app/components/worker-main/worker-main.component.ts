@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/shared/services/account.service';
 
 @Component({
   selector: 'worker-main',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkerMainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private accontService:AccountService) { }
 
   ngOnInit() {
+    this.getWorkerUserId();
   }
-
+  getWorkerUserId(): void{
+    this.accontService.getWorkerOfUser().subscribe(
+      w=>{this.accontService.userWorker=w});
+  }
 }

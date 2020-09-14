@@ -14,21 +14,9 @@ namespace DAL
     
     public partial class KinderGarden
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KinderGarden()
-        {
-            this.Calanders = new HashSet<Calander>();
-            this.ChildKinderGardens = new HashSet<ChildKinderGarden>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
         public string MeetingDay { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Calander> Calanders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChildKinderGarden> ChildKinderGardens { get; set; }
     }
 }

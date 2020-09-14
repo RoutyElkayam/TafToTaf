@@ -20,7 +20,7 @@ namespace BLL
         foreach (var childKinderGarden in db.ChildKinderGardens)
         {
           if (childKinderGarden.KindrGardenID== kinderGardenId
-            && childKinderGarden.BeginYear.Value==PublicLogic.CalcBeaginYear())
+            && childKinderGarden.BeginYear.GetValueOrDefault()==PublicLogic.CalcBeaginYear())
           {
             Child childDAL=db.Children.First(ch => ch.Id == childKinderGarden.ChildID);
             ChildrenDTO.Add(ChildC.ToChildDTO(childDAL));

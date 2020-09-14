@@ -17,11 +17,11 @@ namespace BLL.Converters
             {
                 Id = calander.Id,
                 DateEnd = calander.DateEnd.GetValueOrDefault(),
-                DateStart=calander.dateStart.GetValueOrDefault(),
+                DateStart=calander.DateStart.GetValueOrDefault(),
                 KindId = calander.KindId.GetValueOrDefault(),
                 KinderGardenId = calander.KinderGardenId.GetValueOrDefault(),
                 ProfessionalId = calander.ProfessionalId.GetValueOrDefault(),
-                ChildID=calander.ChildID.GetValueOrDefault(),
+                ChildID=calander.ChildId.GetValueOrDefault(),
                 Title=calander.NameMeeting
 
             };
@@ -32,12 +32,12 @@ namespace BLL.Converters
             Calander calander = new Calander()
             {
                 Id = calanderDto.Id,
-                dateStart = calanderDto.DateStart,
+                DateStart = calanderDto.DateStart,
                 DateEnd=calanderDto.DateEnd,
                 KindId = calanderDto.KindId,
                 KinderGardenId = calanderDto.KinderGardenId,
                 ProfessionalId = calanderDto.ProfessionalId,
-                ChildID=calanderDto.ChildID,
+                ChildId=calanderDto.ChildID,
                 NameMeeting=calanderDto.Title,
             };
             return calander;

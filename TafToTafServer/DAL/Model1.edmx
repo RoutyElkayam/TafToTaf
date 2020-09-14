@@ -10,25 +10,25 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="dateStart" Type="datetime" />
-          <Property Name="DateEnd" Type="datetime" />
+          <Property Name="DateStart" Type="datetime" />
+          <Property Name="DateEnd" Type="datetime" Nullable="false" />
           <Property Name="KinderGardenId" Type="int" />
           <Property Name="ProfessionalId" Type="int" />
           <Property Name="KindId" Type="int" />
           <Property Name="NameMeeting" Type="nvarchar" MaxLength="50" />
-          <Property Name="ChildID" Type="int" />
+          <Property Name="ChildId" Type="int" />
         </EntityType>
         <EntityType Name="Child">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Tz" Type="nvarchar" MaxLength="50" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
-          <Property Name="BornDate" Type="datetime" />
-          <Property Name="NumHoursConfirm" Type="float" />
-          <Property Name="ParentID" Type="int" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tz" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BornDate" Type="datetime" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="NumHoursConfirm" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="ChildKinderGarden">
           <Key>
@@ -44,9 +44,9 @@
 warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Holiday">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="date" />
           <Property Name="NameHoliday" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -81,7 +81,6 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="ProfessionKind" Type="int" />
           <Property Name="NumHourWork" Type="float" />
-          <Property Name="NumDaysWork" Type="int" />
           <Property Name="Sunday" Type="bit" />
           <Property Name="Monday" Type="bit" />
           <Property Name="Thuesday" Type="bit" />
@@ -95,16 +94,6 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -128,48 +117,24 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Calander">
-              <PropertyRef Name="ChildID" />
+              <PropertyRef Name="ChildId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Calander_Kind">
-          <End Role="Kind" Type="Self.Kind" Multiplicity="0..1" />
-          <End Role="Calander" Type="Self.Calander" Multiplicity="*" />
+          <End Role="Kind" Type="Self.Kind" Multiplicity="1" />
+          <End Role="Calander" Type="Self.Calander" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Kind">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Calander">
-              <PropertyRef Name="KindId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Calander_KinderGarden">
-          <End Role="KinderGarden" Type="Self.KinderGarden" Multiplicity="0..1" />
-          <End Role="Calander" Type="Self.Calander" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KinderGarden">
               <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Calander">
-              <PropertyRef Name="KinderGardenId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Calander_Professionals">
-          <End Role="Professionals" Type="Self.Professionals" Multiplicity="0..1" />
-          <End Role="Calander" Type="Self.Calander" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Professionals">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Calander">
-              <PropertyRef Name="ProfessionalId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Child_Child">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+        <Association Name="FK_Child_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Child" Type="Self.Child" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -177,34 +142,6 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
             </Principal>
             <Dependent Role="Child">
               <PropertyRef Name="ParentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChildKinderGarden_Child">
-          <End Role="Child" Type="Self.Child" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Child">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ChildKinderGarden">
-              <PropertyRef Name="ChildID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChildKinderGarden_KinderGarden">
-          <End Role="KinderGarden" Type="Self.KinderGarden" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KinderGarden">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ChildKinderGarden">
-              <PropertyRef Name="KindrGardenID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -232,6 +169,18 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_User">
+          <End Role="KindUser" Type="Self.KindUser" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KindUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="KindUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TafToTafModelStoreContainer">
           <EntitySet Name="Calander" EntityType="Self.Calander" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Child" EntityType="Self.Child" Schema="dbo" store:Type="Tables" />
@@ -241,11 +190,10 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
           <EntitySet Name="KindUser" EntityType="Self.KindUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Professionals" EntityType="Self.Professionals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProfessionKind" EntityType="Self.ProfessionKind" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Holiday" EntityType="Self.Holiday" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [Holiday].[ID] AS [ID], 
+    [Holiday].[id] AS [id], 
     [Holiday].[Date] AS [Date], 
     [Holiday].[NameHoliday] AS [NameHoliday]
     FROM [dbo].[Holiday] AS [Holiday]</DefiningQuery>
@@ -258,25 +206,9 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
             <End Role="Kind" EntitySet="Kind" />
             <End Role="Calander" EntitySet="Calander" />
           </AssociationSet>
-          <AssociationSet Name="FK_Calander_KinderGarden" Association="Self.FK_Calander_KinderGarden">
-            <End Role="KinderGarden" EntitySet="KinderGarden" />
-            <End Role="Calander" EntitySet="Calander" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Calander_Professionals" Association="Self.FK_Calander_Professionals">
-            <End Role="Professionals" EntitySet="Professionals" />
-            <End Role="Calander" EntitySet="Calander" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Child_Child" Association="Self.FK_Child_Child">
+          <AssociationSet Name="FK_Child_User" Association="Self.FK_Child_User">
             <End Role="User" EntitySet="User" />
             <End Role="Child" EntitySet="Child" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChildKinderGarden_Child" Association="Self.FK_ChildKinderGarden_Child">
-            <End Role="Child" EntitySet="Child" />
-            <End Role="ChildKinderGarden" EntitySet="ChildKinderGarden" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChildKinderGarden_KinderGarden" Association="Self.FK_ChildKinderGarden_KinderGarden">
-            <End Role="KinderGarden" EntitySet="KinderGarden" />
-            <End Role="ChildKinderGarden" EntitySet="ChildKinderGarden" />
           </AssociationSet>
           <AssociationSet Name="FK_Professionals_ProfessionKind" Association="Self.FK_Professionals_ProfessionKind">
             <End Role="ProfessionKind" EntitySet="ProfessionKind" />
@@ -285,6 +217,10 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
           <AssociationSet Name="FK_Professionals_User" Association="Self.FK_Professionals_User">
             <End Role="User" EntitySet="User" />
             <End Role="Professionals" EntitySet="Professionals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
+            <End Role="KindUser" EntitySet="KindUser" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -297,32 +233,29 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dateStart" Type="DateTime" Precision="3" />
-          <Property Name="DateEnd" Type="DateTime" Precision="3" />
+          <Property Name="DateStart" Type="DateTime" Precision="3" />
+          <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="KinderGardenId" Type="Int32" />
           <Property Name="ProfessionalId" Type="Int32" />
           <Property Name="KindId" Type="Int32" />
           <Property Name="NameMeeting" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ChildID" Type="Int32" />
+          <Property Name="ChildId" Type="Int32" />
           <NavigationProperty Name="Child" Relationship="Self.FK_Calander_Child" FromRole="Calander" ToRole="Child" />
           <NavigationProperty Name="Kind" Relationship="Self.FK_Calander_Kind" FromRole="Calander" ToRole="Kind" />
-          <NavigationProperty Name="KinderGarden" Relationship="Self.FK_Calander_KinderGarden" FromRole="Calander" ToRole="KinderGarden" />
-          <NavigationProperty Name="Professional" Relationship="Self.FK_Calander_Professionals" FromRole="Calander" ToRole="Professionals" />
         </EntityType>
         <EntityType Name="Child">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Tz" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BornDate" Type="DateTime" Precision="3" />
-          <Property Name="NumHoursConfirm" Type="Double" />
-          <Property Name="ParentID" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tz" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BornDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="NumHoursConfirm" Type="Double" Nullable="false" />
           <NavigationProperty Name="Calanders" Relationship="Self.FK_Calander_Child" FromRole="Child" ToRole="Calander" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Child_Child" FromRole="Child" ToRole="User" />
-          <NavigationProperty Name="ChildKinderGardens" Relationship="Self.FK_ChildKinderGarden_Child" FromRole="Child" ToRole="ChildKinderGarden" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Child_User" FromRole="Child" ToRole="User" />
         </EntityType>
         <EntityType Name="ChildKinderGarden">
           <Key>
@@ -333,8 +266,6 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
           <Property Name="KindrGardenID" Type="Int32" />
           <Property Name="BeginYear" Type="DateTime" Precision="3" />
           <Property Name="EndYear" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Child" Relationship="Self.FK_ChildKinderGarden_Child" FromRole="ChildKinderGarden" ToRole="Child" />
-          <NavigationProperty Name="KinderGarden" Relationship="Self.FK_ChildKinderGarden_KinderGarden" FromRole="ChildKinderGarden" ToRole="KinderGarden" />
         </EntityType>
         <EntityType Name="Kind">
           <Key>
@@ -342,7 +273,7 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Calanders" Relationship="Self.FK_Calander_Kind" FromRole="Kind" ToRole="Calander" />
+          <NavigationProperty Name="Calander" Relationship="Self.FK_Calander_Kind" FromRole="Kind" ToRole="Calander" />
         </EntityType>
         <EntityType Name="KinderGarden">
           <Key>
@@ -352,8 +283,6 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MeetingDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Calanders" Relationship="Self.FK_Calander_KinderGarden" FromRole="KinderGarden" ToRole="Calander" />
-          <NavigationProperty Name="ChildKinderGardens" Relationship="Self.FK_ChildKinderGarden_KinderGarden" FromRole="KinderGarden" ToRole="ChildKinderGarden" />
         </EntityType>
         <EntityType Name="KindUser">
           <Key>
@@ -361,6 +290,7 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_User" FromRole="KindUser" ToRole="User" />
         </EntityType>
         <EntityType Name="Professional">
           <Key>
@@ -370,14 +300,12 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProfessionKind" Type="Int32" />
           <Property Name="NumHourWork" Type="Double" />
-          <Property Name="NumDaysWork" Type="Int32" />
           <Property Name="Sunday" Type="Boolean" />
           <Property Name="Monday" Type="Boolean" />
           <Property Name="Thuesday" Type="Boolean" />
           <Property Name="Wednesday" Type="Boolean" />
           <Property Name="Tursday" Type="Boolean" />
           <Property Name="userID" Type="Int32" />
-          <NavigationProperty Name="Calanders" Relationship="Self.FK_Calander_Professionals" FromRole="Professionals" ToRole="Calander" />
           <NavigationProperty Name="ProfessionKind1" Relationship="Self.FK_Professionals_ProfessionKind" FromRole="Professionals" ToRole="ProfessionKind" />
           <NavigationProperty Name="User" Relationship="Self.FK_Professionals_User" FromRole="Professionals" ToRole="User" />
         </EntityType>
@@ -388,16 +316,6 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Professionals" Relationship="Self.FK_Professionals_ProfessionKind" FromRole="ProfessionKind" ToRole="Professionals" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -412,14 +330,15 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
           <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="KindUser" Type="Int32" />
-          <NavigationProperty Name="Children" Relationship="Self.FK_Child_Child" FromRole="User" ToRole="Child" />
+          <NavigationProperty Name="Children" Relationship="Self.FK_Child_User" FromRole="User" ToRole="Child" />
+          <NavigationProperty Name="KindUser1" Relationship="Self.FK_User_User" FromRole="User" ToRole="KindUser" />
           <NavigationProperty Name="Professionals" Relationship="Self.FK_Professionals_User" FromRole="User" ToRole="Professionals" />
         </EntityType>
         <EntityType Name="Holiday">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="NameHoliday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -431,48 +350,24 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Calander">
-              <PropertyRef Name="ChildID" />
+              <PropertyRef Name="ChildId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Calander_Kind">
-          <End Role="Kind" Type="Self.Kind" Multiplicity="0..1" />
-          <End Role="Calander" Type="Self.Calander" Multiplicity="*" />
+          <End Role="Kind" Type="Self.Kind" Multiplicity="1" />
+          <End Role="Calander" Type="Self.Calander" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Kind">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Calander">
-              <PropertyRef Name="KindId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Calander_KinderGarden">
-          <End Role="KinderGarden" Type="Self.KinderGarden" Multiplicity="0..1" />
-          <End Role="Calander" Type="Self.Calander" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KinderGarden">
               <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Calander">
-              <PropertyRef Name="KinderGardenId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Calander_Professionals">
-          <End Role="Professionals" Type="Self.Professional" Multiplicity="0..1" />
-          <End Role="Calander" Type="Self.Calander" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Professionals">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Calander">
-              <PropertyRef Name="ProfessionalId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Child_Child">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+        <Association Name="FK_Child_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Child" Type="Self.Child" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -483,31 +378,15 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ChildKinderGarden_Child">
-          <End Role="Child" Type="Self.Child" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
+        <Association Name="FK_User_User">
+          <End Role="KindUser" Type="Self.KindUser" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Child">
+            <Principal Role="KindUser">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ChildKinderGarden">
-              <PropertyRef Name="ChildID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChildKinderGarden_KinderGarden">
-          <End Role="KinderGarden" Type="Self.KinderGarden" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ChildKinderGarden" Type="Self.ChildKinderGarden" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KinderGarden">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ChildKinderGarden">
-              <PropertyRef Name="KindrGardenID" />
+            <Dependent Role="User">
+              <PropertyRef Name="KindUser" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -535,7 +414,7 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TafToTafEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TafToTafEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Calanders" EntityType="Self.Calander" />
           <EntitySet Name="Children" EntityType="Self.Child" />
           <EntitySet Name="ChildKinderGardens" EntityType="Self.ChildKinderGarden" />
@@ -544,7 +423,6 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
           <EntitySet Name="KindUsers" EntityType="Self.KindUser" />
           <EntitySet Name="Professionals" EntityType="Self.Professional" />
           <EntitySet Name="ProfessionKinds" EntityType="Self.ProfessionKind" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Holidays" EntityType="Self.Holiday" />
           <AssociationSet Name="FK_Calander_Child" Association="Self.FK_Calander_Child">
@@ -555,25 +433,13 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
             <End Role="Kind" EntitySet="Kinds" />
             <End Role="Calander" EntitySet="Calanders" />
           </AssociationSet>
-          <AssociationSet Name="FK_Calander_KinderGarden" Association="Self.FK_Calander_KinderGarden">
-            <End Role="KinderGarden" EntitySet="KinderGardens" />
-            <End Role="Calander" EntitySet="Calanders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Calander_Professionals" Association="Self.FK_Calander_Professionals">
-            <End Role="Professionals" EntitySet="Professionals" />
-            <End Role="Calander" EntitySet="Calanders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Child_Child" Association="Self.FK_Child_Child">
+          <AssociationSet Name="FK_Child_User" Association="Self.FK_Child_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Child" EntitySet="Children" />
           </AssociationSet>
-          <AssociationSet Name="FK_ChildKinderGarden_Child" Association="Self.FK_ChildKinderGarden_Child">
-            <End Role="Child" EntitySet="Children" />
-            <End Role="ChildKinderGarden" EntitySet="ChildKinderGardens" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChildKinderGarden_KinderGarden" Association="Self.FK_ChildKinderGarden_KinderGarden">
-            <End Role="KinderGarden" EntitySet="KinderGardens" />
-            <End Role="ChildKinderGarden" EntitySet="ChildKinderGardens" />
+          <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
+            <End Role="KindUser" EntitySet="KindUsers" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Professionals_ProfessionKind" Association="Self.FK_Professionals_ProfessionKind">
             <End Role="ProfessionKind" EntitySet="ProfessionKinds" />
@@ -589,18 +455,18 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TafToTafModelStoreContainer" CdmEntityContainer="TafToTafEntities1">
+        <EntityContainerMapping StorageEntityContainer="TafToTafModelStoreContainer" CdmEntityContainer="TafToTafEntities">
           <EntitySetMapping Name="Calanders">
             <EntityTypeMapping TypeName="TafToTafModel.Calander">
               <MappingFragment StoreEntitySet="Calander">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="dateStart" ColumnName="dateStart" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
                 <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
                 <ScalarProperty Name="KinderGardenId" ColumnName="KinderGardenId" />
                 <ScalarProperty Name="ProfessionalId" ColumnName="ProfessionalId" />
                 <ScalarProperty Name="KindId" ColumnName="KindId" />
                 <ScalarProperty Name="NameMeeting" ColumnName="NameMeeting" />
-                <ScalarProperty Name="ChildID" ColumnName="ChildID" />
+                <ScalarProperty Name="ChildId" ColumnName="ChildId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -612,8 +478,8 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
                 <ScalarProperty Name="Tz" ColumnName="Tz" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="BornDate" ColumnName="BornDate" />
-                <ScalarProperty Name="NumHoursConfirm" ColumnName="NumHoursConfirm" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="NumHoursConfirm" ColumnName="NumHoursConfirm" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -661,7 +527,6 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ProfessionKind" ColumnName="ProfessionKind" />
                 <ScalarProperty Name="NumHourWork" ColumnName="NumHourWork" />
-                <ScalarProperty Name="NumDaysWork" ColumnName="NumDaysWork" />
                 <ScalarProperty Name="Sunday" ColumnName="Sunday" />
                 <ScalarProperty Name="Monday" ColumnName="Monday" />
                 <ScalarProperty Name="Thuesday" ColumnName="Thuesday" />
@@ -676,17 +541,6 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
               <MappingFragment StoreEntitySet="ProfessionKind">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="TafToTafModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -708,7 +562,7 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
           <EntitySetMapping Name="Holidays">
             <EntityTypeMapping TypeName="TafToTafModel.Holiday">
               <MappingFragment StoreEntitySet="Holiday">
-                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="NameHoliday" ColumnName="NameHoliday" />
               </MappingFragment>

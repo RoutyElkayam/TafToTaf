@@ -2,36 +2,54 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { Calander } from '../models/calander';
+import { Calendar } from 'primeng';
 @Injectable({
   providedIn: 'root'
 })
 export class CalanderService {
   private url=environment.base_url+"Calender";
   constructor(private http:HttpClient) { }
-  getAdminTeamMeetings()
+  getAdminTeamMeetings() :Observable<Calander[]> 
   {
     const url=`${this.url}/${"AdminTeamMeetings"}`;
-    return this.http.get(url);
+    return this.http.get<Calander[]>(url);
   }
-  getAdminParentMeetings()
+  getAdminParentMeetings() :Observable<Calander[]> 
   {
     const url=`${this.url}/${"AdminParentMeetings"}`;
-    return this.http.get(url);
+    return this.http.get<Calander[]>(url);
   }
-  getKGardenCalender(kinderGardenId:number)
+  getKGardenCalender(kinderGardenId:number):Observable<Calander[]> 
   {
     const url=`${this.url}/${"CalendarKinderGarden"}/${kinderGardenId}`;
-    return this.http.get(url);
+    return this.http.get<Calander[]>(url);
   }
-  getChildCalender(childID:number)
+  getChildCalender(childID:number):Observable<Calander[]> 
   {
     const url=`${this.url}/${"CalenderChild"}/${childID}`;
-    return this.http.get(url);
+    return this.http.get<Calander[]>(url);
   }
-  getWorkerCalender(workerID:number)
+  getWorkerCalender(workerID:number):Observable<Calander[]> 
   {
     const url=`${this.url}/${"CalenderWorker"}/${workerID}`;
-    return this.http.get(url);
+    return this.http.get<Calander[]>(url);
+  }
+  getChildParentMeeting(childID:number):Observable<Calander[]> 
+  {
+    const url=`${this.url}/${"WorkerParentsMeeting"}/${childID}`;
+    return this.http.get<Calander[]>(url);
+  }
+  
+  getWorkerParentsMeeting(childID:number):Observable<Calander[]> 
+  {
+    const url=`${this.url}/${"WorkerParentsMeeting"}/${childID}`;
+    return this.http.get<Calander[]>(url);
+  }
+  getWorkerTeamMeeting(workerID:number):Observable<Calander[]> 
+  {
+    const url=`${this.url}/${"WorkerParentsMeeting"}/${workerID}`;
+    return this.http.get<Calander[]>(url);
   }
   
 }

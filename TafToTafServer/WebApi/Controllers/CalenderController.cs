@@ -17,7 +17,7 @@ namespace WebApi.Controllers
 
     // GET: api/Calender/ChildCalendar
     [HttpGet]
-    [Route("AdminParentMeetings")]
+  [Route("AdminParentMeetings")]
     public IHttpActionResult GetAdminParentMeetings()
     {
       try
@@ -54,7 +54,7 @@ namespace WebApi.Controllers
       }
     }
     [HttpGet]
-    [Route("AdminTeamMeetings")]
+  [Route("AdminTeamMeetings")]
     public IHttpActionResult GetAdminTeamMeetings()
     {
       try
@@ -71,7 +71,7 @@ namespace WebApi.Controllers
         return BadRequest(ex.Message);
       }
     }
-    [Route("CalenderWorker/{id}")]
+   [Route("CalenderWorker/{id}")]
     public IHttpActionResult GetcalenderWorker(int id)
     {
       try
@@ -89,7 +89,7 @@ namespace WebApi.Controllers
       }
     }
     [HttpGet]
-    [Route("CalendarKinderGarden/{id}")]
+   [Route("CalendarKinderGarden/{id}")]
     public IHttpActionResult GetCalendarKinderGarden(int id)
     {
       try
@@ -106,7 +106,7 @@ namespace WebApi.Controllers
         return BadRequest(ex.Message);
       }
     }
-    [Route("ChildParentMeeting/{id}")]
+   [Route("ChildParentMeeting/{id}")]
     public IHttpActionResult GetChildParentMeeting(int id)
     {
       try
@@ -124,12 +124,12 @@ namespace WebApi.Controllers
       }
     }
     [HttpGet]
-    [Route("TeamMeeting/{id}")]
+    [Route("WorkerTeamMeeting/{id}")]
     public IHttpActionResult GetTeamMeeting(int id)
     {
       try
       {
-        List<CalenderDto> teamMeeting = CalenderLogic.SelectTeamMeeting(id);
+        List<CalenderDto> teamMeeting = CalenderLogic.SelectWorkerTeamMeeting(id);
         return Ok(teamMeeting);
       }
       catch (HttpListenerException ex)

@@ -87,7 +87,7 @@ namespace BLL
         }
         List<CalenderDto> CalenderList = new List<CalenderDto>();
         var Treatments = db.Calanders.Where(tret => tret.KindId == 1 && tret.DateStart.Value.Year == year && tret.ProfessionalId == workerId).ToList();
-        CalenderList.AddRange(SelectTeamMeeting(workerId));
+        CalenderList.AddRange(SelectWorkerTeamMeeting(workerId));
         CalenderList.AddRange(SelectWorkerParentsMeeting(workerId));
         foreach (var calender in Treatments)
         {
@@ -116,7 +116,7 @@ namespace BLL
         return CalenderList;
       }
     }
-    public static List<CalenderDto> SelectTeamMeeting(int workerId)//מפגשי צוות לעובדת
+    public static List<CalenderDto> SelectWorkerTeamMeeting(int workerId)//מפגשי צוות לעובדת
     {
       using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
       {

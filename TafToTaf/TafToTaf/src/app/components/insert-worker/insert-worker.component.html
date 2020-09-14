@@ -11,16 +11,12 @@
       <label class="form-control-placeholder" for="name">שם עובדת</label>
     </div>
     <div class="form-group">
-        <input  class="form-control" name="professionKind" [(ngModel)]="this.professionKind" required autocomplete="off" >
+        <input type="number" class="form-control" name="professionKind" [(ngModel)]="this.professionKind" required autocomplete="off" >
         <label class="form-control-placeholder" for="name">סוג מקצוע</label>
       </div>
       <div class="form-group">
       <input type="number" class="form-control" name="numHours" [(ngModel)]="this.numHourWork" required autocomplete="off">
       <label class="form-control-placeholder" for="name"> מס' שעות עבודה בשבוע</label>
-    </div>
-    <div class="form-group">
-      <input type="number" class="form-control" name="numDays" [(ngModel)]="this.numDaysWork" required autocomplete="off">
-      <label class="form-control-placeholder" for="name"> מס' ימי עבודה בשבוע</label>
     </div>
     <div class="form-group">
         <input type="email" class="form-control" name="EmailAdress" [(ngModel)]="this.proffesionalEmail" required autocomplete="off">

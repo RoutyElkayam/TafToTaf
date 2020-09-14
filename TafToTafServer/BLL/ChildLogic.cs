@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Net.Mail;
 using BLL.Converters;
 using DAL;
 
@@ -104,6 +106,7 @@ namespace BLL
           EndYear=   PublicLogic.CalcEndYear(),
         });
        db.SaveChanges();
+        PublicLogic.SendEmail("TLT3", child.Tz, child.ParentEmail);
       }
     }
     public static void DeleteChild(int id)
@@ -130,7 +133,6 @@ namespace BLL
         throw new Exception(ex.Message);
       }
     }
-
     public static void EditChild(int id, ChildDto child)
     {
       using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
@@ -149,7 +151,6 @@ namespace BLL
         db.SaveChanges();
       }
     }
-    
   }
 }
 

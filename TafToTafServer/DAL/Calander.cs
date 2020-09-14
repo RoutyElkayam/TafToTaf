@@ -25,7 +25,5 @@ namespace DAL
     
         public virtual Child Child { get; set; }
         public virtual Kind Kind { get; set; }
-        public virtual KinderGarden KinderGarden { get; set; }
-        public virtual Professional Professional { get; set; }
     }
 }

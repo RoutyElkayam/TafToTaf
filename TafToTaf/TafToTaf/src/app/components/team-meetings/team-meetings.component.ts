@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { KinderGarden } from 'src/app/shared/models/kinderGarden';
-import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { KindergardenService } from 'src/app/shared/services/kindergarden.service';
+import { Calander } from 'src/app/shared/models/calander';
+import { AccountService } from 'src/app/shared/services/account.service';
+import { CalanderService } from 'src/app/shared/services/calander.service';
 
 @Component({
   selector: 'app-team-meetings',
@@ -10,32 +10,38 @@ import { KindergardenService } from 'src/app/shared/services/kindergarden.servic
 })
 export class TeamMeetingsComponent implements OnInit {
   
-  kinderGardens: KinderGarden[];
-  selectkng: string = null;
-  constructor(private ModalService:NgbModal,
-    public kinderGardenService: KindergardenService,
-    ) {
-    
-   }
+  teamMeetings:Calander[];
+  user =this.accountService.currentUser;
+  nowDate=new Date();
+  constructor(public calendarService: CalanderService
+    ,private accountService: AccountService) {  
+    }
 
   ngOnInit() {
-    this.getKinderGardens();
-  }
-  open(){
-    
-  }
-  getKinderGardens(): void {
-    this.kinderGardenService.getKinderGardens()
-      .subscribe(kinderGardens => { this.kinderGardens = kinderGardens, console.log(this.kinderGardens) });
+    if(this.user.kindUser==2)
+      this.getWorkerTeamMeeting();
+    else this.getAdminTeamMeeting
   }
   
-  OnchangeGan() {
-    if (this.selectkng != null)
-      this.getKinderGardens();
-
+  getWorkerTeamMeeting(){
+    this.calendarService.getWorkerTeamMeeting(this.user.id).subscribe(res=>
+      this.teamMeetings=res);
   }
 
-  done(){
- 
+  getAdminTeamMeeting(){
+    this.calendarService.getAdminTeamMeetings().subscribe(res=>
+      this.teamMeetings=res)
   }
+  
+  getPlace(date:Date):string{
+    if(date.getDay()==0||date.getDay()==2||date.getDay()==4)
+      return "אולם קומה 4";
+    else return "חדר ישיבות קומה 2";
+  }
+  getStatus(meet:Calander):boolean{
+    if(meet.dateStart>this.nowDate)
+      return true;
+    return false;
+  }
+
 }

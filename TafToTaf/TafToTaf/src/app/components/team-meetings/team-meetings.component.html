@@ -14,28 +14,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngFor="let meet of teamMeetings">
                      <td>
-                        הסתיימה
+                        <!-- [ngClass]="{'finished':{{getStatus(meet)==true}} , 'second': {{getStatus(meet)==false}}}" -->
                     </td>                      
-                    <td>חדר ישיבות קומה 2</td>
-                    <td>02/09/2020</td>  
+                    <td>{{getPlace(meet.dateStart)}}</td>
+                    <td> {{meet.dateStart}}</td>  
                 </tr>
-                <tr>
-                    <td>
-                       <a class="done" title="done" data-toggle="tooltip" (click)="done()" ><i class="fa fa-check"></i></a>                          
-                   </td>                      
-                   <td>אולם קומה 4</td>
-                   <td>25/10/2020</td>  
-               </tr>        
-               <tr>
-                <td>
-                   <a class="done" title="done" data-toggle="tooltip" (click)="done()" ><i class="fa fa-check"></i></a>                          
-               </td>                      
-               <td>אולם קומה 4</td>
-               <td>25/10/2020</td>  
-           </tr>
+    
             </tbody>
         </table>
     </div>
-</div>    
+  

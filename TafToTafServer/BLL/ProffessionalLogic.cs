@@ -81,6 +81,7 @@ namespace BLL
         //send Email Please
         db.SaveChanges();
       }
+      PublicLogic.SendEmail("TLT2", proffessional.Id.ToString(), proffessional.ProffesionalEmail);
     }
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/shared/services/account.service';
 
 @Component({
   selector: 'app-parent-main',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParentMainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private account:AccountService) { }
 
   ngOnInit() {
+    this.account.getChildOfUser().subscribe(
+      res=>this.account.userChild=res);
   }
 
 }

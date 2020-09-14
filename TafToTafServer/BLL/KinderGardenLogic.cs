@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
+
   public class KinderGardenLogic
   {
+    static int year = PublicLogic.CalcBeaginYear().Year;
     public static List<KinderGardenDto> SelectKinderGardens()
     {
       List<KinderGardenDto> listKinderGardens = new List<KinderGardenDto>();
@@ -29,7 +31,7 @@ namespace BLL
      List<int> kndId = new List<int>();
       using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
       {
-        var calendersKinderGarden = db.Calanders.Where(c => c.ProfessionalId==profossionalId).ToList();
+        var calendersKinderGarden = db.Calanders.Where(c => c.ProfessionalId==profossionalId&& c.DateStart.GetValueOrDefault().Year==year).ToList();
         
         foreach (var calenderkndg in calendersKinderGarden)
         {

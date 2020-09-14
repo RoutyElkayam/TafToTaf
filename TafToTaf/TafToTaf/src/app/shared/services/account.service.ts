@@ -3,6 +3,7 @@ import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { Child } from '../models/child';
 
 
 @Injectable({
@@ -14,6 +15,7 @@ export class AccountService {
   user:Observable<User>=null;
   private key = 'token';
   public currentUser:User=null;
+  userChild:Child;
 
   constructor(private http:HttpClient) { }
 
@@ -23,8 +25,16 @@ export class AccountService {
   }
   getUser()
   {
-    return this.http.get<User>(this.url);
-    
+    return this.http.get<User>(this.url);  
+  }
+  getChildOfUser()
+  {
+    if(this.currentUser)
+    {
+      let parentID=this.currentUser.id;
+      const url=`${this.url}/${"ParentChild"}/${parentID}`
+      return this.http.get<Child>(url);
+    }
   }
   token()
   {

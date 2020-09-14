@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProfessionalService } from 'src/app/shared/services/professional.service';
 import { Professional } from 'src/app/shared/models/professional';
 import { ProfessionalPost } from 'src/app/shared/models/professionalPost';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-insert-worker',
@@ -22,11 +23,8 @@ export class InsertWorkerComponent implements OnInit {
    thuesday: boolean;
    wednesday: boolean;
    tursday: boolean;
-
-
-
-
-
+   errorMessage:string=null;
+   isLoading:boolean=false;
 constructor(public activeModal: NgbActiveModal , 
   public professionalService:ProfessionalService) {}
 
@@ -35,6 +33,7 @@ constructor(public activeModal: NgbActiveModal ,
 
   sumbit()
   {
+    this.isLoading=true;
     console.log(this.name);
     this.worker=
     {
@@ -53,8 +52,9 @@ constructor(public activeModal: NgbActiveModal ,
     return this.professionalService.postProfessional(this.worker).
     subscribe(res=>
       {
+        this.isLoading=false;
         this.activeModal.close();
-      },err=>{console.log('error',err)});
+      },(err:HttpErrorResponse)=>{this.errorMessage=err.message});
     
   }
 }

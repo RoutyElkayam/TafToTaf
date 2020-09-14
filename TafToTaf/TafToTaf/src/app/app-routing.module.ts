@@ -12,6 +12,8 @@ import { ParentMeetingsComponent } from './components/parent-meetings/parent-mee
 import { AuthGuardAdmin,AuthGuardParent,AuthGuardWorker } from './auth.guard';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { WorkersComponent } from './components/workers/workers.component';
+import { ReportChildComponent } from './components/report-child/report-child.component';
+import { ChildWorkerComponent } from './components/child-worker/child-worker.component';
 
 const routes: Routes = [
   {component:LogInComponent,path:""},
@@ -34,9 +36,16 @@ const routes: Routes = [
   {component:WorkerMainComponent, path:"worker-main",
   children:[
     {component:WelcomeComponent, path:""},
-    {component:ChildrenComponent, path:"children"},
+    {component:ChildWorkerComponent, path:"child-worker"},
     {component:ParentMeetingsComponent, path:"parent-meetings"},
     {component:TeamMeetingsComponent, path:"team-meetings"}
+  ]} ,
+  {component:ParentMainComponent, path:"parent-main",
+  children:[
+    {component:WelcomeComponent, path:""},
+    {component:WeeklySystemComponent, path:"Calendar"},
+    {component:ParentMeetingsComponent, path:"meetings"},
+    {component:ReportChildComponent, path:"report-child"}
   ]} 
 ];
 

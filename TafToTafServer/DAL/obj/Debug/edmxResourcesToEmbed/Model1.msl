@@ -1,20 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="TafToTafModelStoreContainer" CdmEntityContainer="TafToTafEntities1">
-    <EntitySetMapping Name="Calanders">
-      <EntityTypeMapping TypeName="TafToTafModel.Calander">
-        <MappingFragment StoreEntitySet="Calander">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="dateStart" ColumnName="dateStart" />
-          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
-          <ScalarProperty Name="KinderGardenId" ColumnName="KinderGardenId" />
-          <ScalarProperty Name="ProfessionalId" ColumnName="ProfessionalId" />
-          <ScalarProperty Name="KindId" ColumnName="KindId" />
-          <ScalarProperty Name="NameMeeting" ColumnName="NameMeeting" />
-          <ScalarProperty Name="ChildID" ColumnName="ChildID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Children">
       <EntityTypeMapping TypeName="TafToTafModel.Child">
         <MappingFragment StoreEntitySet="Child">
@@ -122,6 +108,20 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="NameHoliday" ColumnName="NameHoliday" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Calanders">
+      <EntityTypeMapping TypeName="TafToTafModel.Calander">
+        <MappingFragment StoreEntitySet="Calander">
+          <ScalarProperty Name="ChildId" ColumnName="ChildId" />
+          <ScalarProperty Name="NameMeeting" ColumnName="NameMeeting" />
+          <ScalarProperty Name="KindId" ColumnName="KindId" />
+          <ScalarProperty Name="ProfessionalId" ColumnName="ProfessionalId" />
+          <ScalarProperty Name="KinderGardenId" ColumnName="KinderGardenId" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

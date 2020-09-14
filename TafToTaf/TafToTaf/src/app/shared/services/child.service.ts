@@ -18,20 +18,29 @@ export class ChildService {
     const url = `${this.url}/${id}`;
     return this.http.get<Child>(url);
   }
+
   getChildren() :Observable<Child[]>{
     return  this.http.get<Child[]>(this.url);
   }
+
   editChild(child:Child){
   const url=`${this.url}/${child.id}`;
     return this.http.put(url,child);
   }
+
   deleteChild(id:number){
     const url=`${this.url}/${id}`;
    return this.http.delete(url);
   }
+
   postChild(child, kinderGardenName:string){
     const url = `${this.url}/${kinderGardenName}`;
    return this.http.post(url,child)
 
   }
+
+  getChildWorker(): Observable<Child[]>{
+    return this.http.get<Child[]>(this.url)
+  }
+  
 }

@@ -4,6 +4,7 @@ import { KinderGarden } from 'src/app/shared/models/kinderGarden';
 import { Child } from 'src/app/shared/models/child';
 import {ChildService} from 'src/app/shared/services/child.service';
 import { ChildPost } from 'src/app/shared/models/childPost';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class InsertChildComponent implements OnInit {
     parentName:string;
     parentEmail:string;
     kinderGardenName:string;
-
+    errorMessage:string=null;
+    isLoading:boolean=false;
 
   constructor(public activeModal: NgbActiveModal , 
     public childService:ChildService) {}
@@ -34,7 +36,7 @@ export class InsertChildComponent implements OnInit {
   }
 
   sumbit(){
-
+   this.isLoading=true;
    let child:ChildPost = {
    'firstName':this.firstName,
    'lastName': this.lastName,
@@ -47,8 +49,9 @@ export class InsertChildComponent implements OnInit {
     return this.childService.postChild(child,this.kinderGardenName).
     subscribe(res=>
       {
+        this.isLoading=false;
         this.activeModal.close();
-      },err=>{console.log('error',err)});
+      },(err:HttpErrorResponse)=>{this.errorMessage=err.message});
     
   }
 

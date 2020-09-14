@@ -15,13 +15,13 @@ namespace DAL
     public partial class Calander
     {
         public int Id { get; set; }
-        public Nullable<System.DateTime> dateStart { get; set; }
+        public Nullable<System.DateTime> DateStart { get; set; }
         public Nullable<System.DateTime> DateEnd { get; set; }
         public Nullable<int> KinderGardenId { get; set; }
         public Nullable<int> ProfessionalId { get; set; }
         public Nullable<int> KindId { get; set; }
         public string NameMeeting { get; set; }
-        public Nullable<int> ChildID { get; set; }
+        public Nullable<int> ChildId { get; set; }
     
         public virtual Child Child { get; set; }
         public virtual Kind Kind { get; set; }

@@ -37,6 +37,8 @@ import { InsertWorkerComponent } from './components/insert-worker/insert-worker.
 import { EditWorkerComponent } from './components/edit-worker/edit-worker.component';
 import { DeleteWorkerComponent } from './components/delete-worker/delete-worker.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { ReportChildComponent } from './components/report-child/report-child.component';
+import { ChildWorkerComponent } from './components/child-worker/child-worker.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     EditWorkerComponent,
     DeleteWorkerComponent,
     LoaderComponent,
+    ReportChildComponent,
+    ChildWorkerComponent,
   
   ],
   imports: [

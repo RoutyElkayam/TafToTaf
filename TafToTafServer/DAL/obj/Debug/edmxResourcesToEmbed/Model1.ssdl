@@ -5,13 +5,13 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="dateStart" Type="datetime" />
+    <Property Name="DateStart" Type="datetime" />
     <Property Name="DateEnd" Type="datetime" />
     <Property Name="KinderGardenId" Type="int" />
     <Property Name="ProfessionalId" Type="int" />
     <Property Name="KindId" Type="int" />
     <Property Name="NameMeeting" Type="nvarchar" MaxLength="50" />
-    <Property Name="ChildID" Type="int" />
+    <Property Name="ChildId" Type="int" />
   </EntityType>
   <EntityType Name="Child">
     <Key>
@@ -123,7 +123,7 @@ warning 6002: The table/view 'TafToTaf.dbo.Holiday' does not have a primary key 
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Calander">
-        <PropertyRef Name="ChildID" />
+        <PropertyRef Name="ChildId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

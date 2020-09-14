@@ -9,8 +9,10 @@ using DAL;
 
 namespace BLL
 {
+
   public class ChildLogic
   {
+    static int year = PublicLogic.CalcBeaginYear().Year;
     public static ChildDto SelectChild(int id)
     {
       using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
@@ -48,6 +50,25 @@ namespace BLL
       }
       return childrenList;
     }
+    public static List<ChildDto> SelectWorkerChildren(int workerID)
+    {
+      List<int> childrenIDs = new List<int>();
+      List<ChildDto> childrenList = new List<ChildDto>();
+      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      {
+        var calendersWorker = db.Calanders.Where(c => c.ProfessionalId==workerID&&c.DateStart!=null&&c.DateStart.Value.Year==year).ToList();
+        foreach (var calendar in calendersWorker)
+        {
+          if(childrenIDs.Contains(calendar.ChildId.GetValueOrDefault())==false)
+          {
+            childrenIDs.Add(calendar.ChildId.GetValueOrDefault());
+            childrenList.Add(ChildC.ToChildDTO(db.Children.First(ch => ch.Id == calendar.ChildId)));
+          }
+        }
+      }
+      return childrenList;
+    }
+
     public static void InsertChild(DTO.ChildPost child, string kGardenName)
     {
 

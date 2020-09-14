@@ -60,6 +60,7 @@ export class ChildrenComponent implements OnInit {
       
     });
   }
+
   delete(child: Child): void {
     const modalRef = this.modalService.open(ModalDeleteComponent);
     modalRef.componentInstance.child = child;
@@ -72,6 +73,7 @@ export class ChildrenComponent implements OnInit {
       
     });
   }
+
   edit(child:Child){
     const modalRef = this.modalService.open(EditChildComponent);
     modalRef.componentInstance.child = child;

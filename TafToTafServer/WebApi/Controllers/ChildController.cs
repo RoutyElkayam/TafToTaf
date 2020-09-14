@@ -55,7 +55,59 @@ namespace WebApi.Controllers
       catch (Exception ex)
       {
         return BadRequest(ex.Message);
-        
+
+      }
+
+    }
+    [HttpGet]
+    [Route("WorkerChildren/{id}")]
+    // GET: api/Child/5
+    public IHttpActionResult GetChildrenOfWorker(int id)
+    {
+      try
+      {
+        var child = ChildLogic.SelectWorkerChildren(id);
+        if (child == null)
+        {
+          return BadRequest("null result");
+
+        }
+        return Ok(child);
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.InnerException.Message);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+
+      }
+
+    }
+    [HttpGet]
+    [Route("ParentChild/{id}")]
+    // GET: api/Child/5
+    public IHttpActionResult GetChildOfParent(int id)
+    {
+      try
+      {
+        var child = ChildLogic.SelectChildByParentId(id);
+        if (child == null)
+        {
+          return BadRequest("null result");
+
+        }
+        return Ok(child);
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.InnerException.Message);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+
       }
 
     }
@@ -79,49 +131,42 @@ namespace WebApi.Controllers
       }
 
     }
-    //[HttpPost]
-    //public IHttpActionResult PostChildWorker([FromBody] ChildDto child, [FromUri] string id)
-    //{
-    //  foreach (var item in work)
-    //  {
 
-    //  }
-    //}
-    [HttpPut]
-    // PUT: api/Child/5
-    public IHttpActionResult Put(int id, [FromBody]ChildDto child)
+  [HttpPut]
+  // PUT: api/Child/5
+  public IHttpActionResult Put(int id, [FromBody]ChildDto child)
+  {
+    try
     {
-      try
+      if (child != null)
       {
-        if (child != null)
-        {
-          ChildLogic.EditChild(id, child);
-          return Ok("nicly");
-        }
-        return BadRequest("object to edit must have values");
+        ChildLogic.EditChild(id, child);
+        return Ok("nicly");
       }
-      catch (HttpListenerException ex)
-      {
-        return BadRequest(ex.Message);
-      }
-      catch (Exception ex)
-      {
-        return BadRequest(ex.Message);
-      }
+      return BadRequest("object to edit must have values");
     }
-    [HttpDelete]
-    // DELETE: api/Child/5
-    public IHttpActionResult Delete(int id)
+    catch (HttpListenerException ex)
     {
-      try
-      {
-        ChildLogic.DeleteChild(id);
-        return Ok("deleted");
-      }
-      catch (Exception ex)
-      {
-        return BadRequest(ex.Message);
-      }
+      return BadRequest(ex.Message);
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
     }
   }
+  [HttpDelete]
+  // DELETE: api/Child/5
+  public IHttpActionResult Delete(int id)
+  {
+    try
+    {
+      ChildLogic.DeleteChild(id);
+      return Ok("deleted");
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
+    }
+  }
+}
 }

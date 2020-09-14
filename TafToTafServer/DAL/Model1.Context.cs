@@ -25,7 +25,6 @@ namespace DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Calander> Calanders { get; set; }
         public virtual DbSet<Child> Children { get; set; }
         public virtual DbSet<ChildKinderGarden> ChildKinderGardens { get; set; }
         public virtual DbSet<Kind> Kinds { get; set; }
@@ -36,5 +35,6 @@ namespace DAL
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Holiday> Holidays { get; set; }
+        public virtual DbSet<Calander> Calanders { get; set; }
     }
 }

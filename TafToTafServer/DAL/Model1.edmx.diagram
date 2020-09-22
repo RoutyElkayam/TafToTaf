@@ -4,7 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="62948988f3bf41baa5563786bed19e8d" Name="Diagram1">
+      <Diagram DiagramId="93647f6a42dd4607a0859639cd284e30" Name="Diagram1">
+        <EntityTypeShape EntityType="TafToTafModel.Calander" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.Child" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.ChildKinderGarden" Width="1.5" PointX="8.25" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.Kind" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
@@ -15,16 +16,15 @@
         <EntityTypeShape EntityType="TafToTafModel.sysdiagram" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.User" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="TafToTafModel.Holiday" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="TafToTafModel.FK_Calander_Child" ManuallyRouted="false" />
+        <AssociationConnector Association="TafToTafModel.FK_Calander_Kind" ManuallyRouted="false" />
+        <AssociationConnector Association="TafToTafModel.FK_Calander_KinderGarden" ManuallyRouted="false" />
+        <AssociationConnector Association="TafToTafModel.FK_Calander_Professionals" ManuallyRouted="false" />
         <AssociationConnector Association="TafToTafModel.FK_Child_Child" ManuallyRouted="false" />
         <AssociationConnector Association="TafToTafModel.FK_ChildKinderGarden_Child" ManuallyRouted="false" />
         <AssociationConnector Association="TafToTafModel.FK_ChildKinderGarden_KinderGarden" ManuallyRouted="false" />
         <AssociationConnector Association="TafToTafModel.FK_Professionals_ProfessionKind" ManuallyRouted="false" />
         <AssociationConnector Association="TafToTafModel.FK_Professionals_User" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="TafToTafModel.Calander" Width="1.5" PointX="5.25" PointY="6.125" />
-        <AssociationConnector Association="TafToTafModel.FK_Calander_Child" />
-        <AssociationConnector Association="TafToTafModel.FK_Calander_Kind" />
-        <AssociationConnector Association="TafToTafModel.FK_Calander_KinderGarden" />
-        <AssociationConnector Association="TafToTafModel.FK_Calander_Professionals" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

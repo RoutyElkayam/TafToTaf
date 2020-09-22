@@ -3,6 +3,7 @@ import { AccountService } from '../../shared/services/account.service';
 import { Router } from '@angular/router';
 import { User } from '../../shared/models/user';
 import { IfStmt } from '@angular/compiler';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-log-in',
@@ -11,11 +12,12 @@ import { IfStmt } from '@angular/compiler';
 })
 export class LogInComponent implements OnInit {
 
-  username: string;
-  password: string;
+  username: string=null;
+  password: string=null;
   user: User;
   message = {error: ''};
   isLoading:boolean=false;
+  isNullValues=false;
   
   constructor(private accountService: AccountService,
     private router: Router) { }
@@ -28,17 +30,23 @@ export class LogInComponent implements OnInit {
   }
 
   login() {
-      this.accountService.login(this.username, this.password).subscribe((res:string )=> {
-      localStorage.setItem('token',res)
-      this.navigationByKindUser()}); 
+    if(this.username==null||this.password==null)
+      this.isNullValues=true;
+    else  
+      {
+        this.isNullValues=false;
+       this.accountService.login(this.username, this.password).subscribe((res:string )=> {
+       localStorage.setItem('token',res)
+       this.navigationByKindUser()}
+       ,(err:HttpErrorResponse)=>{if(err.message)this.isNullValues=true;}); 
+      }
   }
   navigationByKindUser()
   {
       this.isLoading=true;
-      this.accountService.getUser().subscribe(res=>
+      this.accountService.getUser().subscribe((res)=>
       {
       this.accountService.currentUser=res;
-      console.log(this.accountService.currentUser);
       if(this.accountService.currentUser)
         {
           if (this.accountService.currentUser.kindUser == 1) {
@@ -52,7 +60,7 @@ export class LogInComponent implements OnInit {
           }
 
         }
-      else alert("UserName or Password are not valid!");
+      else this.isNullValues=true;
       this.isLoading=false;
     });
   }

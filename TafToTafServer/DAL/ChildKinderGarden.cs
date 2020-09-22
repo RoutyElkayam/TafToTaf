@@ -19,5 +19,8 @@ namespace DAL
         public Nullable<int> KindrGardenID { get; set; }
         public Nullable<System.DateTime> BeginYear { get; set; }
         public Nullable<System.DateTime> EndYear { get; set; }
+    
+        public virtual Child Child { get; set; }
+        public virtual KinderGarden KinderGarden { get; set; }
     }
 }

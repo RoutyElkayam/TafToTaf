@@ -31,7 +31,7 @@ namespace BLL
      List<int> kndId = new List<int>();
       using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
       {
-        var calendersKinderGarden = db.Calanders.Where(c => c.ProfessionalId==profossionalId&& c.DateStart.GetValueOrDefault().Year==year).ToList();
+        var calendersKinderGarden = db.Calanders.Where(c => c.ProfessionalId==profossionalId&&c.DateStart!=null&&c.DateStart.Value.Year==year).ToList();
         
         foreach (var calenderkndg in calendersKinderGarden)
         {

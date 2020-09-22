@@ -1,8 +1,9 @@
-import { Component,ChangeDetectionStrategy,  ViewChild,  TemplateRef,}  from '@angular/core';
+import { Component,ChangeDetectionStrategy,  ViewChild,  TemplateRef,OnInit}  from '@angular/core';
 import {  startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, addMinutes,} from 'date-fns';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView,} from 'angular-calendar';
+import { CalanderService } from 'src/app/shared/services/calander.service';
 
 const colors: any = {
   red: {
@@ -23,7 +24,7 @@ const colors: any = {
   templateUrl: './weekly-system.component.html',
   styleUrls: ['./weekly-system.component.scss']
 })
-export class WeeklySystemComponent  {
+export class WeeklySystemComponent implements OnInit  {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
@@ -41,36 +42,43 @@ export class WeeklySystemComponent  {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
-    {
-      start: addHours(startOfDay(new Date()), 9),
-      end: addMinutes(new Date(), 45),
-      title: 'קלינאית תקשורת:נירית ילד:שיר גולדשטיין',
-      color: colors.yellow,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 9),
-      end: addMinutes(new Date(), 45),
-      title: 'קלינאית תקשורת :נירית ילד: נועם כחלון',
-      color: colors.yellow,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.yellow,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'פיזיותרפיה:אלינוי ילדה: חן שמחה עזראן',
-      color: colors.yellow,
-    },
-  ];
+  events: CalendarEvent[] ;
+  //  =[ {
+  //     start: addHours(startOfDay(new Date()), 9),
+  //     end: addMinutes(new Date(), 45),
+  //     title: 'קלינאית תקשורת:נירית ילד:שיר גולדשטיין',
+  //     color: colors.yellow,
+  //   },
+  //   {
+  //     start: addHours(startOfDay(new Date()), 9),
+  //     end: addMinutes(new Date(), 45),
+  //     title: 'קלינאית תקשורת :נירית ילד: נועם כחלון',
+  //     color: colors.yellow,
+  //   },
+  //   {
+  //     start: subDays(endOfMonth(new Date()), 3),
+  //     end: addDays(endOfMonth(new Date()), 3),
+  //     title: 'A long event that spans 2 months',
+  //     color: colors.yellow,
+  //   },
+  //   {
+  //     start: addHours(startOfDay(new Date()), 2),
+  //     end: addHours(new Date(), 2),
+  //     title: 'פיזיותרפיה:אלינוי ילדה: חן שמחה עזראן',
+  //     color: colors.yellow,
+  //   },
+  // ];
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal,
+    private calendarService:CalanderService) {}
+  ngOnInit(): void {
+    this.calendarService.getKGardenCalender(1).subscribe(
+      res=>{this.events=res,
+        this.setColors();}
+    );
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -95,6 +103,13 @@ export class WeeklySystemComponent  {
 
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
+  }
+  setColors(){
+    this.events.forEach(event => {
+      event.color=colors.yellow;
+      event.end=new Date(event.end);
+      event.start=new Date(event.start);
+    });
   }
 
 }

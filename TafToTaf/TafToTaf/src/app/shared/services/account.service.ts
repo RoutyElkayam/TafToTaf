@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Child } from '../models/child';
+import { Professional } from '../models/professional';
 import { id } from 'date-fns/locale';
 
 
@@ -17,8 +18,7 @@ export class AccountService {
   private key = 'token';
   public currentUser:User=null;
   userChild:Child;
-  userWorker:Worker;
-
+  userProffesional:Professional;
   constructor(private http:HttpClient) { }
 
   login(username:string, password:string) 

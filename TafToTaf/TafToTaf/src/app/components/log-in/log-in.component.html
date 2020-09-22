@@ -14,6 +14,7 @@
     <form>
       <input type="text" id="login" class="fadeIn second" [(ngModel)]="username" name="login" placeholder="שם משתמש">
       <input type="text" id="password" class="fadeIn third" [(ngModel)]="password" name="login" placeholder="סיסמא" for="password">
+      <p *ngIf="this.isNullValues==true">שם משתמש ו/סיסמה שגויים</p>
       <input type="submit" class="fadeIn fourth" value="Log In" (click)="login()" >
     </form>
   </div>

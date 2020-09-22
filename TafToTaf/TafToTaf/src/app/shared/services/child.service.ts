@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Child } from '../models/child';
+import { AccountService } from './account.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { Child } from '../models/child';
 export class ChildService {
   url=environment.base_url+"Child";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private accontService:AccountService) { }
 
   //Get Single Child
   getChild(id: number): Observable<Child> {
@@ -42,5 +43,14 @@ export class ChildService {
   getChildWorker(): Observable<Child[]>{
     return this.http.get<Child[]>(this.url)
   }
-  
+  getChildOfUser()
+  {
+    if(this.accontService.currentUser)
+    {
+      console.log(this.accontService.currentUser);
+      let parentID=this.accontService.currentUser.id;
+      const url=`${this.url}/${"ParentChild"}/${parentID}`
+      return this.http.get<Child>(url);
+    } 
+  }
 }

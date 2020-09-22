@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="table-wrapper">
         <div class="table-title">
@@ -10,19 +9,22 @@
                 <tr> 
                     <th>סטטוס</th>                  
                     <th>מיקום</th>
-                    <th>תאריך</th>
+                    <th> תאריך ושעת סיום  </th>
+                    <th> תאריך ושעת התחלה  </th>
+                    <th> כותרת המפגש</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let meet of teamMeetings">
-                     <td>
-                        <!-- [ngClass]="{'finished':{{getStatus(meet)==true}} , 'second': {{getStatus(meet)==false}}}" -->
+                <tr *ngFor="let meet of this.teamMeetings">
+                     <td [ngClass]="this.getStatusClass(meet)">
+                        <i class="fas fa-check"></i>
                     </td>                      
-                    <td>{{getPlace(meet.dateStart)}}</td>
-                    <td> {{meet.dateStart}}</td>  
-                </tr>
-    
+                    <td>{{getPlace(meet)}}</td>
+                    <td> {{meet.end| date:'medium'}}</td> 
+                    <td> {{meet.start| date:'medium'}}</td>   
+                    <td>{{meet.title}}</td>
+                </tr> 
             </tbody>
         </table>
     </div>
-  
+</div> 

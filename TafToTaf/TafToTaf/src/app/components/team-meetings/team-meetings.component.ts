@@ -11,37 +11,38 @@ import { CalanderService } from 'src/app/shared/services/calander.service';
 export class TeamMeetingsComponent implements OnInit {
   
   teamMeetings:Calander[];
-  user =this.accountService.currentUser;
+  user ;
   nowDate=new Date();
   constructor(public calendarService: CalanderService
     ,private accountService: AccountService) {  
     }
 
   ngOnInit() {
+    this.user=this.accountService.currentUser;
     if(this.user.kindUser==2)
       this.getWorkerTeamMeeting();
-    else this.getAdminTeamMeeting
+    else this.getAdminTeamMeeting();
   }
   
   getWorkerTeamMeeting(){
     this.calendarService.getWorkerTeamMeeting(this.user.id).subscribe(res=>
-      this.teamMeetings=res);
+      {this.teamMeetings=res,console.log(this.teamMeetings)});
   }
 
   getAdminTeamMeeting(){
     this.calendarService.getAdminTeamMeetings().subscribe(res=>
-      this.teamMeetings=res)
+     {this.teamMeetings=res,console.log(this.teamMeetings)});  
   }
   
-  getPlace(date:Date):string{
-    if(date.getDay()==0||date.getDay()==2||date.getDay()==4)
+  getPlace(meeting:Calander):string{
+    if(meeting.kinderGardenId==1)
       return "אולם קומה 4";
     else return "חדר ישיבות קומה 2";
   }
-  getStatus(meet:Calander):boolean{
-    if(meet.dateStart>this.nowDate)
-      return true;
-    return false;
+  getStatusClass(meet:Calander):string{
+    if(meet.start >this.nowDate)
+      return "finished";
+    return "notYet";
   }
 
 }

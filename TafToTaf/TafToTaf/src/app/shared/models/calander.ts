@@ -1,10 +1,10 @@
 export class Calander{
     id :number;
-    dateStart:Date;
-    dateEnd:Date;
+    start:Date;
+    end:Date;
     kinderGardenId:number;
     professionalId:number;
     kindId:number;
-    nameMeeting:string;
+    title:string;
     childId:number;
 }

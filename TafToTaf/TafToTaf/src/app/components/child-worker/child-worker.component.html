@@ -1,6 +1,6 @@
 <div class="container">
-  <div  *ngFor="let child of children">
-    <div class="row userMain">
+  <div  *ngFor="let i=index; let child of children" >
+    <div *ngIf="i<8" class="row userMain">
       <div class="col-md-3 col-sm-4">
           <div class="userBlock">
               <div class="backgrounImg">
@@ -10,7 +10,6 @@
                   <img src="http://www.dinil.co.il/wp-content/uploads/2013/02/canstockphoto11023405-300x199.jpg">
               </div>
               <div class="userDescription">
-              <!-- <div  *ngFor="let child of children"></div> -->
                   <h5>{{child.firstName}}</h5>               
                    <div class="followrs">
                       

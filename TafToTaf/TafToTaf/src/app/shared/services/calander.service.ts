@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Calander } from '../models/calander';
-import { Calendar } from 'primeng';
+import { CalendarEvent } from 'angular-calendar';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,10 +21,10 @@ export class CalanderService {
     const url=`${this.url}/${"AdminParentMeetings"}`;
     return this.http.get<Calander[]>(url);
   }
-  getKGardenCalender(kinderGardenId:number):Observable<Calander[]> 
+  getKGardenCalender(kinderGardenId:number):Observable<CalendarEvent[]> 
   {
     const url=`${this.url}/${"CalendarKinderGarden"}/${kinderGardenId}`;
-    return this.http.get<Calander[]>(url);
+    return this.http.get<CalendarEvent[]>(url);
   }
   getChildCalender(childID:number):Observable<Calander[]> 
   {

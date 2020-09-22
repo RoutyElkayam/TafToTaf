@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Professional } from '../models/professional';
 import { ProfessionalPost } from '../models/professionalPost';
+import {} from 
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,12 @@ export class ProfessionalService {
   postProfessional(proffesional:ProfessionalPost){   
    return this.http.post(this.url,proffesional);
   }
-  
+  getWorkerOfUser()
+  {
+    
+     let WorkerId=this.getWorkerOfUser().id
+      const url=`${this.url}/${"ProffesionalUserId"}/${WorkerId}`
+      return this.http.get<Worker>(url);
+
+  }
 }

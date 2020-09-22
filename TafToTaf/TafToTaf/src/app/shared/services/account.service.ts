@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Child } from '../models/child';
 import { Professional } from '../models/professional';
+import { id } from 'date-fns/locale';
 
 
 @Injectable({
@@ -24,14 +25,27 @@ export class AccountService {
   {
     return  this.http.post(this.url+"/login",{password:password,userName:username}); 
   }
+
   getUser()
   {
     return this.http.get<User>(this.url);  
   }
+
+  getChildOfUser()
+  {
+    if(this.currentUser)
+    {
+      let parentID=this.currentUser.id;
+      const url=`${this.url}/${"ParentChild"}/${parentID}`
+      return this.http.get<Child>(url);
+    }
+  }
+
   token()
   {
     return localStorage.getItem(this.key);
   }
+
   // decodeToken(token: string): string
   // {
   //   return token.slice(231,235);

@@ -12,9 +12,9 @@ export class KindergardenService {
 
   constructor(public http:HttpClient) { }
   
-  getKinderGardens(): Observable<KinderGarden[]>{
-    
+  getKinderGardens(): Observable<KinderGarden[]>{  
     return this.http.get<KinderGarden[]>(this.url);
     }
+    
 }
 

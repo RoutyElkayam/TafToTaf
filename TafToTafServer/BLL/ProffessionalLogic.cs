@@ -83,8 +83,6 @@ namespace BLL
       }
       PublicLogic.SendEmail("TLT2", proffessional.Id.ToString(), proffessional.ProffesionalEmail);
     }
-
-
     public static void DeleteProffesional(int id)
     {
       try
@@ -107,7 +105,6 @@ namespace BLL
         throw new Exception(ex.Message);
       }
     }
-
     public static void EditProffesional(int id, DTO.ProfessionalDTO professional)
     {
       using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())

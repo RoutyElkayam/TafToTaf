@@ -16,7 +16,6 @@ namespace WebApi.Controllers
     {
     [HttpGet]
     // GET: api/Child
-
     public IHttpActionResult Get()
     {
       try
@@ -33,7 +32,6 @@ namespace WebApi.Controllers
         return BadRequest(ex.Message);
       }
     }
-
     [HttpGet]
     // GET: api/Proffesional/5
     public IHttpActionResult Get(int id)
@@ -58,6 +56,32 @@ namespace WebApi.Controllers
 
       }
 
+    }
+    [HttpGet]
+    [Route("ProffesionalUserId/{id}")]
+
+    public IHttpActionResult GetProffesionalUserId(int id)
+    {
+      try
+      {
+        var proffesionalId = ProffessionalLogic.SelectProfessionalByUserID(id);
+        if (proffesionalId==null)
+        {
+          return BadRequest("null result");
+
+        }
+        return Ok(proffesionalId);
+
+      }
+      catch (HttpListenerException ex)
+      {
+        return BadRequest(ex.InnerException.Message);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+
+      }
     }
     [HttpPost]
     public IHttpActionResult Post([FromBody]ProffessionalPost professional)

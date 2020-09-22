@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Professional } from '../models/professional';
 import { ProfessionalPost } from '../models/professionalPost';
-import {} from 
+
 
 @Injectable({
   providedIn: 'root'

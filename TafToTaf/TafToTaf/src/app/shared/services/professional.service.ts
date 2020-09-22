@@ -34,11 +34,10 @@ export class ProfessionalService {
   }
   getWorkerOfUser()
   {
-    if()
-    {
-      let WorkerId=this.getWorkerOfUser().id
+    
+     let WorkerId=this.getWorkerOfUser().id
       const url=`${this.url}/${"ProffesionalUserId"}/${WorkerId}`
       return this.http.get<Worker>(url);
-    }
+
   }
 }

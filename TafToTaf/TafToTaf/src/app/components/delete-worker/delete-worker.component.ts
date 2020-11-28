@@ -14,8 +14,6 @@ export class DeleteWorkerComponent implements OnInit {
  
   constructor(private activeModal:NgbActiveModal,
     public workerService: ProfessionalService) { }
-  
-  
 
   ngOnInit() {
   }

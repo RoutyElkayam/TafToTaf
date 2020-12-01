@@ -9,8 +9,8 @@ import { ProfessionalService } from 'src/app/shared/services/professional.servic
 })
 export class WorkerMainComponent implements OnInit {
 
-  constructor(private workerService:ProfessionalService,
-     private accountService:AccountService) { }
+  constructor(private accountService:AccountService,
+   private workerService:ProfessionalService) { }
 
   ngOnInit() {
     this.getWorkerByUserId();

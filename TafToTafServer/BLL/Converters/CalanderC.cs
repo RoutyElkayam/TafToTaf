@@ -19,7 +19,7 @@ namespace BLL.Converters
         Id = calander.Id,
         End = calander.DateEnd.GetValueOrDefault(),
         Start = calander.DateStart.GetValueOrDefault(),
-        //KindId = calander.KindId.GetValueOrDefault(),
+        KindId = calander.KindId.GetValueOrDefault(),
         //KinderGardenId = calander.KinderGardenId.GetValueOrDefault(),
         //ProfessionalId = calander.ProfessionalId.GetValueOrDefault(),
         //ChildID = calander.ChildId.GetValueOrDefault(),

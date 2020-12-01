@@ -71,7 +71,8 @@ namespace WebApi.Controllers
         return BadRequest(ex.Message);
       }
     }
-   [Route("CalenderWorker/{id}")]
+    [HttpGet]
+    [Route("CalenderWorker/{id}")]
     public IHttpActionResult GetcalenderWorker(int id)
     {
       try

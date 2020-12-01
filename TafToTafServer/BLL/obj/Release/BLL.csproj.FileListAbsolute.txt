@@ -1,0 +1,14 @@
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\bin\Release\BLL.dll
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\bin\Release\BLL.pdb
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\bin\Release\DAL.dll
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\bin\Release\DTO.dll
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\bin\Release\EntityFramework.dll
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\bin\Release\DAL.pdb
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\bin\Release\DAL.dll.config
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\bin\Release\DTO.pdb
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\bin\Release\EntityFramework.xml
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\obj\Release\BLL.csprojAssemblyReference.cache
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\obj\Release\BLL.csproj.CoreCompileInputs.cache
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\obj\Release\BLL.csproj.CopyComplete
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\obj\Release\BLL.dll
+C:\Users\user1\Documents\GitHub\TafToTaf\TafToTafServer\BLL\obj\Release\BLL.pdb

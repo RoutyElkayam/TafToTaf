@@ -37,6 +37,7 @@ const routes: Routes = [
   children:[
     {component:WelcomeComponent, path:""},
     {component:ChildWorkerComponent, path:"child-worker"},
+    {component:WeeklySystemComponent, path:"weekly-system"},
     {component:ParentMeetingsComponent, path:"parent-meetings"},
     {component:TeamMeetingsComponent, path:"team-meetings"}
   ]} ,

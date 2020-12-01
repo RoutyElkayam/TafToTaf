@@ -36,8 +36,8 @@ export class LogInComponent implements OnInit {
       {
         this.isNullValues=false;
        this.accountService.login(this.username, this.password).subscribe((res:string )=> {
-       localStorage.setItem('token',res)
-       this.navigationByKindUser()}
+       localStorage.setItem('token',res);
+       this.navigationByKindUser();}
        ,(err:HttpErrorResponse)=>{if(err.message)this.isNullValues=true;}); 
       }
   }

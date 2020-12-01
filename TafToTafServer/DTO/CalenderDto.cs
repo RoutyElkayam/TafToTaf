@@ -13,7 +13,7 @@ namespace DTO
     public DateTime End { get; set; }
     //public int KinderGardenId { get; set; }
     //public int ProfessionalId { get; set; }
-    //public int KindId { get; set; }
+    public int KindId { get; set; }
     //public int ChildID { get; set; }
     public string Title { get; set; }
     public string Color { get; set; }

@@ -9,7 +9,7 @@
                      <div class="col-sm-4">
                         <select class="form-control" [(ngModel)]="selectkng"  (change)="OnchangeGan()">  
                             <option>{{selectkng}}</option>                       
-                            <option *ngFor= "let kinderGarden of kinderGardens" >
+                            <option *ngFor="let kinderGarden of kinderGardens" >
                              {{kinderGarden.name}}
                             </option>
                           </select>

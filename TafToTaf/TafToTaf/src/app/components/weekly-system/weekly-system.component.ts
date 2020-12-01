@@ -4,6 +4,8 @@ import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView,} from 'angular-calendar';
 import { CalanderService } from 'src/app/shared/services/calander.service';
+import { Kind } from 'src/app/shared/models/kind';
+import { AccountService } from 'src/app/shared/services/account.service';
 
 const colors: any = {
   red: {
@@ -72,12 +74,24 @@ export class WeeklySystemComponent implements OnInit  {
   activeDayIsOpen: boolean = true;
 
   constructor(private modal: NgbModal,
-    private calendarService:CalanderService) {}
+    private calendarService:CalanderService
+   ,private account:AccountService) {}
   ngOnInit(): void {
-    this.calendarService.getKGardenCalender(1).subscribe(
-      res=>{this.events=res,
+    if(this.account.currentUser.kindUser==2)
+    {
+      
+      this.calendarService.getWorkerCalender(this.account.userProffesional.id).subscribe(
+      res=>{this.events=res;console.log(this.events);
+        this.setColors()});
+    }
+    else if(this.account.currentUser.kindUser==3)
+    {    
+      this.calendarService.getChildCalender(this.account.userChild.id).subscribe(
+      res=>{this.events=res;console.log(this.events);
         this.setColors();}
     );
+    }
+
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -106,7 +120,12 @@ export class WeeklySystemComponent implements OnInit  {
   }
   setColors(){
     this.events.forEach(event => {
+    if(event.kindId==1)
       event.color=colors.yellow;
+    else if(event.kindId==2)
+      event.color=colors.red;
+    else 
+      event.color=colors.blue;   
       event.end=new Date(event.end);
       event.start=new Date(event.start);
     });

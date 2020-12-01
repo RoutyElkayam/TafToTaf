@@ -35,12 +35,10 @@ export class TeamMeetingsComponent implements OnInit {
   }
   
   getPlace(meeting:Calander):string{
-    if(meeting.kinderGardenId==1)
       return "אולם קומה 4";
-    else return "חדר ישיבות קומה 2";
   }
   getStatusClass(meet:Calander):string{
-    if(meet.start >this.nowDate)
+    if(new Date(meet.start) > new Date(this.nowDate))
       return "finished";
     return "notYet";
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/shared/services/account.service';
+import { ProfessionalService } from 'src/app/shared/services/professional.service';
 
 @Component({
   selector: 'worker-main',
@@ -8,13 +9,15 @@ import { AccountService } from 'src/app/shared/services/account.service';
 })
 export class WorkerMainComponent implements OnInit {
 
-  constructor(private accontService:AccountService) { }
+  constructor(private workerService:ProfessionalService,
+     private accountService:AccountService) { }
 
   ngOnInit() {
-    this.getWorkerUserId();
+    this.getWorkerByUserId();
   }
-  getWorkerUserId(): void{
-    this.accontService.getWorkerOfUser().subscribe(
-      w=>{this.accontService.userWorker=w});
+  getWorkerByUserId(): void {
+    console.log(this.accountService.currentUser);
+    this.workerService.getWorkerOfUser(this.accountService.currentUser.id).subscribe(
+      w=>{this.accountService.userProffesional=w});
   }
 }

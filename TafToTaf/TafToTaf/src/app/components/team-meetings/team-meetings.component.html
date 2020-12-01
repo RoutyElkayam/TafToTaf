@@ -9,8 +9,9 @@
                 <tr> 
                     <th>סטטוס</th>                  
                     <th>מיקום</th>
-                    <th> תאריך ושעת סיום  </th>
-                    <th> תאריך ושעת התחלה  </th>
+                    <th> שעת סיום  </th>
+                    <th> שעת התחלה  </th>
+                    <th>תאריך</th>
                     <th> כותרת המפגש</th>
                 </tr>
             </thead>
@@ -20,8 +21,9 @@
                         <i class="fas fa-check"></i>
                     </td>                      
                     <td>{{getPlace(meet)}}</td>
-                    <td> {{meet.end| date:'medium'}}</td> 
-                    <td> {{meet.start| date:'medium'}}</td>   
+                    <td> {{meet.end| date:'short'}}</td> 
+                    <td> {{meet.start| date:'short'}}</td>   
+                    <td> {{meet.start| date}}</td>   
                     <td>{{meet.title}}</td>
                 </tr> 
             </tbody>

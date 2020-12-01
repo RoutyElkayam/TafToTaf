@@ -39,6 +39,7 @@ import { DeleteWorkerComponent } from './components/delete-worker/delete-worker.
 import { LoaderComponent } from './components/loader/loader.component';
 import { ReportChildComponent } from './components/report-child/report-child.component';
 import { ChildWorkerComponent } from './components/child-worker/child-worker.component';
+import { AdminCalendarComponent } from './components/admin-calendar/admin-calendar.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { ChildWorkerComponent } from './components/child-worker/child-worker.com
     LoaderComponent,
     ReportChildComponent,
     ChildWorkerComponent,
+    AdminCalendarComponent,
   
   ],
   imports: [

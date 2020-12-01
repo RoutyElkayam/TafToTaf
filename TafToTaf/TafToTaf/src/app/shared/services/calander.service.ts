@@ -38,7 +38,7 @@ export class CalanderService {
   }
   getChildParentMeeting(childID:number):Observable<Calander[]> 
   {
-    const url=`${this.url}/${"WorkerParentsMeeting"}/${childID}`;
+    const url=`${this.url}/${"ChildParentMeeting"}/${childID}`;
     return this.http.get<Calander[]>(url);
   }
   
@@ -49,7 +49,7 @@ export class CalanderService {
   }
   getWorkerTeamMeeting(workerID:number):Observable<Calander[]> 
   {
-    const url=`${this.url}/${"WorkerParentsMeeting"}/${workerID}`;
+    const url=`${this.url}/${"WorkerTeamMeeting"}/${workerID}`;
     return this.http.get<Calander[]>(url);
   }
   

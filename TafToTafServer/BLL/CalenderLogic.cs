@@ -59,7 +59,7 @@ namespace BLL
     }
     public static List<CalenderDto> SelectCalenderChild(int childId)//מקבלת קוד ילד ומחזירה את כל הטיפולים שלן
     {
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (TafToTafEntities1 db = new DAL.TafToTafEntities1())
       {
         var child = db.Children.FirstOrDefault(ch => ch.Id == childId);
         if (child == null)
@@ -79,7 +79,7 @@ namespace BLL
     {
       using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
       {
-        var worker = db.Children.FirstOrDefault(ch => ch.Id == workerId);
+        var worker = db.Professionals.FirstOrDefault(p => p.Id == workerId);
         if (worker == null)
         {
           return null;
@@ -105,7 +105,7 @@ namespace BLL
         List<DAL.Calander> MeetingParents = new List<DAL.Calander>();
         foreach (var knd in listKnd)
         {
-          MeetingParents.AddRange(db.Calanders.Where(meetParent => meetParent.KindId == 3 && meetParent.DateStart.Value.Year == PublicLogic.CalcBeaginYear().Year
+          MeetingParents.AddRange(db.Calanders.Where(meetParent => meetParent.KindId == 3 && meetParent.DateStart.Value.Year == year
           && DateTime.Now.Month - meetParent.DateStart.Value.Month <= 2 && meetParent.KinderGardenId == knd.Id).ToList());
         }
         foreach (var calender in MeetingParents)

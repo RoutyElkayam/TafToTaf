@@ -17,8 +17,8 @@ export class AccountService {
   user:Observable<User>=null;
   private key = 'token';
   public currentUser:User=null;
-  userChild:Child;
-  userProffesional:Professional;
+  userChild:Child=null;
+  userProffesional:Professional=null;
   constructor(private http:HttpClient) { }
 
   login(username:string, password:string) 
@@ -31,15 +31,7 @@ export class AccountService {
     return this.http.get<User>(this.url);  
   }
 
-  getChildOfUser()
-  {
-    if(this.currentUser)
-    {
-      let parentID=this.currentUser.id;
-      const url=`${this.url}/${"ParentChild"}/${parentID}`
-      return this.http.get<Child>(url);
-    }
-  }
+
 
   token()
   {

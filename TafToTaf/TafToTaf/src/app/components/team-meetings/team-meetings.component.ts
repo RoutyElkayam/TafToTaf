@@ -25,7 +25,7 @@ export class TeamMeetingsComponent implements OnInit {
   }
   
   getWorkerTeamMeeting(){
-    this.calendarService.getWorkerTeamMeeting(this.user.id).subscribe(res=>
+    this.calendarService.getWorkerTeamMeeting(this.accountService.userProffesional.id).subscribe(res=>
       {this.teamMeetings=res,console.log(this.teamMeetings)});
   }
 

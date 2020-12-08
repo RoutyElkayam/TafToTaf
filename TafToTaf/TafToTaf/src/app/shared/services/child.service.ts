@@ -41,7 +41,10 @@ export class ChildService {
   }
 
   getChildWorker(): Observable<Child[]>{
-    return this.http.get<Child[]>(this.url)
+    console.log(this.accontService.userProffesional);
+    let workerID=this.accontService.userProffesional.id;
+    const url=`${this.url}/${"WorkerChildren"}/${workerID}`;
+    return this.http.get<Child[]>(url);
   }
   getChildOfUser()
   {
@@ -49,7 +52,7 @@ export class ChildService {
     {
       console.log(this.accontService.currentUser);
       let parentID=this.accontService.currentUser.id;
-      const url=`${this.url}/${"ParentChild"}/${parentID}`
+      const url=`${this.url}/${"ParentChild"}/${parentID}`;
       return this.http.get<Child>(url);
     } 
   }

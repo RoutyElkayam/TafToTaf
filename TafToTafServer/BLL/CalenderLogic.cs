@@ -34,7 +34,7 @@ namespace BLL
       List<CalenderDto> teamMeetings = new List<CalenderDto>();
       using (TafToTafEntities1 db = new TafToTafEntities1())
       {
-        var meetings = db.Calanders.Where(c => c.KindId == 2
+        var meetings = db.Calanders.Where(c => c.KindId == 4
  && DateTime.Now.Month - c.DateStart.Value.Month <= 2 && c.DateStart.Value.Year == year).ToList();
         foreach (var calander in meetings)
         {
@@ -121,13 +121,13 @@ namespace BLL
       {
         List<KinderGardenDto> listKnd = KinderGardenLogic.SelectWorkersKinderGardens(workerId);
         List<CalenderDto> CalenderList = new List<CalenderDto>();
-        List<DAL.Calander> MeetingParents = new List<DAL.Calander>();
+        List<DAL.Calander> Meetings = new List<DAL.Calander>();
         foreach (var knd in listKnd)
         {
-          MeetingParents.AddRange(db.Calanders.Where(meet => meet.KindId == 2 && meet.DateStart.Value.Year == year
+          Meetings.AddRange(db.Calanders.Where(meet => meet.KindId == 4 && meet.DateStart.Value.Year == year
           && DateTime.Now.Month - meet.DateStart.Value.Month <= 2 && meet.KinderGardenId == knd.Id).ToList());
         }
-        foreach (var calender in MeetingParents)
+        foreach (var calender in Meetings)
         {
           CalenderList.Add(CalanderC.ToCalanderDto(calender));
         }

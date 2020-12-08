@@ -14,6 +14,7 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { WorkersComponent } from './components/workers/workers.component';
 import { ReportChildComponent } from './components/report-child/report-child.component';
 import { ChildWorkerComponent } from './components/child-worker/child-worker.component';
+import { WeeklySystemKgComponent } from './components/weekly-system-kg/weekly-system-kg.component';
 
 const routes: Routes = [
   {component:LogInComponent,path:""},
@@ -28,7 +29,7 @@ const routes: Routes = [
     {component:WelcomeComponent,path:""},
     {component:ChildrenComponent, path:"children"},
     {component:WorkersComponent, path:"professionals"},
-    {component:WeeklySystemComponent, path:"weekly-system"},
+    {component:WeeklySystemKgComponent, path:"weekly-system"},
     {component:TeamMeetingsComponent, path: "team-meetings"},
     {component: ParentMeetingsComponent,  path:"parent-meetings"},
     

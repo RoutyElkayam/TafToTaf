@@ -40,6 +40,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { ReportChildComponent } from './components/report-child/report-child.component';
 import { ChildWorkerComponent } from './components/child-worker/child-worker.component';
 import { AdminCalendarComponent } from './components/admin-calendar/admin-calendar.component';
+import { WeeklySystemKgComponent } from './components/weekly-system-kg/weekly-system-kg.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { AdminCalendarComponent } from './components/admin-calendar/admin-calend
     ReportChildComponent,
     ChildWorkerComponent,
     AdminCalendarComponent,
+    WeeklySystemKgComponent,
   
   ],
   imports: [

@@ -51,7 +51,7 @@ export class InsertChildComponent implements OnInit {
       {
         this.isLoading=false;
         this.activeModal.close();
-      },(err:HttpErrorResponse)=>{this.errorMessage=err.message});
+      },(err:HttpErrorResponse)=>{this.errorMessage=err.message, this.activeModal.close();});
     
   }
 

@@ -74,16 +74,24 @@ export class ChildrenComponent implements OnInit {
     });
   }
 
-  edit(child:Child){
+  edit(child:Child)
+  {
     const modalRef = this.modalService.open(EditChildComponent);
     modalRef.componentInstance.child = child;
     if(this.selectkng!=null)
+    {
       modalRef.componentInstance.kinderGardenOfChild=this.selectkng;
+      console.log(this.selectkng);
+    }
     else 
-       this.childKinderGardenService
+    {
+      let kg;
+      this.childKinderGardenService
       .getKinderGNameOfChild(child.id.toString()).subscribe(res=>{
-        modalRef.componentInstance.kinderGardenOfChild=res,console.log('res',res)}
-        );
+        kg=res,console.log('res',kg)}
+      );
+      modalRef.componentInstance.kinderGardenOfChild=kg;
+    }
     modalRef.componentInstance.kinderGardens = this.kinderGardens;
     modalRef.result.then((result) => {
      

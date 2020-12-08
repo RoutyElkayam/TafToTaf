@@ -31,7 +31,7 @@ export class ChildWorkerComponent implements OnInit {
   }
 
   getChildren(): void {
-    this.childService.getChildren()
+    this.childService.getChildWorker()
       .subscribe(children => { this.children = children });
   }
 

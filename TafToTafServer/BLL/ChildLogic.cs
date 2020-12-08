@@ -17,7 +17,7 @@ namespace BLL
     static int year = PublicLogic.CalcBeaginYear().Year;
     public static ChildDto SelectChild(int id)
     {
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var child = db.Children.FirstOrDefault(ch => ch.Id == id);
         if (child == null)
@@ -29,7 +29,7 @@ namespace BLL
     }
     public static ChildDto SelectChildByParentId(int parentId)
     {
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var child = db.Children.FirstOrDefault(ch => ch.ParentID == parentId);
         if (child == null)
@@ -42,7 +42,7 @@ namespace BLL
     public static List<ChildDto> SelectChildren()
     {
       List<ChildDto> childrenList = new List<ChildDto>();
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var children = db.Children.OrderBy(c=>c.LastName).ToList();
         foreach (var child in children)
@@ -56,7 +56,7 @@ namespace BLL
     {
       List<int> childrenIDs = new List<int>();
       List<ChildDto> childrenList = new List<ChildDto>();
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var calendersWorker = db.Calanders.Where(c => c.ProfessionalId==workerID&&c.DateStart!=null&&c.DateStart.Value.Year==year).ToList();
         foreach (var calendar in calendersWorker)
@@ -74,7 +74,7 @@ namespace BLL
     public static void InsertChild(DTO.ChildPost child, string kGardenName)
     {
 
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         int kGardenID = db.KinderGardens.First(kg => kg.Name == kGardenName).Id;
         User user = new User()
@@ -113,7 +113,7 @@ namespace BLL
     {
       try
       {
-        using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+        using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
         {
           var child = db.Children.FirstOrDefault(ch => ch.Id == id);
           if (child != null)
@@ -135,7 +135,7 @@ namespace BLL
     }
     public static void EditChild(int id, ChildDto child)
     {
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var editChild = db.Children.FirstOrDefault(ch => ch.Id == id);
         if (editChild != null)

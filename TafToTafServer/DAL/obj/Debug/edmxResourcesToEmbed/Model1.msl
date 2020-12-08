@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="TafToTafModelStoreContainer" CdmEntityContainer="TafToTafEntities1">
+  <EntityContainerMapping StorageEntityContainer="TafToTafModelStoreContainer" CdmEntityContainer="TafToTafEntities2">
     <EntitySetMapping Name="Calanders">
       <EntityTypeMapping TypeName="TafToTafModel.Calander">
         <MappingFragment StoreEntitySet="Calander">
@@ -23,8 +23,8 @@
           <ScalarProperty Name="Tz" ColumnName="Tz" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="BornDate" ColumnName="BornDate" />
-          <ScalarProperty Name="NumHoursConfirm" ColumnName="NumHoursConfirm" />
           <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="NumHoursConfirm" ColumnName="NumHoursConfirm" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -72,7 +72,6 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ProfessionKind" ColumnName="ProfessionKind" />
           <ScalarProperty Name="NumHourWork" ColumnName="NumHourWork" />
-          <ScalarProperty Name="NumDaysWork" ColumnName="NumDaysWork" />
           <ScalarProperty Name="Sunday" ColumnName="Sunday" />
           <ScalarProperty Name="Monday" ColumnName="Monday" />
           <ScalarProperty Name="Thuesday" ColumnName="Thuesday" />
@@ -87,17 +86,6 @@
         <MappingFragment StoreEntitySet="ProfessionKind">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="TafToTafModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -119,7 +107,7 @@
     <EntitySetMapping Name="Holidays">
       <EntityTypeMapping TypeName="TafToTafModel.Holiday">
         <MappingFragment StoreEntitySet="Holiday">
-          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="NameHoliday" ColumnName="NameHoliday" />
         </MappingFragment>

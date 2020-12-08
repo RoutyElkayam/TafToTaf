@@ -18,7 +18,7 @@ namespace BLL
     {
       int year = PublicLogic.CalcBeaginYear().Year;
       List<CalenderDto> parentsMeetings = new List<CalenderDto>();
-      using (TafToTafEntities1 db = new TafToTafEntities1())
+      using (TafToTafEntities2 db = new TafToTafEntities2())
       {
         var meetings = db.Calanders.Where(c => c.KindId == 3 && DateTime.Now.Month - c.DateStart.Value.Month <= 2 && c.DateStart.Value.Year == year).ToList();
         foreach (var calander in meetings)
@@ -32,7 +32,7 @@ namespace BLL
     {
       int year = PublicLogic.CalcBeaginYear().Year;
       List<CalenderDto> teamMeetings = new List<CalenderDto>();
-      using (TafToTafEntities1 db = new TafToTafEntities1())
+      using (TafToTafEntities2 db = new TafToTafEntities2())
       {
         var meetings = db.Calanders.Where(c => c.KindId == 2
  && DateTime.Now.Month - c.DateStart.Value.Month <= 2 && c.DateStart.Value.Year == year).ToList();
@@ -47,7 +47,7 @@ namespace BLL
     {
       int year = PublicLogic.CalcBeaginYear().Year;
       List<CalenderDto> calenderDtos = new List<CalenderDto>();
-      using (TafToTafEntities1 db = new TafToTafEntities1())
+      using (TafToTafEntities2 db = new TafToTafEntities2())
       {
         var calenders = db.Calanders.Where(c => c.KinderGardenId == kinderGardenID && c.DateStart.Value.Year == year);
         foreach (var calander in calenders)
@@ -59,7 +59,7 @@ namespace BLL
     }
     public static List<CalenderDto> SelectCalenderChild(int childId)//מקבלת קוד ילד ומחזירה את כל הטיפולים שלן
     {
-      using (TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var child = db.Children.FirstOrDefault(ch => ch.Id == childId);
         if (child == null)
@@ -77,7 +77,7 @@ namespace BLL
     }
     public static List<CalenderDto> SelectCalenderWorker(int workerId)//מקבלת קוד עובדת ומחזירה את כל הטיפולים שלה ואת הישיבות צוות והורים
     {
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var worker = db.Professionals.FirstOrDefault(p => p.Id == workerId);
         if (worker == null)
@@ -98,7 +98,7 @@ namespace BLL
     }
     public static List<CalenderDto> SelectWorkerParentsMeeting(int workerId)//מפגשי הורים לעובדת
     {
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         List<KinderGardenDto> listKnd = KinderGardenLogic.SelectWorkersKinderGardens(workerId);
         List<CalenderDto> CalenderList = new List<CalenderDto>();
@@ -117,7 +117,7 @@ namespace BLL
     }
     public static List<CalenderDto> SelectWorkerTeamMeeting(int workerId)//מפגשי צוות לעובדת
     {
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         List<KinderGardenDto> listKnd = KinderGardenLogic.SelectWorkersKinderGardens(workerId);
         List<CalenderDto> CalenderList = new List<CalenderDto>();
@@ -136,7 +136,7 @@ namespace BLL
     }
     public static List<CalenderDto> SelectChildParentMeeting(int childId)//מפגשי הורים לילד
     {
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var child = db.Children.FirstOrDefault(ch => ch.Id == childId);
         if (child == null)

@@ -17,7 +17,7 @@ namespace BLL.Converters
       CalenderDto calanderDto = new CalenderDto()
       {
         Id = calander.Id,
-        End = calander.DateEnd.GetValueOrDefault(),
+        End = calander.DateEnd,
         Start = calander.DateStart.GetValueOrDefault(),
         KindId = calander.KindId.GetValueOrDefault(),
         //KinderGardenId = calander.KinderGardenId.GetValueOrDefault(),

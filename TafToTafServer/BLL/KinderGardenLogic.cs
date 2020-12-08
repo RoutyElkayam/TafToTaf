@@ -15,7 +15,7 @@ namespace BLL
     public static List<KinderGardenDto> SelectKinderGardens()
     {
       List<KinderGardenDto> listKinderGardens = new List<KinderGardenDto>();
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var kinderGardens = db.KinderGardens.ToList();
         foreach (var kinderGarden in kinderGardens)
@@ -29,7 +29,7 @@ namespace BLL
     {
       List<KinderGardenDto> listKinderGardens = new List<KinderGardenDto>();
      List<int> kndId = new List<int>();
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var calendersKinderGarden = db.Calanders.Where(c => c.ProfessionalId==profossionalId&&c.DateStart!=null&&c.DateStart.Value.Year==year).ToList();
         

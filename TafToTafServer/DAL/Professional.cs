@@ -14,17 +14,10 @@ namespace DAL
     
     public partial class Professional
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Professional()
-        {
-            this.Calanders = new HashSet<Calander>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<int> ProfessionKind { get; set; }
         public Nullable<double> NumHourWork { get; set; }
-        public Nullable<int> NumDaysWork { get; set; }
         public Nullable<bool> Sunday { get; set; }
         public Nullable<bool> Monday { get; set; }
         public Nullable<bool> Thuesday { get; set; }
@@ -32,8 +25,6 @@ namespace DAL
         public Nullable<bool> Tursday { get; set; }
         public Nullable<int> userID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Calander> Calanders { get; set; }
         public virtual ProfessionKind ProfessionKind1 { get; set; }
         public virtual User User { get; set; }
     }

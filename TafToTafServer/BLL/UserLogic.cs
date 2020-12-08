@@ -14,7 +14,7 @@ namespace BLL
     {
 
       int idUser = TokenLogic.DecodeToken(token);
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var user = db.Users.FirstOrDefault(u => u.Id == idUser);
         if (user == null)
@@ -24,7 +24,7 @@ namespace BLL
     }
     public static UserDto Login(string username, string password)
     {
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var user = db.Users.FirstOrDefault(p => p.UserName == username && p.Password == password);
         if (user == null)

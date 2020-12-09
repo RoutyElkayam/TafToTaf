@@ -12,7 +12,7 @@ namespace BLL
   {
     public static ProfessionalDTO SelectProfessional(int id)
     {
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var professional = db.Professionals.FirstOrDefault(p => p.Id == id);
         if (professional == null)
@@ -24,7 +24,7 @@ namespace BLL
     }
     public static ProfessionalDTO SelectProfessionalByUserID(int id)
     {
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var professional = db.Professionals.FirstOrDefault(p => p.userID == id);
         if (professional == null)
@@ -37,7 +37,7 @@ namespace BLL
     public static List<ProfessionalDTO> SelectProffesionals()
     {
       List<ProfessionalDTO> ProffesionalsList = new List<ProfessionalDTO>();
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var proffesionals = db.Professionals.OrderBy(p => p.ProfessionKind).ToList();
         foreach (var proffesional in proffesionals)
@@ -50,7 +50,7 @@ namespace BLL
     public static void InsertProffesional(DTO.ProffessionalPost proffessional)
     {
 
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         db.Users.Add
           (
@@ -87,7 +87,7 @@ namespace BLL
     {
       try
       {
-        using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+        using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
         {
           var proffesional = db.Professionals.FirstOrDefault(p => p.Id == id);
           if (proffesional != null)
@@ -107,7 +107,7 @@ namespace BLL
     }
     public static void EditProffesional(int id, DTO.ProfessionalDTO professional)
     {
-      using (DAL.TafToTafEntities1 db = new DAL.TafToTafEntities1())
+      using (DAL.TafToTafEntities2 db = new DAL.TafToTafEntities2())
       {
         var editProffesional = db.Professionals.FirstOrDefault(p => p.Id == id);
         if (editProffesional != null)

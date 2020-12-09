@@ -13,10 +13,10 @@ namespace DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TafToTafEntities1 : DbContext
+    public partial class TafToTafEntities2 : DbContext
     {
-        public TafToTafEntities1()
-            : base("name=TafToTafEntities1")
+        public TafToTafEntities2()
+            : base("name=TafToTafEntities2")
         {
         }
     
@@ -33,7 +33,6 @@ namespace DAL
         public virtual DbSet<KindUser> KindUsers { get; set; }
         public virtual DbSet<Professional> Professionals { get; set; }
         public virtual DbSet<ProfessionKind> ProfessionKinds { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Holiday> Holidays { get; set; }
     }

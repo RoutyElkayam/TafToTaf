@@ -7,7 +7,7 @@
                         <button type="button" class="btn btn-secondary add-new" (click)="sendChild()"><i class="fa fa-plus"></i> הוספת ילד</button>
                     </div>
                      <div class="col-sm-4">
-                        <select class="form-control" [(ngModel)]="selectkng"  (change)="OnchangeGan()">  
+                        <select class="form-control" [(ngModel)]="selectkng"  (change)="OnchangeGan()" aria-placeholder="בחר גן">  
                             <option>{{selectkng}}</option>                       
                             <option *ngFor="let kinderGarden of kinderGardens" >
                              {{kinderGarden.name}}

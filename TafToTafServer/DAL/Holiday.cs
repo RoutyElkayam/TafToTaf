@@ -14,7 +14,7 @@ namespace DAL
     
     public partial class Holiday
     {
-        public int ID { get; set; }
+        public int id { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public string NameHoliday { get; set; }
     }

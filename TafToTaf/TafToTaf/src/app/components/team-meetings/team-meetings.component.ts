@@ -11,7 +11,7 @@ import { CalanderService } from 'src/app/shared/services/calander.service';
 export class TeamMeetingsComponent implements OnInit {
   
   teamMeetings:Calander[];
-  user ;
+  user;
   nowDate=new Date();
   constructor(public calendarService: CalanderService
     ,private accountService: AccountService) {  
@@ -35,6 +35,7 @@ export class TeamMeetingsComponent implements OnInit {
   }
   
   getPlace(meeting:Calander):string{
+      
       return "אולם קומה 4";
   }
   getStatusClass(meet:Calander):string{

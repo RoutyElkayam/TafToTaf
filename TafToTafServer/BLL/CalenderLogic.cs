@@ -20,7 +20,7 @@ namespace BLL
       List<CalenderDto> parentsMeetings = new List<CalenderDto>();
       using (TafToTafEntities1 db = new TafToTafEntities1())
       {
-        var meetings = db.Calanders.Where(c => c.KindId == 3 && DateTime.Now.Month - c.DateStart.Value.Month <= 2 && c.DateStart.Value.Year == year).ToList();
+        var meetings = db.Calanders.Where(c => c.KindId == 5 && DateTime.Now.Month - c.DateStart.Value.Month <= 2 && c.DateStart.Value.Year == year).ToList();
         foreach (var calander in meetings)
         {
           parentsMeetings.Add(BLL.Converters.CalanderC.ToCalanderDto(calander));
@@ -49,7 +49,7 @@ namespace BLL
       List<CalenderDto> calenderDtos = new List<CalenderDto>();
       using (TafToTafEntities1 db = new TafToTafEntities1())
       {
-        var calenders = db.Calanders.Where(c => c.KinderGardenId == kinderGardenID && c.DateStart.Value.Year == year);
+        var calenders = db.Calanders.Where(c => c.KindId<4&& c.KinderGardenId == kinderGardenID && c.DateStart.Value.Year == year);
         foreach (var calander in calenders)
         {
           calenderDtos.Add(CalanderC.ToCalanderDto(calander));
@@ -67,7 +67,7 @@ namespace BLL
           return null;
         }
         List<CalenderDto> CalenderList = new List<CalenderDto>();
-        var Treatments = db.Calanders.Where(tret => tret.KindId == 1 && tret.DateStart.Value.Year ==year  && tret.ChildId == childId).ToList();
+        var Treatments = db.Calanders.Where(tret => tret.KindId <4 && tret.DateStart.Value.Year ==year  && tret.ChildId == childId).ToList();
         foreach (var calender in Treatments)
         {
           CalenderList.Add(CalanderC.ToCalanderDto(calender));
@@ -85,7 +85,7 @@ namespace BLL
           return null;
         }
         List<CalenderDto> CalenderList = new List<CalenderDto>();
-        var Treatments = db.Calanders.Where(tret => tret.KindId == 1 && tret.DateStart.Value.Year == year && tret.ProfessionalId == workerId).ToList();
+        var Treatments = db.Calanders.Where(tret => tret.KindId <4 && tret.DateStart.Value.Year == year && tret.ProfessionalId == workerId).ToList();
         CalenderList.AddRange(SelectWorkerTeamMeeting(workerId));
         CalenderList.AddRange(SelectWorkerParentsMeeting(workerId));
         foreach (var calender in Treatments)
@@ -105,7 +105,7 @@ namespace BLL
         List<DAL.Calander> MeetingParents = new List<DAL.Calander>();
         foreach (var knd in listKnd)
         {
-          MeetingParents.AddRange(db.Calanders.Where(meetParent => meetParent.KindId == 3 && meetParent.DateStart.Value.Year == year
+          MeetingParents.AddRange(db.Calanders.Where(meetParent => meetParent.KindId == 5 && meetParent.DateStart.Value.Year == year
           && DateTime.Now.Month - meetParent.DateStart.Value.Month <= 2 && meetParent.KinderGardenId == knd.Id).ToList());
         }
         foreach (var calender in MeetingParents)
@@ -145,7 +145,7 @@ namespace BLL
         }
         List<CalenderDto> CalenderList = new List<CalenderDto>();
         var childknd = db.ChildKinderGardens.FirstOrDefault(knd => knd.ChildID == childId);
-        var meetParent = db.Calanders.Where(meet => meet.KindId == 3 && meet.DateStart.Value.Year == year && meet.KinderGardenId == childknd.KindrGardenID).ToList();
+        var meetParent = db.Calanders.Where(meet => meet.KindId == 5 && meet.DateStart.Value.Year == year && meet.KinderGardenId == childknd.KindrGardenID &&  meet.ChildId==child.Id).ToList();
         foreach (var calender in meetParent)
         {
           CalenderList.Add(CalanderC.ToCalanderDto(calender));

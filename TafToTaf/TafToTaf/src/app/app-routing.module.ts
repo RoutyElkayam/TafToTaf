@@ -40,7 +40,8 @@ const routes: Routes = [
     {component:ChildWorkerComponent, path:"child-worker"},
     {component:WeeklySystemComponent, path:"weekly-system"},
     {component:ParentMeetingsComponent, path:"parent-meetings"},
-    {component:TeamMeetingsComponent, path:"team-meetings"}
+    {component:TeamMeetingsComponent, path:"team-meetings"},
+    {component:WeeklySystemKgComponent, path:"weekly-systemKG"},
   ]} ,
   {component:ParentMainComponent, path:"parent-main",
   children:[

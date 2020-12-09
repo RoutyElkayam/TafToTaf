@@ -124,7 +124,7 @@ export class WeeklySystemComponent implements OnInit  {
   }
   setColors(){
     this.events.forEach(event => {
-    if(event.kindId==1 || event.kindId==2 || event.kindId==3)
+    if(event.kindId==1)
       event.color=colors.yellow;
     else if(  event.kindId==2 )
       event.color=colors.pink;

@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="table-wrapper">
         <div class="table-title">
@@ -10,32 +9,24 @@
                 <tr> 
                     <th>סטטוס</th>                  
                     <th>מיקום</th>
+                    <th> שעת סיום  </th>
+                    <th> שעת התחלה  </th>
                     <th>תאריך</th>
+                    <th> כותרת המפגש</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                     <td>
-                        <a class="done" title="done" data-toggle="tooltip" (click)="done()" ><i class="fa fa-check"></i></a>                          
+                <tr *ngFor="let meet of this.parentMeeting">
+                     <td [ngClass]="this.getStatusClass(meet)">
+                        <i class="fas fa-check"></i>
                     </td>                      
-                    <td>****</td>
-                    <td>****</td>  
-                </tr>
-                <tr>
-                    <td>
-                       <a class="done" title="done" data-toggle="tooltip" (click)="done()" ><i class="fa fa-check"></i></a>                          
-                   </td>                      
-                   <td>****</td>
-                   <td>****</td>  
-               </tr>
-               <tr>
-                <td>
-                   <a class="done" title="done" data-toggle="tooltip" (click)="done()" ><i class="fa fa-check"></i></a>                          
-               </td>                      
-               <td>****</td>
-               <td>****</td>  
-           </tr>
+                    <td>{{getPlace(meet)}}</td>
+                    <td> {{meet.end| date:'short'}}</td> 
+                    <td> {{meet.start| date:'short'}}</td>   
+                    <td> {{meet.start| date}}</td>   
+                    <td>{{meet.title}}</td>
+                </tr> 
             </tbody>
         </table>
     </div>
-</div>    
+</div> 
